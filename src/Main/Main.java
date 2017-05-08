@@ -27,34 +27,21 @@ import Mission.Mission;
 import Mission.MissionPreparation;
 import Personnel.Personnel;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class Main {
 	
     public static void main(String[] args) throws IOException {
 
         Entreprise f = new Entreprise();
-
-
-        // Récupérer tout le personnel dans une collection (identifiant, date d'arrivée dans l'entreprise, nom et prénom)
-        /*HashMap<String,Personnel> tabPP = f.recupererPersonnel();
-        for(int j = 1; j<tabPP.size()+1;j++){
-            System.out.println(Entreprise.tPersonnels.get(""+j).toString());
-        }*/
-
-
-        // Récupérer toutes les compétences dans une collection (identifiant et libellé)
-        /*HashMap<String,Competence> tabC = f.recupererCompetence();
-        for(int j = 0; j<tabC.size();j++){
-            System.out.println(tabC.get("B.1.").toString());
-        }*/
-
-        // f.sauvegarderCompetence();
-        // System.out.println(Entreprise.tMission.get("1"));
-        Set<Integer> keys = Entreprise.tMission.keySet();
+        f.initDonnees();
+        
+        TreeMap<Integer,Personnel> rechercherPersonnels = f.rechercherPersonnels(null, "Galasso", "Ollie", new ArrayList<String>());
+        
+        Set<Integer> keys = rechercherPersonnels.keySet();
         for(Integer key: keys){
-            Mission p = Entreprise.tMission.get(key);
+            Personnel p = rechercherPersonnels.get(key);
             System.out.println(p.toString());
         }
-        
     }
 }

@@ -188,7 +188,7 @@ public class Personnel {
             if ( !this.getClass().equals(p.getClass()) )
                 return false;
             if ( (this.prenom.equals(p.prenom) || p.prenom.equals(""))
-                     && (this.nom.equals(p.prenom) || p.nom.equals("")))
+                     && (this.nom.equals(p.nom) || p.nom.equals("")))
                 return true;
             return false;
         }
