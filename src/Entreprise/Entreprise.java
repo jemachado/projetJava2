@@ -10,6 +10,7 @@ import Mission.Mission;
 import Mission.MissionEnCours;
 import Mission.MissionPlanifiee;
 import Mission.MissionPreparation;
+import Mission.MissionTerminee;
 import Personnel.Personnel;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
@@ -35,6 +36,7 @@ public class Entreprise {
     public static TreeMap<String,Competence> tCompetences;
     public static TreeMap<Integer,Mission> tMission;
     public static Integer idPersonnel;
+    public static Integer idMission;
     
     public Entreprise() throws IOException {
         this.tPersonnels = this.recupererPersonnel();
@@ -164,7 +166,7 @@ public class Entreprise {
                                                                         Integer.parseInt(nextLine[3]),
                                                                         Integer.parseInt(nextLine[1])
                                                                         ));
-                        } /*else if (nextLine[0].equals("MissionPlanifiee")) {
+                        } else if (nextLine[0].equals("MissionTerminee")) {
                             TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
                             System.out.println(nextLine.length);
                             if(nextLine.length>5){
@@ -173,13 +175,13 @@ public class Entreprise {
                                     competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
                                 }
                             }
-                            tabM.put(Integer.parseInt(nextLine[1]), new MissionPlanifiee(competNbPersonne,
+                            tabM.put(Integer.parseInt(nextLine[1]), new MissionTerminee(competNbPersonne,
                                                                         Integer.parseInt(nextLine[4]),
                                                                         dateFr(nextLine[2]),
                                                                         Integer.parseInt(nextLine[3]),
                                                                         Integer.parseInt(nextLine[1])
                                                                         ));
-                        }*/
+                        }
                     }
                     i++;
                  }

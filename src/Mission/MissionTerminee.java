@@ -7,6 +7,8 @@ package Mission;
 
 import Mission.Mission;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TreeMap;
 
 /**
  *
@@ -19,6 +21,19 @@ public class MissionTerminee extends MissionNonModifiable {
 		this.totalPersonne = mp.getTotalPersonne();
 		this.dateDebut = mp.getDateDebut();
 		this.duree = mp.getDuree();
+		this.tabPerso = new ArrayList<String>();
+	}
+    
+    public MissionTerminee(TreeMap<String, Integer> competNbPersonne,
+							int totalPersonne,
+							Date dateDebut,
+							int duree,
+                                                        int id){
+                this.id = id;
+		this.competNbPersonne = competNbPersonne;
+		this.totalPersonne = totalPersonne;
+		this.dateDebut = dateDebut;
+		this.duree = duree;
 		this.tabPerso = new ArrayList<String>();
 	}
     
