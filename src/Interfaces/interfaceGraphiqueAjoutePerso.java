@@ -18,6 +18,9 @@ import java.util.logging.Logger;
 import static javafx.scene.input.KeyCode.O;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
@@ -32,7 +35,7 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
      */
     public interfaceGraphiqueAjoutePerso() throws IOException {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        initComponents(); 
+        initComponents();
         Entreprise e = new Entreprise();
         this.initTabPersonnel();
         this.remplissage();

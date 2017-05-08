@@ -259,11 +259,14 @@ public class Entreprise {
         return tPers;
     }
     
-    public boolean ajoutPersonnel(String dateEntree, String nom, String prenom){
+    public boolean ajoutPersonnel(String dateEntree, String nom, String prenom, ArrayList<String> tabC){
         if (dateEntree == null || dateEntree.equals("") || nom == null || nom.equals("") || prenom == null || prenom.equals("") ) {
             return false;
         }
         Personnel p = new Personnel(this.idPersonnel,dateEntree, nom, prenom);
+        for (int i = 0 ; i < tabC.size() ; i++) {
+            p.ajouterCompetence(tabC.get(i));
+        }
         this.tPersonnels.put(idPersonnel, p);
         return true;
     }
