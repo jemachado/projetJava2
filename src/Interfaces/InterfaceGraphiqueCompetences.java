@@ -26,6 +26,7 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
     public InterfaceGraphiqueCompetences() throws IOException {
         initComponents();
         Entreprise e = new Entreprise();
+        
         this.initTabCompetences();
     }
     
@@ -232,7 +233,14 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
 
     private void buttonRetourCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourCompMouseClicked
         // TODO add your handling code here:
-        interfaceGraphiqueAccueil Accueil = new interfaceGraphiqueAccueil();
+        interfaceGraphiqueAccueil Accueil = null;
+        try {
+            Accueil = new interfaceGraphiqueAccueil();
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(InterfaceGraphiqueCompetences.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(InterfaceGraphiqueCompetences.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         Accueil.setVisible(true);
     }//GEN-LAST:event_buttonRetourCompMouseClicked

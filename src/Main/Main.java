@@ -35,13 +35,14 @@ public class Main {
 
         Entreprise f = new Entreprise();
         f.initDonnees();
-        
+        /*
         TreeMap<Integer,Personnel> rechercherPersonnels = f.rechercherPersonnels(null, "Galasso", "Ollie", new ArrayList<String>());
         
         Set<Integer> keys = rechercherPersonnels.keySet();
         for(Integer key: keys){
             Personnel p = rechercherPersonnels.get(key);
             System.out.println(p.toString());
-        }
+        }*/
+        
     }
 }

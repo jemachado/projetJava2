@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jerem/Desktop/projetJava/src/Personnel/Personnel.java</file>
-            <file>file:/C:/Users/jerem/Desktop/projetJava/src/Entreprise/Entreprise.java</file>
-            <file>file:/C:/Users/jerem/Desktop/projetJava/src/Main/Main.java</file>
-            <file>file:/C:/Users/jerem/Desktop/projetJava/src/Interfaces/InterfaceGraphiquePersonnel.java</file>
+            <file>file:/C:/Users/jerem/Desktop/projetJava2/src/Interfaces/interfaceGraphiqueAjoutePerso.java</file>
+            <file>file:/C:/Users/jerem/Desktop/projetJava2/src/Interfaces/InterfaceGraphiqueModifierPerso.java</file>
+            <file>file:/C:/Users/jerem/Desktop/projetJava2/src/Interfaces/InterfaceGraphiquePersonnel.java</file>
+            <file>file:/C:/Users/jerem/Desktop/projetJava2/src/Entreprise/Entreprise.java</file>
         </group>
     </open-files>
 </project-private>

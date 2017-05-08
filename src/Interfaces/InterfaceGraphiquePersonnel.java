@@ -36,7 +36,6 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         this.entreprise = new Entreprise();
-        this.entreprise.initDonnees();
         this.initTabPersonnel(Entreprise.tPersonnels);
         this.remplissage();
     }
@@ -56,7 +55,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         {
             clef = (Integer)i.next();
             valeur = tPers.get(clef);
-            model.addRow(new Object[]{valeur.getNom(),valeur.getPrenom(), valeur.getDateEntree()});
+            model.addRow(new Object[]{valeur.getId(),valeur.getNom(),valeur.getPrenom(), valeur.getDateEntree()});
         }   
     }
     
@@ -94,7 +93,6 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         buttonAjoutePers = new javax.swing.JButton();
         buttonModifPers = new javax.swing.JButton();
         labelCompPers = new javax.swing.JLabel();
-        buttonSauvPers = new javax.swing.JButton();
         comboBoxCompPers1 = new javax.swing.JComboBox<>();
         buttonRetourPers = new javax.swing.JButton();
         comboBoxCompPers2 = new javax.swing.JComboBox<>();
@@ -118,15 +116,28 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
 
         tablePersonnel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nom", "Prénom", "Date Début", "Compétences"
+                "Identtifiant", "Nom", "Prénom", "Date Début", "Compétences"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablePersonnel.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablePers.setViewportView(tablePersonnel);
 
         buttonAjoutePers.setText("Ajouter");
@@ -144,14 +155,6 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         });
 
         labelCompPers.setText("Compétences :");
-
-        buttonSauvPers.setText("Sauvegarder");
-        buttonSauvPers.setEnabled(false);
-        buttonSauvPers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSauvPersActionPerformed(evt);
-            }
-        });
 
         buttonRetourPers.setText("Retour");
         buttonRetourPers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,55 +193,55 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                 .addGap(498, 498, 498)
                 .addComponent(labelPersPers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(440, 440, 440))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelCompPers)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboBoxCompPers3, 0, 242, Short.MAX_VALUE)
+                            .addComponent(comboBoxCompPers2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboBoxCompPers1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(229, 229, 229)
+                        .addComponent(buttonRechPers, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(labelNomPer)
+                        .addGap(18, 18, 18)
+                        .addComponent(textFieldNomPers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(labelPrenPers)
+                        .addGap(18, 18, 18)
+                        .addComponent(textFieldPrenPers, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(TextFieldAnneeEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextFieldMoisEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelCompPers)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(comboBoxCompPers3, 0, 242, Short.MAX_VALUE)
-                                    .addComponent(comboBoxCompPers2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboBoxCompPers1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(229, 229, 229)
-                                .addComponent(buttonRechPers, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(labelNomPer)
-                                .addGap(18, 18, 18)
-                                .addComponent(textFieldNomPers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
-                                .addComponent(labelPrenPers)
-                                .addGap(18, 18, 18)
-                                .addComponent(textFieldPrenPers)
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TextFieldAnneeEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TextFieldMoisEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(buttonSauvPers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(750, 750, 750)
-                                .addComponent(buttonRetourPers, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(buttonAjoutePers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonModifPers, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
-                                .addGap(41, 41, 41))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelListePers)
                                     .addComponent(tablePers))
-                                .addGap(390, 390, 390))))
+                                .addGap(390, 390, 390))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonRetourPers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(buttonAjoutePers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(buttonModifPers, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
+                                        .addGap(41, 41, 41))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(separatorPers)))
@@ -277,9 +280,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(tablePers, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonSauvPers)
-                        .addContainerGap())
+                        .addGap(56, 56, 56))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(buttonAjoutePers)
@@ -294,9 +295,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,10 +304,6 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonSauvPersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSauvPersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonSauvPersActionPerformed
 
     private void buttonAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjoutePersMouseClicked
                                               
@@ -324,7 +319,8 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAjoutePersMouseClicked
 
     private void buttonModifPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifPersMouseClicked
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) this.tablePersonnel.getModel();
+        Entreprise.idModifPerso = ""+model.getValueAt(this.tablePersonnel.getSelectedRow(), 0);
         InterfaceGraphiqueModifierPerso ModifPerso = null;
         try {
             ModifPerso = new InterfaceGraphiqueModifierPerso();
@@ -337,7 +333,14 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
 
     private void buttonRetourPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourPersMouseClicked
         // TODO add your handling code here:
-        interfaceGraphiqueAccueil Accueil = new interfaceGraphiqueAccueil();
+        interfaceGraphiqueAccueil Accueil = null;
+        try {
+            Accueil = new interfaceGraphiqueAccueil();
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(InterfaceGraphiquePersonnel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(InterfaceGraphiquePersonnel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         Accueil.setVisible(true);
     }//GEN-LAST:event_buttonRetourPersMouseClicked
@@ -401,7 +404,6 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     private javax.swing.JButton buttonModifPers;
     private javax.swing.JButton buttonRechPers;
     private javax.swing.JButton buttonRetourPers;
-    private javax.swing.JButton buttonSauvPers;
     private javax.swing.JComboBox<String> comboBoxCompPers1;
     private javax.swing.JComboBox<String> comboBoxCompPers2;
     private javax.swing.JComboBox<String> comboBoxCompPers3;

@@ -5,6 +5,10 @@
  */
 package Interfaces;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author clementraphaell
@@ -186,7 +190,14 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
 
     private void buttonRetourMissionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourMissionsMouseClicked
         // TODO add your handling code here:
-        interfaceGraphiqueAccueil  Accueil = new interfaceGraphiqueAccueil();
+        interfaceGraphiqueAccueil  Accueil = null;
+        try {
+            Accueil = new interfaceGraphiqueAccueil();
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(InterfaceGraphiqueMissions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(InterfaceGraphiqueMissions.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         Accueil.setVisible(true);
     }//GEN-LAST:event_buttonRetourMissionsMouseClicked

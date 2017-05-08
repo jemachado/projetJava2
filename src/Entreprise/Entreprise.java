@@ -36,7 +36,7 @@ public class Entreprise {
     public static TreeMap<String,Competence> tCompetences;
     public static TreeMap<Integer,Mission> tMission;
     public static Integer idPersonnel;
-    public static Integer idMission;
+    public static String idModifPerso;
     
     public Entreprise() { }
     
@@ -123,7 +123,6 @@ public class Entreprise {
                     if(i!=0){
                         if (nextLine[0].equals("MissionPreparation")) {
                             TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
-                            System.out.println(nextLine.length);
                             if(nextLine.length>5){
                                 for (int j = 5; j < nextLine.length ; j = j+2) {
                                     int f = j+1;
@@ -141,7 +140,6 @@ public class Entreprise {
                             
                         } else if (nextLine[0].equals("MissionPlanifiee")) {
                             TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
-                            System.out.println(nextLine.length);
                             if(nextLine.length>5){
                                 for (int j = 5; j < nextLine.length ; j = j+2) {
                                     int f = j+1;
@@ -156,7 +154,6 @@ public class Entreprise {
                                                                         ));
                         } else if (nextLine[0].equals("MissionEnCours")) {
                             TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
-                            System.out.println(nextLine.length);
                             if(nextLine.length>5){
                                 for (int j = 5; j < nextLine.length ; j = j+2) {
                                     int f = j+1;
@@ -171,7 +168,6 @@ public class Entreprise {
                                                                         ));
                         } else if (nextLine[0].equals("MissionTerminee")) {
                             TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
-                            System.out.println(nextLine.length);
                             if(nextLine.length>5){
                                 for (int j = 5; j < nextLine.length ; j = j+2) {
                                     int f = j+1;
@@ -259,16 +255,13 @@ public class Entreprise {
         return tPers;
     }
     
-    public boolean ajoutPersonnel(String dateEntree, String nom, String prenom, ArrayList<String> tabC){
-        if (dateEntree == null || dateEntree.equals("") || nom == null || nom.equals("") || prenom == null || prenom.equals("") ) {
-            return false;
-        }
+    public void ajoutPersonnel(String dateEntree, String nom, String prenom, ArrayList<String> tabC){
         Personnel p = new Personnel(this.idPersonnel,dateEntree, nom, prenom);
         for (int i = 0 ; i < tabC.size() ; i++) {
             p.ajouterCompetence(tabC.get(i));
         }
         this.tPersonnels.put(idPersonnel, p);
-        return true;
+        this.idPersonnel++;
     }
     
     public boolean modifierPersonnel(String dateEntree, String nom, String prenom, ArrayList<String> tabC){

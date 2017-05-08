@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Entreprise.Entreprise;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +22,10 @@ public class interfaceGraphiqueAccueil extends javax.swing.JFrame {
      */
     
     
-    public interfaceGraphiqueAccueil() {
+    public interfaceGraphiqueAccueil() throws NumberFormatException, IOException {
+        Entreprise e = new Entreprise();
+        e.initDonnees();
         initComponents();
-        
     }
     
 
@@ -209,7 +211,13 @@ public class interfaceGraphiqueAccueil extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new interfaceGraphiqueAccueil().setVisible(true);
+                try {
+                    new interfaceGraphiqueAccueil().setVisible(true);
+                } catch (NumberFormatException ex) {
+                    Logger.getLogger(interfaceGraphiqueAccueil.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(interfaceGraphiqueAccueil.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

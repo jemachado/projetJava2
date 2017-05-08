@@ -9,10 +9,12 @@ import Competence.Competence;
 import Entreprise.Entreprise;
 import Personnel.Personnel;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,47 +22,113 @@ import javax.swing.table.DefaultTableModel;
  * @author clementraphaell
  */
 public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
-
+    
+    Entreprise entreprise;
+    ArrayList<String> tabC;
+    
     /**
      * Creates new form InterfaceGraphiqueModifierPerso
      * @throws java.io.IOException
      */
     public InterfaceGraphiqueModifierPerso() throws IOException {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        Entreprise e = new Entreprise();
-        this.initTabPersonnel();
-        this.remplissage();
+        System.out.println(Entreprise.tPersonnels.get(id).toString());
+        this.tabC = new ArrayList<String>();
+        this.remplissageComboBoxAjoutePers();
         
     }
     
-    
-    private void initTabPersonnel() {
-        DefaultTableModel model = (DefaultTableModel) tabelModifPers.getModel();
-        int rowCount = model.getRowCount();
-        //Remove rows one by one from the end of the table
-        for (int j = rowCount - 1; j >= 0; j--) {
-            model.removeRow(j);
-        }
-        Iterator i = Entreprise.tPersonnels.keySet().iterator();
-        Integer clef = null;
-        Personnel valeur = null;
-        while (i.hasNext())
-        {
-            clef = (Integer)i.next();
-            valeur = Entreprise.tPersonnels.get(clef);
-            model.addRow(new Object[]{valeur.getId(), valeur.getNom(), valeur.getPrenom()});
-        }
-    }
-    
-    private void remplissage() throws IOException{
+    private void remplissageComboBoxAjoutePers() throws IOException{
         Entreprise e = new Entreprise();
         Set<String> keys = Entreprise.tCompetences.keySet();
+        this.comboBoxCompAjoutePers1.addItem("");
         for(String key: keys){
             Competence p = Entreprise.tCompetences.get(key);
-            this.comboBoxCompModifPers.addItem(p.toString());
+            this.comboBoxCompAjoutePers1.addItem(p.toString());
         }
-        this.comboBoxCompModifPers.addItem(" ");
     }
+    
+    public boolean Verifier(){
+        
+        if((textFieldPreAjoutePers.getText().equals(""))||
+           (textFieldNomAjoutePers.getText().equals(""))||
+           (textFieldDateEntreAjoutePers.getText().equals(""))){
+            this.jLabel1.setText("Formulaire incomplet");
+            return false;
+        }
+        else {
+            if(this.textFieldDateEntreAjoutePers.getText().length() != 10){
+                this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)");
+                return false;
+            }
+            int mois = Integer.parseInt(""+this.textFieldDateEntreAjoutePers.getText().charAt(3)+this.textFieldDateEntreAjoutePers.getText().charAt(4));
+            if(mois > 12){
+                this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)5");
+                return false;
+            }
+            int jour = Integer.parseInt(""+this.textFieldDateEntreAjoutePers.getText().charAt(0)+this.textFieldDateEntreAjoutePers.getText().charAt(1));
+            int annee = Integer.parseInt(""+this.textFieldDateEntreAjoutePers.getText().charAt(6)+this.textFieldDateEntreAjoutePers.getText().charAt(7)
+                                           +this.textFieldDateEntreAjoutePers.getText().charAt(8)+this.textFieldDateEntreAjoutePers.getText().charAt(9));
+            
+            switch(mois){
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    if(jour > 31){
+                        this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)1");
+                        return false;
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    if(jour > 30){
+                        this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)2");
+                        return false;
+                    }
+                    break;
+                case 2:
+                    if (((annee % 4 == 0) && 
+                         !(annee % 100 == 0))
+                         || (annee % 400 == 0)){
+                            if(jour > 29){
+                                this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)3");
+                                return false;
+                            }
+                        break;
+                    }
+                    else{
+                        if(jour > 28){
+                            this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)4");
+                            return false;
+                        }
+                        }
+                    break;
+                default:
+            }
+            
+        }
+        this.jLabel1.setText("valide");
+        return true;
+    }
+    
+    private String getIdCompet(){
+        String item = (String)this.comboBoxCompAjoutePers1.getSelectedItem();
+        String id = "";
+        int i = 0;
+        while (item.charAt(i) != '-' && i < item.length()){
+            id += item.charAt(i);
+            i++;
+        }
+        return id;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,205 +139,209 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        labelNomModifPers = new javax.swing.JLabel();
-        buttoneSuppModifPers = new javax.swing.JButton();
-        labelPrenModifPers = new javax.swing.JLabel();
-        buttonRetourModifPers = new javax.swing.JButton();
-        buttonSauvModifPers = new javax.swing.JButton();
-        labelCompModifPers = new javax.swing.JLabel();
-        textFieldNomModifPers = new javax.swing.JTextField();
-        textFieldPrenModifPers = new javax.swing.JTextField();
-        comboBoxCompModifPers = new javax.swing.JComboBox<>();
-        buttonAjouterModifPers = new javax.swing.JButton();
-        buttonSupprimerModifPers = new javax.swing.JButton();
+        buttonAjouterAjoutePers = new javax.swing.JButton();
+        labelDateEntAjoutePers = new javax.swing.JLabel();
+        buttonRetourAjoutePers = new javax.swing.JButton();
+        textFieldPreAjoutePers = new javax.swing.JTextField();
+        textFieldNomAjoutePers = new javax.swing.JTextField();
+        textFieldDateEntreAjoutePers = new javax.swing.JTextField();
+        labelCompAjoutePers = new javax.swing.JLabel();
+        comboBoxCompAjoutePers1 = new javax.swing.JComboBox<>();
+        labelAjoutePers = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelModifPers = new javax.swing.JTable();
-        labelModifPers = new javax.swing.JLabel();
-        buttonModifModifPers = new javax.swing.JButton();
-        LabelModifPersVerif = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        tableAjouterPers = new javax.swing.JTable();
+        labelPrenAjoutePers = new javax.swing.JLabel();
+        labelNomAjoutePers = new javax.swing.JLabel();
+        ButtonAjouterPersoAjouterComp = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        SupprCompe = new javax.swing.JButton();
+        jButtonSauvegarder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1580, 605));
 
         jPanel1.setBackground(new java.awt.Color(225, 225, 213));
 
-        labelNomModifPers.setText("Nom :");
-
-        buttoneSuppModifPers.setText("Supprimer");
-
-        labelPrenModifPers.setText("Prénom :");
-
-        buttonRetourModifPers.setText("Retour");
-        buttonRetourModifPers.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonAjouterAjoutePers.setText("Modifier");
+        buttonAjouterAjoutePers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonRetourModifPersMouseClicked(evt);
+                buttonAjouterAjoutePersMouseClicked(evt);
             }
         });
-        buttonRetourModifPers.addActionListener(new java.awt.event.ActionListener() {
+        buttonAjouterAjoutePers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRetourModifPersActionPerformed(evt);
+                buttonAjouterAjoutePersActionPerformed(evt);
             }
         });
 
-        buttonSauvModifPers.setText("Sauvegarder");
-        buttonSauvModifPers.setEnabled(false);
-        buttonSauvModifPers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSauvModifPersActionPerformed(evt);
-            }
-        });
+        labelDateEntAjoutePers.setText("Date d'entrée :");
 
-        labelCompModifPers.setText("Compétences :");
-
-        textFieldNomModifPers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldNomModifPersActionPerformed(evt);
-            }
-        });
-
-        comboBoxCompModifPers.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonRetourAjoutePers.setText("Retour");
+        buttonRetourAjoutePers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                comboBoxCompModifPersMouseClicked(evt);
+                buttonRetourAjoutePersMouseClicked(evt);
             }
         });
 
-        buttonAjouterModifPers.setText("Ajouter");
-
-        buttonSupprimerModifPers.setText("Supprimer");
-        buttonSupprimerModifPers.addActionListener(new java.awt.event.ActionListener() {
+        textFieldPreAjoutePers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSupprimerModifPersActionPerformed(evt);
+                textFieldPreAjoutePersActionPerformed(evt);
             }
         });
 
-        tabelModifPers.setModel(new javax.swing.table.DefaultTableModel(
+        textFieldDateEntreAjoutePers.setToolTipText("");
+
+        labelCompAjoutePers.setText("Compétences :");
+
+        comboBoxCompAjoutePers1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxCompAjoutePers1ActionPerformed(evt);
+            }
+        });
+
+        labelAjoutePers.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        labelAjoutePers.setText("Modifier un personnel");
+
+        tableAjouterPers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Prénom", "Nom", "Identifiant", "Compétences"
+                "Compétence(s)"
             }
-        ));
-        jScrollPane1.setViewportView(tabelModifPers);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
-        labelModifPers.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        labelModifPers.setText("Modifier Personnel");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableAjouterPers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tableAjouterPers);
 
-        buttonModifModifPers.setText("Modifier");
-        buttonModifModifPers.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelPrenAjoutePers.setText("Prénom :");
+
+        labelNomAjoutePers.setText("Nom :");
+
+        ButtonAjouterPersoAjouterComp.setText("Ajouter une compétence");
+        ButtonAjouterPersoAjouterComp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonModifModifPersMouseClicked(evt);
+                ButtonAjouterPersoAjouterCompMouseClicked(evt);
             }
         });
-        buttonModifModifPers.addActionListener(new java.awt.event.ActionListener() {
+
+        SupprCompe.setText("Supprimer une compétence");
+        SupprCompe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SupprCompeMouseClicked(evt);
+            }
+        });
+        SupprCompe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonModifModifPersActionPerformed(evt);
+                SupprCompeActionPerformed(evt);
             }
         });
 
-        LabelModifPersVerif.setText("Verification :");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jButtonSauvegarder.setText("Sauvegarder la base de données");
+        jButtonSauvegarder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSauvegarderMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelNomModifPers)
-                                    .addComponent(labelPrenModifPers))
-                                .addGap(44, 44, 44)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldPrenModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldNomModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelModifPers)))
+                                .addGap(316, 316, 316)
+                                .addComponent(labelAjoutePers))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelCompModifPers)
+                                .addComponent(buttonRetourAjoutePers)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonSauvegarder)))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(labelCompAjoutePers)
+                                .addGap(37, 37, 37)
+                                .addComponent(comboBoxCompAjoutePers1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxCompModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
+                                .addComponent(ButtonAjouterPersoAjouterComp)
+                                .addGap(0, 193, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonSupprimerModifPers)
-                                    .addComponent(buttonAjouterModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelModifPersVerif)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(39, 39, 39))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(buttonSauvModifPers)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonRetourModifPers))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(buttonModifModifPers)
-                        .addGap(126, 126, 126)
-                        .addComponent(buttoneSuppModifPers)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(buttonAjouterAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelNomAjoutePers)
+                                            .addComponent(labelPrenAjoutePers))
+                                        .addGap(70, 70, 70)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(textFieldNomAjoutePers, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                            .addComponent(textFieldDateEntreAjoutePers)
+                                            .addComponent(textFieldPreAjoutePers)))
+                                    .addComponent(labelDateEntAjoutePers)
+                                    .addComponent(SupprCompe))
+                                .addContainerGap())))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(labelModifPers)
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNomModifPers)
-                    .addComponent(textFieldNomModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPrenModifPers)
-                    .addComponent(textFieldPrenModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCompModifPers)
-                    .addComponent(comboBoxCompModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonAjouterModifPers))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonSupprimerModifPers)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonModifModifPers)
-                    .addComponent(buttoneSuppModifPers))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LabelModifPersVerif)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonRetourModifPers)
-                    .addComponent(buttonSauvModifPers)))
+                .addGap(10, 10, 10)
+                .addComponent(labelAjoutePers)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonRetourAjoutePers)
+                            .addComponent(jButtonSauvegarder)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelPrenAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldPreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelNomAjoutePers)
+                            .addComponent(textFieldNomAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDateEntAjoutePers)
+                            .addComponent(textFieldDateEntreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelCompAjoutePers)
+                            .addComponent(comboBoxCompAjoutePers1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonAjouterPersoAjouterComp))
+                        .addGap(18, 18, 18)
+                        .addComponent(SupprCompe)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(buttonAjouterAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,23 +351,22 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textFieldNomModifPersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNomModifPersActionPerformed
+    private void buttonAjouterAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterAjoutePersMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldNomModifPersActionPerformed
+        if (this.Verifier()) {
+            this.entreprise.ajoutPersonnel(this.textFieldDateEntreAjoutePers.getText(),
+                this.textFieldNomAjoutePers.getText(),
+                this.textFieldPreAjoutePers.getText(),
+                this.tabC);
+        }
+    }//GEN-LAST:event_buttonAjouterAjoutePersMouseClicked
 
-    private void buttonSupprimerModifPersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSupprimerModifPersActionPerformed
+    private void buttonAjouterAjoutePersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAjouterAjoutePersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonSupprimerModifPersActionPerformed
 
-    private void buttonRetourModifPersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetourModifPersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRetourModifPersActionPerformed
+    }//GEN-LAST:event_buttonAjouterAjoutePersActionPerformed
 
-    private void buttonSauvModifPersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSauvModifPersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonSauvModifPersActionPerformed
-
-    private void buttonRetourModifPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourModifPersMouseClicked
+    private void buttonRetourAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourAjoutePersMouseClicked
         // TODO add your handling code here:
         InterfaceGraphiquePersonnel Personnel = null;
         try {
@@ -305,37 +376,52 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
         }
         this.dispose();
         Personnel.setVisible(true);
-    }//GEN-LAST:event_buttonRetourModifPersMouseClicked
+    }//GEN-LAST:event_buttonRetourAjoutePersMouseClicked
 
-    private void comboBoxCompModifPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxCompModifPersMouseClicked
+    private void textFieldPreAjoutePersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPreAjoutePersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxCompModifPersMouseClicked
+    }//GEN-LAST:event_textFieldPreAjoutePersActionPerformed
 
-    private void buttonModifModifPersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifModifPersActionPerformed
+    private void comboBoxCompAjoutePers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCompAjoutePers1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonModifModifPersActionPerformed
+    }//GEN-LAST:event_comboBoxCompAjoutePers1ActionPerformed
 
-    private void buttonModifModifPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifModifPersMouseClicked
-        // TODO add your handling code here:
-        boolean remplie = this.Verifier();
-        String lignes = new String();
-        if(remplie == true){
-            //tableAjouterPers.add(lignes);
-            jTextArea1.setText("Bien remplie");
+    private void ButtonAjouterPersoAjouterCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAjouterPersoAjouterCompMouseClicked
+        if (this.tabC.indexOf(getIdCompet()) != -1) {
+            this.jLabel1.setText("Ce personnel à déjà cette compétence");
+        } else {
+            this.tabC.add(getIdCompet());
+            DefaultTableModel model = (DefaultTableModel) this.tableAjouterPers.getModel();
+            model.addRow(new Object[]{(String)this.comboBoxCompAjoutePers1.getSelectedItem()});
         }
-        else
-            jTextArea1.setText("Vous n'avez pas tous remplie");
-    }//GEN-LAST:event_buttonModifModifPersMouseClicked
+    }//GEN-LAST:event_ButtonAjouterPersoAjouterCompMouseClicked
+
+    private void SupprCompeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupprCompeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SupprCompeMouseClicked
+
+    private void SupprCompeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupprCompeActionPerformed
+        DefaultTableModel model = (DefaultTableModel) this.tableAjouterPers.getModel();
+        String item = (String) model.getValueAt( this.tableAjouterPers.getSelectedRow(), this.tableAjouterPers.getSelectedColumn());
+        String id = "";
+        int i = 0;
+        while (item.charAt(i) != '-' && i < item.length()){
+            id += item.charAt(i);
+            i++;
+        }
+        this.tabC.remove(id);
+        model.removeRow(this.tableAjouterPers.getSelectedRow());
+    }//GEN-LAST:event_SupprCompeActionPerformed
+
+    private void jButtonSauvegarderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSauvegarderMouseClicked
+        try {
+            this.entreprise.sauvegarderTout();
+        } catch (IOException ex) {
+            Logger.getLogger(interfaceGraphiqueAjoutePerso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonSauvegarderMouseClicked
 
     
-    public boolean Verifier() 
-        {
-            boolean verifier = true;
-            if((textFieldNomModifPers.getText().equals(""))||(textFieldPrenModifPers.getText().equals(""))){
-                verifier = false;        
-            }
-            return verifier;
-        }
     /**
      * @param args the command line arguments
      */
@@ -376,24 +462,23 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelModifPersVerif;
-    private javax.swing.JButton buttonAjouterModifPers;
-    private javax.swing.JButton buttonModifModifPers;
-    private javax.swing.JButton buttonRetourModifPers;
-    private javax.swing.JButton buttonSauvModifPers;
-    private javax.swing.JButton buttonSupprimerModifPers;
-    private javax.swing.JButton buttoneSuppModifPers;
-    private javax.swing.JComboBox<String> comboBoxCompModifPers;
+    private javax.swing.JButton ButtonAjouterPersoAjouterComp;
+    private javax.swing.JButton SupprCompe;
+    private javax.swing.JButton buttonAjouterAjoutePers;
+    private javax.swing.JButton buttonRetourAjoutePers;
+    private javax.swing.JComboBox<String> comboBoxCompAjoutePers1;
+    private javax.swing.JButton jButtonSauvegarder;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel labelCompModifPers;
-    private javax.swing.JLabel labelModifPers;
-    private javax.swing.JLabel labelNomModifPers;
-    private javax.swing.JLabel labelPrenModifPers;
-    private javax.swing.JTable tabelModifPers;
-    private javax.swing.JTextField textFieldNomModifPers;
-    private javax.swing.JTextField textFieldPrenModifPers;
+    private javax.swing.JLabel labelAjoutePers;
+    private javax.swing.JLabel labelCompAjoutePers;
+    private javax.swing.JLabel labelDateEntAjoutePers;
+    private javax.swing.JLabel labelNomAjoutePers;
+    private javax.swing.JLabel labelPrenAjoutePers;
+    private javax.swing.JTable tableAjouterPers;
+    private javax.swing.JTextField textFieldDateEntreAjoutePers;
+    private javax.swing.JTextField textFieldNomAjoutePers;
+    private javax.swing.JTextField textFieldPreAjoutePers;
     // End of variables declaration//GEN-END:variables
 }
