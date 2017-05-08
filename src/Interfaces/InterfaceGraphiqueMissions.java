@@ -16,6 +16,7 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
      */
     public InterfaceGraphiqueMissions() {
         initComponents();
+        
     }
 
     /**

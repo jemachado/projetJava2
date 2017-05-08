@@ -36,6 +36,11 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
     
     private void initTabPersonnel() {
         DefaultTableModel model = (DefaultTableModel) tabelModifPers.getModel();
+        int rowCount = model.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int j = rowCount - 1; j >= 0; j--) {
+            model.removeRow(j);
+        }
         Iterator i = Entreprise.tPersonnels.keySet().iterator();
         Integer clef = null;
         Personnel valeur = null;
@@ -54,6 +59,7 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
             Competence p = Entreprise.tCompetences.get(key);
             this.comboBoxCompModifPers.addItem(p.toString());
         }
+        this.comboBoxCompModifPers.addItem(" ");
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -40,10 +40,16 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
             Competence p = Entreprise.tCompetences.get(key);
             this.comboBoxCompModifComp.addItem(p.toString());
         }
+        this.comboBoxCompModifComp.addItem(" ");
     }
 
     private void initTabCompetences() {
         DefaultTableModel model = (DefaultTableModel) tableModifierComp.getModel();
+        int rowCount = model.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int j = rowCount - 1; j >= 0; j--) {
+            model.removeRow(j);
+        }
         Iterator i = Entreprise.tCompetences.keySet().iterator();
         String clef = null;
         Competence valeur = null;

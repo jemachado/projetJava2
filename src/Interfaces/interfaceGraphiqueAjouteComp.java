@@ -32,6 +32,11 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
     
     private void initTabPersonnel() {
         DefaultTableModel model = (DefaultTableModel) tableCompetenceAjoutComp.getModel();
+        int rowCount = model.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int j = rowCount - 1; j >= 0; j--) {
+            model.removeRow(j);
+        }
         Iterator i = Entreprise.tCompetences.keySet().iterator();
         String clef = null;
         Competence valeur = null;
