@@ -35,6 +35,14 @@ public class Personnel {
 		this.prenom=prenom;
 		this.tabC = new ArrayList<String>();
 	}
+        
+        public Personnel(Date dateEntree, String nom, String prenom, ArrayList<String> tabC){
+		this.id=id;
+		this.dateEntree=dateEntree;
+		this.nom=nom;
+		this.prenom=prenom;
+		this.tabC = tabC;
+	}
 	
 	
 	/**
@@ -172,5 +180,16 @@ public class Personnel {
     
         public String toStringDateFr(){
             return this.dateEntree.getDay()+"/"+this.dateEntree.getMonth()+"/"+this.dateEntree.getYear();
+        }
+        
+        public boolean compareTo(Personnel p){
+            if ( p == null )
+                return false;
+            if ( !this.getClass().equals(p.getClass()) )
+                return false;
+            if ( (this.prenom.equals(p.prenom) || p.prenom.equals(""))
+                     && (this.nom.equals(p.prenom) || p.nom.equals("")))
+                return true;
+            return false;
         }
 }

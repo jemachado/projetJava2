@@ -38,11 +38,14 @@ public class Entreprise {
     public static Integer idPersonnel;
     public static Integer idMission;
     
-    public Entreprise() throws IOException {
+    public Entreprise() { }
+    
+    public void initDonnees() throws NumberFormatException, IOException{
         this.tPersonnels = this.recupererPersonnel();
         this.tCompetences = this.recupererCompetence();
         this.tMission = this.recupererMission();
     }
+    
     /**
      * Récupère tout le personnel présent dans le csv et lui associe toutes ces comptétences
      * 
@@ -50,7 +53,7 @@ public class Entreprise {
      * @throws NumberFormatException
      * @throws IOException
      */
-    public TreeMap<Integer,Personnel>  recupererPersonnel() throws NumberFormatException, IOException{
+    private TreeMap<Integer,Personnel>  recupererPersonnel() throws NumberFormatException, IOException{
             TreeMap<Integer,Personnel> tabP = new TreeMap<Integer,Personnel>();
             try {
                 //Recupérer tout le personnel dans le fichier csv liste_personnel.csv
@@ -88,7 +91,7 @@ public class Entreprise {
             }
     }
 
-    public TreeMap<String,Competence>  recupererCompetence() throws NumberFormatException, IOException{
+    private TreeMap<String,Competence>  recupererCompetence() throws NumberFormatException, IOException{
             TreeMap<String,Competence> tabC = new TreeMap<String,Competence>();
             try {
                 CSVReader readerCompetences = new CSVReader(new FileReader("liste_competences.csv"), ';');
@@ -108,7 +111,7 @@ public class Entreprise {
             }
     }
     
-    public TreeMap<Integer,Mission>  recupererMission() throws NumberFormatException, IOException{
+    private TreeMap<Integer,Mission>  recupererMission() throws NumberFormatException, IOException{
             TreeMap<Integer,Mission> tabM = new TreeMap<Integer,Mission>();
             try {
                 CSVReader reader = new CSVReader(new FileReader("liste_mission.csv"), ';');
@@ -192,7 +195,7 @@ public class Entreprise {
             }
     }
     
-    public void sauvegarderPersonnel() throws IOException{
+    private void sauvegarderPersonnel() throws IOException{
         CSVWriter writer = new CSVWriter(new FileWriter("liste_personnel.csv"), ';' , CSVWriter.NO_QUOTE_CHARACTER);
         String  [] entries = "Prenom;Nom;date entrée entreprise;identifiant;".split(";");
         
@@ -222,7 +225,7 @@ public class Entreprise {
         writer2.close();
     }
     
-    public void sauvegarderCompetence() throws IOException{
+    private void sauvegarderCompetence() throws IOException{
         CSVWriter writer = new CSVWriter(new FileWriter("test.csv"), ';' , CSVWriter.NO_QUOTE_CHARACTER);
         String  [] entries;
         Iterator i = this.tCompetences.keySet().iterator();
@@ -236,6 +239,19 @@ public class Entreprise {
             writer.writeNext(entries);
         }
 	writer.close ();
+    }
+    
+    public TreeMap<Integer,Personnel> rechercherPersonnels(Date dateEntree, String nom, String prenom, ArrayList<String> competences){
+        TreeMap<Integer,Personnel> tPers = new TreeMap<Integer,Personnel>();
+        Set<Integer> keys = this.tPersonnels.keySet();
+        Personnel pFiltre = new Personnel(dateEntree, nom, prenom, competences);
+        for(Integer key: keys){
+            Personnel p = this.tPersonnels.get(key);
+            if ( p.compareTo(pFiltre)) {
+                tPers.put(p.getId(), p);
+            }
+        }
+        return tPers;
     }
     
     public boolean ajoutPersonnel(String dateEntree, String nom, String prenom){
