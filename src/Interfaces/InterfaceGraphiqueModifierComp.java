@@ -98,6 +98,11 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
         });
 
         buttonModifModifComp.setText("Modifier");
+        buttonModifModifComp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonModifModifCompMouseClicked(evt);
+            }
+        });
 
         buttonRetourModifComp.setText("Retour");
         buttonRetourModifComp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -258,6 +263,26 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxCompModifCompItemStateChanged
 
+    private void buttonModifModifCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifModifCompMouseClicked
+        // TODO add your handling code here:
+        boolean remplie = this.Verifier();
+        String lignes = new String();
+        if(remplie == true){
+            //tableAjouterPers.add(lignes);
+            TextAreaModifCompVerif.setText("Bien remplie");
+        }
+        else
+            TextAreaModifCompVerif.setText("Vous n'avez pas tous remplie");
+    }//GEN-LAST:event_buttonModifModifCompMouseClicked
+
+    public boolean Verifier() 
+        {
+            boolean verifier = true;
+            if((textFieldCodeModifComp.getText().equals(""))||(textFieldDescrModifComp.getText().equals(""))||(textFieldNomModifComp.getText().equals(""))){
+                verifier = false;        
+            }
+            return verifier;
+        }
     /**
      * @param args the command line arguments
      */

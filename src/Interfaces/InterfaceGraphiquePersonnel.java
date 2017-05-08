@@ -49,6 +49,13 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
             valeur = Entreprise.tPersonnels.get(clef);
             model.addRow(new Object[]{valeur.getNom(),valeur.getPrenom(), valeur.getDateEntree()});
         }
+        int j;
+        for(j=0;j<5;j++){
+            model.removeRow(j);
+        }        
+        
+        
+        
     }
     
     private void remplissage() throws IOException{
@@ -247,9 +254,9 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tablePers, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonModifPers)
-                    .addComponent(buttonAjoutePers))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonAjoutePers)
+                    .addComponent(buttonModifPers))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSauvPers)
@@ -276,6 +283,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonSauvPersActionPerformed
 
     private void buttonAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjoutePersMouseClicked
+                                              
         // TODO add your handling code here:
         interfaceGraphiqueAjoutePerso AjoutPers = null;
         try {

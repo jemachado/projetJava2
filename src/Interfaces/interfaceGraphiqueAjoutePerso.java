@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
 
-    private String lignes;
+    
     /**
      * Creates new form interfaceGraphiqueAjoutePerso
      * @throws java.io.IOException
@@ -32,30 +32,31 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
     public interfaceGraphiqueAjoutePerso() throws IOException {
         initComponents(); 
         Entreprise e = new Entreprise();
-        this.initTabAjoutePersonnel();
+        this.initTabPersonnel();
         this.remplissage();
     }
 
-    private void initTabAjoutePersonnel(){
+     private void initTabPersonnel() {
         DefaultTableModel model = (DefaultTableModel) tableAjouterPers.getModel();
-        Iterator i;
-        i = Entreprise.tPersonnels.keySet().iterator();
+        Iterator i = Entreprise.tPersonnels.keySet().iterator();
         Integer clef = null;
         Personnel valeur = null;
         while (i.hasNext())
         {
             clef = (Integer)i.next();
             valeur = Entreprise.tPersonnels.get(clef);
-            model.addRow(new Object[]{valeur.getNom(),valeur.getPrenom()});
+            model.addRow(new Object[]{valeur.getId(), valeur.getNom(), valeur.getPrenom()});
         }
+        
     }
     
     private void remplissage() throws IOException{
+        Entreprise e = new Entreprise();
         Set<String> keys = Entreprise.tCompetences.keySet();
         for(String key: keys){
-            Competence c = Entreprise.tCompetences.get(key);
-            System.out.println(c.toString());
-    }
+            Competence p = Entreprise.tCompetences.get(key);
+            this.comboBoxCompAjoutePers1.addItem(p.toString());
+        }
     }
 
     /**
@@ -95,6 +96,11 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
         buttonAjouterAjoutePers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonAjouterAjoutePersMouseClicked(evt);
+            }
+        });
+        buttonAjouterAjoutePers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAjouterAjoutePersActionPerformed(evt);
             }
         });
 
@@ -175,8 +181,10 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
                                                     .addGap(39, 39, 39)
                                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(textFieldNomAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textFieldPreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGap(21, 21, 21)))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                            .addGap(8, 8, 8)
+                                                            .addComponent(textFieldPreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addGap(13, 13, 13)))
                                             .addGap(33, 33, 33))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addComponent(labelCompAjoutePers)
@@ -251,20 +259,31 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
     private void buttonRetourAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourAjoutePersMouseClicked
         // TODO add your handling code here:
         InterfaceGraphiquePersonnel Personnel = null;
+        try {
+            Personnel = new InterfaceGraphiquePersonnel();
+        } catch (IOException ex) {
+            Logger.getLogger(InterfaceGraphiqueModifierPerso.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         Personnel.setVisible(true);
     }//GEN-LAST:event_buttonRetourAjoutePersMouseClicked
 
     private void buttonAjouterAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterAjoutePersMouseClicked
         // TODO add your handling code here:
+        boolean remplie = this.Verifier();
         String lignes = new String();
-        if(this.Verifier()){
+        if(remplie == true){
             //tableAjouterPers.add(lignes);
             TextAreaAjouterPers.setText("Bien remplie");
         }
         else
             TextAreaAjouterPers.setText("Vous n'avez pas tous remplie");
     }//GEN-LAST:event_buttonAjouterAjoutePersMouseClicked
+
+    private void buttonAjouterAjoutePersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAjouterAjoutePersActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_buttonAjouterAjoutePersActionPerformed
 
     public boolean Verifier() 
     {

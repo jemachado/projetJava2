@@ -5,10 +5,12 @@
  */
 package Interfaces;
 
+import Competence.Competence;
 import Entreprise.Entreprise;
 import Personnel.Personnel;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +29,7 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
         initComponents();
         Entreprise e = new Entreprise();
         this.initTabPersonnel();
+        this.remplissage();
         
     }
     
@@ -41,6 +44,15 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
             clef = (Integer)i.next();
             valeur = Entreprise.tPersonnels.get(clef);
             model.addRow(new Object[]{valeur.getId(), valeur.getNom(), valeur.getPrenom()});
+        }
+    }
+    
+    private void remplissage() throws IOException{
+        Entreprise e = new Entreprise();
+        Set<String> keys = Entreprise.tCompetences.keySet();
+        for(String key: keys){
+            Competence p = Entreprise.tCompetences.get(key);
+            this.comboBoxCompModifPers.addItem(p.toString());
         }
     }
     /**
@@ -110,7 +122,11 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
             }
         });
 
-        comboBoxCompModifPers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxCompModifPers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboBoxCompModifPersMouseClicked(evt);
+            }
+        });
 
         buttonAjouterModifPers.setText("Ajouter");
 
@@ -138,6 +154,16 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
         labelModifPers.setText("Modifier Personnel");
 
         buttonModifModifPers.setText("Modifier");
+        buttonModifModifPers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonModifModifPersMouseClicked(evt);
+            }
+        });
+        buttonModifModifPers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonModifModifPersActionPerformed(evt);
+            }
+        });
 
         LabelModifPersVerif.setText("Verification :");
 
@@ -275,6 +301,35 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
         Personnel.setVisible(true);
     }//GEN-LAST:event_buttonRetourModifPersMouseClicked
 
+    private void comboBoxCompModifPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxCompModifPersMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxCompModifPersMouseClicked
+
+    private void buttonModifModifPersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifModifPersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonModifModifPersActionPerformed
+
+    private void buttonModifModifPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifModifPersMouseClicked
+        // TODO add your handling code here:
+        boolean remplie = this.Verifier();
+        String lignes = new String();
+        if(remplie == true){
+            //tableAjouterPers.add(lignes);
+            jTextArea1.setText("Bien remplie");
+        }
+        else
+            jTextArea1.setText("Vous n'avez pas tous remplie");
+    }//GEN-LAST:event_buttonModifModifPersMouseClicked
+
+    
+    public boolean Verifier() 
+        {
+            boolean verifier = true;
+            if((textFieldNomModifPers.getText().equals(""))||(textFieldPrenModifPers.getText().equals(""))){
+                verifier = false;        
+            }
+            return verifier;
+        }
     /**
      * @param args the command line arguments
      */

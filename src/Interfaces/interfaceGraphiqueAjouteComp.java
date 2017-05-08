@@ -32,10 +32,6 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
     
     private void initTabPersonnel() {
         DefaultTableModel model = (DefaultTableModel) tableCompetenceAjoutComp.getModel();
-        model.removeRow(0);
-        model.removeRow(0);
-        model.removeRow(0);
-        model.removeRow(0);
         Iterator i = Entreprise.tCompetences.keySet().iterator();
         String clef = null;
         Competence valeur = null;
@@ -77,6 +73,11 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(225, 225, 213));
 
         buttonAjoutComp.setText("Ajouter");
+        buttonAjoutComp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonAjoutCompMouseClicked(evt);
+            }
+        });
 
         buttonRetourComp.setText("Retour");
         buttonRetourComp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -209,6 +210,26 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
         Competences.setVisible(true);
     }//GEN-LAST:event_buttonRetourCompMouseClicked
 
+    private void buttonAjoutCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjoutCompMouseClicked
+        // TODO add your handling code here:
+        boolean remplie = this.Verifier();
+        String lignes = new String();
+        if(remplie == true){
+            //tableAjouterPers.add(lignes);
+            TexteAreaAjouterCompVerif.setText("Bien remplie");
+        }
+        else
+            TexteAreaAjouterCompVerif.setText("Vous n'avez pas tous remplie");
+    }//GEN-LAST:event_buttonAjoutCompMouseClicked
+
+    public boolean Verifier() 
+        {
+            boolean verifier = true;
+            if((textFieldDescComp.getText().equals(""))||(textFieldNomComp.getText().equals(""))){
+                verifier = false;        
+            }
+            return verifier;
+        }
     /**
      * @param args the command line arguments
      */
@@ -248,9 +269,6 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
         });
     }
     
-    public void AjouterCompetence(){
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelAjouterCompVerif;
