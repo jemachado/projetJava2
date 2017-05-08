@@ -271,6 +271,18 @@ public class Entreprise {
         return true;
     }
     
+    public boolean modifierPersonnel(String dateEntree, String nom, String prenom, ArrayList<String> tabC){
+        if (dateEntree == null || dateEntree.equals("") || nom == null || nom.equals("") || prenom == null || prenom.equals("") ) {
+            return false;
+        }
+        Personnel p = new Personnel(this.idPersonnel,dateEntree, nom, prenom);
+        for (int i = 0 ; i < tabC.size() ; i++) {
+            p.ajouterCompetence(tabC.get(i));
+        }
+        this.tPersonnels.put(idPersonnel, p);
+        return true;
+    }
+    
     public boolean ajoutCompétence(String id, String libelleEn, String libelleFr){
         if(id == null || id.equals("") || libelleEn.equals("") || libelleEn == null || libelleFr == null || libelleFr.equals("") ){
             return false;

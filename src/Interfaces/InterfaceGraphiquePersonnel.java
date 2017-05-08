@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.PopupMenu;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeMap;
 import static javafx.scene.input.KeyCode.O;
@@ -29,12 +30,13 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
      * Creates new form InterfaceGraphiquePersonnel
      * @throws java.io.IOException
      */
-    
+    Entreprise entreprise;
     
     public InterfaceGraphiquePersonnel() throws IOException {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        Entreprise e = new Entreprise();
+        this.entreprise = new Entreprise();
+        this.entreprise.initDonnees();
         this.initTabPersonnel(Entreprise.tPersonnels);
         this.remplissage();
     }
@@ -168,6 +170,11 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         labelPersPers.setText("Personnel");
 
         buttonRechPers.setText("Rechercher");
+        buttonRechPers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonRechPersMouseClicked(evt);
+            }
+        });
 
         labelNomPer.setText("Nom :");
 
@@ -338,6 +345,14 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     private void comboBoxCompPers2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCompPers2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxCompPers2ActionPerformed
+
+    private void buttonRechPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRechPersMouseClicked
+        // TODO add your handling code here:
+        this.initTabPersonnel(this.entreprise.rechercherPersonnels(null,
+                                                                   this.textFieldNomPers.getText(),
+                                                                   this.textFieldPrenPers.getText(),
+                                                                   new ArrayList<String>() ));
+    }//GEN-LAST:event_buttonRechPersMouseClicked
 
     /**
      * @param args the command line arguments

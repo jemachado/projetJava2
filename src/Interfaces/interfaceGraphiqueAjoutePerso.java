@@ -18,16 +18,13 @@ import java.util.logging.Logger;
 import static javafx.scene.input.KeyCode.O;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
  * @author clementraphaell
  */
 public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
-
+    Entreprise entreprise;
     
     /**
      * Creates new form interfaceGraphiqueAjoutePerso
@@ -35,10 +32,10 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
      */
     public interfaceGraphiqueAjoutePerso() throws IOException {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        initComponents();
+        initComponents(); 
         Entreprise e = new Entreprise();
         this.initTabPersonnel();
-        this.remplissage();
+        this.remplissageComboBoxAjoutePers();
     }
 
      private void initTabPersonnel() {
@@ -60,7 +57,7 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
         
     }
     
-    private void remplissage() throws IOException{
+    private void remplissageComboBoxAjoutePers() throws IOException{
         Entreprise e = new Entreprise();
         Set<String> keys = Entreprise.tCompetences.keySet();
         for(String key: keys){
@@ -96,8 +93,6 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
         labelNomAjoutePers = new javax.swing.JLabel();
         ButtonAjouterPersoAjouterComp = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TextAreaAjouterPers = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,12 +152,6 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
 
         ButtonAjouterPersoAjouterComp.setText("Ajouter");
 
-        jLabel1.setText("Verification:");
-
-        TextAreaAjouterPers.setColumns(20);
-        TextAreaAjouterPers.setRows(5);
-        jScrollPane2.setViewportView(TextAreaAjouterPers);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -178,40 +167,34 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(comboBoxCompAjoutePers1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(labelDateEntAjoutePers)
+                                    .addGap(34, 34, 34)
+                                    .addComponent(textFieldDateEntreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(comboBoxCompAjoutePers1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(labelDateEntAjoutePers)
-                                            .addGap(34, 34, 34)
-                                            .addComponent(textFieldDateEntreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelNomAjoutePers)
-                                            .addComponent(labelPrenAjoutePers))
-                                        .addGap(70, 70, 70)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldPreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(textFieldNomAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(buttonRetourAjoutePers)
+                                    .addComponent(labelNomAjoutePers)
+                                    .addComponent(labelPrenAjoutePers))
+                                .addGap(70, 70, 70)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldPreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldNomAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(buttonRetourAjoutePers)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(123, 123, 123)
-                                            .addComponent(ButtonAjouterPersoAjouterComp))
                                         .addComponent(jLabel1)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(labelCompAjoutePers)))
-                                .addContainerGap(48, Short.MAX_VALUE))))
+                                        .addComponent(labelCompAjoutePers))
+                                    .addGap(226, 226, 226))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(ButtonAjouterPersoAjouterComp))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
                         .addComponent(buttonAjouterAjoutePers)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -242,17 +225,14 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelDateEntAjoutePers)
                             .addComponent(textFieldDateEntreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
+                        .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelCompAjoutePers)
-                            .addComponent(comboBoxCompAjoutePers1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(ButtonAjouterPersoAjouterComp)
-                        .addGap(11, 11, 11)
+                            .addComponent(comboBoxCompAjoutePers1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonAjouterPersoAjouterComp))
+                        .addGap(57, 57, 57)
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonAjouterAjoutePers)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -287,12 +267,16 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean remplie = this.Verifier();
         String lignes = new String();
-        if(remplie == true){
+        /*if(remplie == true){
             //tableAjouterPers.add(lignes);
-            TextAreaAjouterPers.setText("Bien remplie");
+            this.jLabel1.setText("Bien remplie");
+            this.initTabPersonnel(this.entreprise.ajoutPersonnel(this.getText(textFieldDateEntreAjoutePers), 
+                                                                 this.getText(textFieldNomAjoutePers), 
+                                                                 this.getText(textFieldPreAjoutePers)));
         }
         else
-            TextAreaAjouterPers.setText("Vous n'avez pas tous remplie");
+            // this.jLabel1.setText("Vous n'avez pas tous remplie ou la date d'entrée est non valide");*/
+        
     }//GEN-LAST:event_buttonAjouterAjoutePersMouseClicked
 
     private void buttonAjouterAjoutePersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAjouterAjoutePersActionPerformed
@@ -306,11 +290,73 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
 
     public boolean Verifier() 
     {
-        boolean verifier = true;
-        if((textFieldPreAjoutePers.getText().equals(""))||(textFieldNomAjoutePers.getText().equals(""))||(textFieldDateEntreAjoutePers.getText().equals(""))){
-            verifier = false;
+        
+        if((textFieldPreAjoutePers.getText().equals(""))||
+           (textFieldNomAjoutePers.getText().equals(""))||
+           (textFieldDateEntreAjoutePers.getText().equals(""))){
+            this.jLabel1.setText("Formulaire incomplet");
+            return false;
         }
-        return verifier;
+        else {
+            if(this.textFieldDateEntreAjoutePers.getText().length() != 10){
+                this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)");
+                return false;
+            }
+            int mois = Integer.parseInt(""+this.textFieldDateEntreAjoutePers.getText().charAt(3)+this.textFieldDateEntreAjoutePers.getText().charAt(4));
+            if(mois > 12){
+                System.out.println(mois);
+                this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)5");
+                return false;
+            }
+            int jour = Integer.parseInt(""+this.textFieldDateEntreAjoutePers.getText().charAt(0)+this.textFieldDateEntreAjoutePers.getText().charAt(1));
+            int annee = Integer.parseInt(""+this.textFieldDateEntreAjoutePers.getText().charAt(6)+this.textFieldDateEntreAjoutePers.getText().charAt(7)
+                                           +this.textFieldDateEntreAjoutePers.getText().charAt(8)+this.textFieldDateEntreAjoutePers.getText().charAt(9));
+            
+            switch(mois){
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    if(jour > 31){
+                        this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)1");
+                        return false;
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    if(jour > 30){
+                        this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)2");
+                        return false;
+                    }
+                    break;
+                case 2:
+                    if (((annee % 4 == 0) && 
+                         !(annee % 100 == 0))
+                         || (annee % 400 == 0)){
+                            if(jour > 29){
+                                this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)3");
+                                return false;
+                            }
+                        break;
+                    }
+                    else{
+                        if(jour > 28){
+                            this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)4");
+                            return false;
+                        }
+                        }
+                    break;
+                default:
+            }
+            
+        }
+        this.jLabel1.setText("valide");
+        return true;
     }
     /**
      * @param args the command line arguments
@@ -353,7 +399,6 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAjouterPersoAjouterComp;
-    private javax.swing.JTextArea TextAreaAjouterPers;
     private javax.swing.JButton buttonAjouterAjoutePers;
     private javax.swing.JButton buttonRetourAjoutePers;
     private javax.swing.JButton buttonSauvAjoutePers;
@@ -361,7 +406,6 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelAjoutePers;
     private javax.swing.JLabel labelCompAjoutePers;
     private javax.swing.JLabel labelDateEntAjoutePers;

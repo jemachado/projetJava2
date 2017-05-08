@@ -321,6 +321,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Rechercher"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonRechPersMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelNomPer">
           <Properties>
