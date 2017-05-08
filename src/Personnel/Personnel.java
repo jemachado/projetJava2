@@ -12,18 +12,15 @@ import Interfaces.interfaceGraphiqueAjoutePerso;
 import Interfaces.InterfaceGraphiquePersonnel;
 
 import Competence.Competence;
-import java.awt.PopupMenu;
 
 public class Personnel {
 	private int id;
-	private String dateEntree;
+	private Date dateEntree;
 	private String nom;
 	private String prenom;
 	private ArrayList<String> tabC;
-    public PopupMenu toString;
 	
 	/**
-	 * 
 	 * Construteur de la classe Personnel
 	 * 
 	 * @param id L'identifiant du personnel
@@ -33,7 +30,7 @@ public class Personnel {
 	 */
 	public Personnel(int id, String dateEntree, String nom, String prenom){
 		this.id=id;
-		this.dateEntree=dateEntree;
+		this.dateEntree=this.dateFr(dateEntree);
 		this.nom=nom;
 		this.prenom=prenom;
 		this.tabC = new ArrayList<String>();
@@ -42,6 +39,7 @@ public class Personnel {
 	
 	/**
 	 * Retourne l'identifiant du personnel
+         * 
 	 * @return id Identifiant du personnel
 	 */
 	public int getId() {
@@ -50,24 +48,26 @@ public class Personnel {
 
 	/**
 	 * Retourne la date d'entrèe dans l'entreprise du personnel
+         * 
 	 * @return La date d'entrée dans l'entreprise du personnel
 	 */
-	public String getDateEntree() {
+	public Date getDateEntree() {
 		return dateEntree;
 	}
 
-
 	/**
 	 * Mettre à jour la date d'entrer du personnel
+         * 
 	 * @param dateEntree La date d'entrée dans l'entreprise du personnel
 	 */
-	public void setDateEntree(String dateEntree) {
+	public void setDateEntree(Date dateEntree) {
 		this.dateEntree = dateEntree;
 	}
 
 
 	/**
 	 * Retourne le nom du personnel
+         * 
 	 * @return Le nom du personnel
 	 */
 	public String getNom() {
@@ -77,6 +77,7 @@ public class Personnel {
 
 	/**
 	 * Mettre à jour le nom du personnel
+         * 
 	 * @param nom
 	 */
 	public void setNom(String nom) {
@@ -86,6 +87,7 @@ public class Personnel {
 
 	/**
 	 * Retourne le prenom du personnel
+         * 
 	 * @return Le prenom du personnel
 	 */
 	public String getPrenom() {
@@ -95,6 +97,7 @@ public class Personnel {
 
 	/**
 	 * Mettre à jour le prenom du personnel
+         * 
 	 * @param prenom
 	 */
 	public void setPrenom(String prenom) {
@@ -114,6 +117,8 @@ public class Personnel {
 	 * Retourne sous forme de chaine de caractère avec toutes ces caractéristiques du personnel
 	 * @return chaine de caractère avec toutes ces caractéristiques du personnel
 	 */
+        
+        @Override
 	public String toString(){
 		String str = "id: "+this.id+" -- ";
 		str += "dateEntree: "+this.dateEntree+" -- ";
@@ -155,11 +160,17 @@ public class Personnel {
 	}
         
         public String toStringCsv(){
-            return this.prenom+";"+this.nom+";"+this.dateEntree+";"+this.id;
+            return this.prenom+";"+this.nom+";"+this.toStringDateFr()+";"+this.id;
         }
         
-
-    public Object getLibelleFr() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        public Date dateFr(String dateFr){
+            int jour = Integer.parseInt(""+dateFr.charAt(0)+dateFr.charAt(1));
+            int mois = Integer.parseInt(""+dateFr.charAt(3)+dateFr.charAt(4));
+            int année = Integer.parseInt(""+dateFr.charAt(6)+dateFr.charAt(7)+dateFr.charAt(8)+dateFr.charAt(9));
+            return new Date(année-1900,mois,jour);
+        }
+    
+        public String toStringDateFr(){
+            return this.dateEntree.getDay()+"/"+this.dateEntree.getMonth()+"/"+this.dateEntree.getYear();
+        }
 }

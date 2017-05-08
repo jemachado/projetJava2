@@ -83,12 +83,9 @@
                                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Component id="textFieldNomAjoutePers" min="-2" pref="167" max="-2" attributes="0"/>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                                              <Component id="textFieldPreAjoutePers" min="-2" pref="167" max="-2" attributes="0"/>
-                                                          </Group>
+                                                          <Component id="textFieldPreAjoutePers" min="-2" pref="167" max="-2" attributes="0"/>
                                                       </Group>
-                                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>

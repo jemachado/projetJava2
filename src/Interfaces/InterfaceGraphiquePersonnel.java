@@ -278,6 +278,11 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     private void buttonAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjoutePersMouseClicked
         // TODO add your handling code here:
         interfaceGraphiqueAjoutePerso AjoutPers = null;
+        try {
+            AjoutPers = new interfaceGraphiqueAjoutePerso();
+        } catch (IOException ex) {
+            Logger.getLogger(InterfaceGraphiquePersonnel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         AjoutPers.setVisible(true);
     }//GEN-LAST:event_buttonAjoutePersMouseClicked

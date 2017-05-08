@@ -44,9 +44,10 @@ public class Competence {
 		this.id = id;
 	}
 	
+        
 	public String toString(){
-		String str = this.id;
-		str += this.getLibelleFr();
+		String str = "id : "+this.id+" -- ";
+		str += "libelle : "+this.getLibelleEn();
 		return str;
 	}
         

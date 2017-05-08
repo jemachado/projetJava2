@@ -51,10 +51,10 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
     }
     
     private void remplissage() throws IOException{
-        Set<Integer> keys = Entreprise.tMission.keySet();
-        for(Integer key: keys){
-            Mission p = Entreprise.tMission.get(key);
-            System.out.println(p.toString());
+        Set<String> keys = Entreprise.tCompetences.keySet();
+        for(String key: keys){
+            Competence c = Entreprise.tCompetences.get(key);
+            System.out.println(c.toString());
     }
     }
 
@@ -175,10 +175,8 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
                                                     .addGap(39, 39, 39)
                                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(textFieldNomAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                            .addGap(8, 8, 8)
-                                                            .addComponent(textFieldPreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                    .addGap(13, 13, 13)))
+                                                        .addComponent(textFieldPreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(21, 21, 21)))
                                             .addGap(33, 33, 33))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addComponent(labelCompAjoutePers)
@@ -259,9 +257,8 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
 
     private void buttonAjouterAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterAjoutePersMouseClicked
         // TODO add your handling code here:
-        boolean remplie = this.Verifier();
         String lignes = new String();
-        if(remplie == true){
+        if(this.Verifier()){
             //tableAjouterPers.add(lignes);
             TextAreaAjouterPers.setText("Bien remplie");
         }
@@ -270,13 +267,13 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAjouterAjoutePersMouseClicked
 
     public boolean Verifier() 
-        {
-            boolean verifier = true;
-            if((textFieldPreAjoutePers.getText().equals(""))||(textFieldNomAjoutePers.getText().equals(""))||(textFieldDateEntreAjoutePers.getText().equals(""))){
-                verifier = false;        
-            }
-            return verifier;
+    {
+        boolean verifier = true;
+        if((textFieldPreAjoutePers.getText().equals(""))||(textFieldNomAjoutePers.getText().equals(""))||(textFieldDateEntreAjoutePers.getText().equals(""))){
+            verifier = false;
         }
+        return verifier;
+    }
     /**
      * @param args the command line arguments
      */

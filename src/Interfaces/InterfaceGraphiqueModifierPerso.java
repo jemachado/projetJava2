@@ -34,13 +34,13 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
     private void initTabPersonnel() {
         DefaultTableModel model = (DefaultTableModel) tabelModifPers.getModel();
         Iterator i = Entreprise.tPersonnels.keySet().iterator();
-        String clef = null;
+        Integer clef = null;
         Personnel valeur = null;
         while (i.hasNext())
         {
-            clef = (String)i.next();
+            clef = (Integer)i.next();
             valeur = Entreprise.tPersonnels.get(clef);
-            model.addRow(new Object[]{valeur.getId(), valeur.getLibelleFr()});
+            model.addRow(new Object[]{valeur.getId(), valeur.getNom(), valeur.getPrenom()});
         }
     }
     /**

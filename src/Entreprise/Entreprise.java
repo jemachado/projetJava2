@@ -7,7 +7,9 @@ package Entreprise;
 
 import Competence.Competence;
 import Mission.Mission;
-import Mission.MissionPlanification;
+import Mission.MissionEnCours;
+import Mission.MissionPlanifiee;
+import Mission.MissionPreparation;
 import Personnel.Personnel;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
@@ -37,7 +39,7 @@ public class Entreprise {
     public Entreprise() throws IOException {
         this.tPersonnels = this.recupererPersonnel();
         this.tCompetences = this.recupererCompetence();
-        //this.tMission = this.recupererMission();
+        this.tMission = this.recupererMission();
     }
     /**
      * Récupère tout le personnel présent dans le csv et lui associe toutes ces comptétences
@@ -96,7 +98,7 @@ public class Entreprise {
                             tabC.put(nextLine[0],new Competence(nextLine[0],nextLine[1],nextLine[2]));
                     }
                     i++;
-                 }
+                }
              return tabC;
             } catch (Exception e) {
                      System.out.println(e.toString());
@@ -104,21 +106,80 @@ public class Entreprise {
             }
     }
     
-    /*public TreeMap<Integer,Mission>  recupererMission() throws NumberFormatException, IOException{
+    public TreeMap<Integer,Mission>  recupererMission() throws NumberFormatException, IOException{
             TreeMap<Integer,Mission> tabM = new TreeMap<Integer,Mission>();
             try {
-                CSVReader reader = new CSVReader(new FileReader("mission_preparation.csv"), ';');
+                CSVReader reader = new CSVReader(new FileReader("liste_mission.csv"), ';');
                  String [] nextLine;
                  int i = 0;
                  while ((nextLine = reader.readNext()) != null) {
                      
                     // nextLine[] is an array of values from the line
                     if(i!=0){
-                            tabM.put(Integer.parseInt(nextLine[0]), new MissionPlanification(Integer.parseInt(nextLine[3]),
-                                                                        dateFr(nextLine[1]),
-                                                                        Integer.parseInt(nextLine[2]),
-                                                                        Integer.parseInt(nextLine[0])
+                        if (nextLine[0].equals("MissionPreparation")) {
+                            TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
+                            System.out.println(nextLine.length);
+                            if(nextLine.length>5){
+                                for (int j = 5; j < nextLine.length ; j = j+2) {
+                                    int f = j+1;
+                                    competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
+                                }
+                            }
+                            
+                            tabM.put(Integer.parseInt(nextLine[1]), new MissionPreparation(competNbPersonne,
+                                                                        Integer.parseInt(nextLine[4]),
+                                                                        dateFr(nextLine[2]),
+                                                                        Integer.parseInt(nextLine[3]),
+                                                                        Integer.parseInt(nextLine[1])
                                                                         ));
+                            
+                            
+                        } else if (nextLine[0].equals("MissionPlanifiee")) {
+                            TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
+                            System.out.println(nextLine.length);
+                            if(nextLine.length>5){
+                                for (int j = 5; j < nextLine.length ; j = j+2) {
+                                    int f = j+1;
+                                    competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
+                                }
+                            }
+                            tabM.put(Integer.parseInt(nextLine[1]), new MissionPlanifiee(competNbPersonne,
+                                                                        Integer.parseInt(nextLine[4]),
+                                                                        dateFr(nextLine[2]),
+                                                                        Integer.parseInt(nextLine[3]),
+                                                                        Integer.parseInt(nextLine[1])
+                                                                        ));
+                        } else if (nextLine[0].equals("MissionEnCours")) {
+                            TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
+                            System.out.println(nextLine.length);
+                            if(nextLine.length>5){
+                                for (int j = 5; j < nextLine.length ; j = j+2) {
+                                    int f = j+1;
+                                    competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
+                                }
+                            }
+                            tabM.put(Integer.parseInt(nextLine[1]), new MissionEnCours(competNbPersonne,
+                                                                        Integer.parseInt(nextLine[4]),
+                                                                        dateFr(nextLine[2]),
+                                                                        Integer.parseInt(nextLine[3]),
+                                                                        Integer.parseInt(nextLine[1])
+                                                                        ));
+                        } /*else if (nextLine[0].equals("MissionPlanifiee")) {
+                            TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
+                            System.out.println(nextLine.length);
+                            if(nextLine.length>5){
+                                for (int j = 5; j < nextLine.length ; j = j+2) {
+                                    int f = j+1;
+                                    competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
+                                }
+                            }
+                            tabM.put(Integer.parseInt(nextLine[1]), new MissionPlanifiee(competNbPersonne,
+                                                                        Integer.parseInt(nextLine[4]),
+                                                                        dateFr(nextLine[2]),
+                                                                        Integer.parseInt(nextLine[3]),
+                                                                        Integer.parseInt(nextLine[1])
+                                                                        ));
+                        }*/
                     }
                     i++;
                  }
@@ -127,7 +188,7 @@ public class Entreprise {
                      System.out.println(e.toString());
                      return null;
             }
-    }*/
+    }
     
     public void sauvegarderPersonnel() throws IOException{
         CSVWriter writer = new CSVWriter(new FileWriter("liste_personnel.csv"), ';' , CSVWriter.NO_QUOTE_CHARACTER);

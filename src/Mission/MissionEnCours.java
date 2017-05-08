@@ -1,60 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Mission;
 
-/**
- *
- * @author clementraphaell
- */
-import Mission.Mission;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.Set;
+import java.util.TreeMap;
 
-public class MissionEnCours  extends Mission {
-	private HashMap<String, Integer> comptNbPersonne;
-	private int totalPersonne;
-	private Date dateDebut;
-	private int duree;
+public class MissionEnCours  extends MissionNonModifiable {
 	
-	public MissionEnCours(int totalPersonne, Date dateDebut, int duree){
-		this.comptNbPersonne = new HashMap<String, Integer>();
+        public MissionEnCours(TreeMap<String, Integer> competNbPersonne,
+							int totalPersonne,
+							Date dateDebut,
+							int duree,
+                                                        int id){
+                this.id = id;
+		this.competNbPersonne = competNbPersonne;
 		this.totalPersonne = totalPersonne;
 		this.dateDebut = dateDebut;
 		this.duree = duree;
+		this.tabPerso = new ArrayList<String>();
 	}
-
-	public Integer getComptNbPersonne(String i) {
-		return comptNbPersonne.get(i);
+	
+	public MissionEnCours(MissionPlanifiee mp){
+                this.id = mp.id;
+		this.competNbPersonne = mp.getComptNbPersonne();
+		this.totalPersonne = mp.getTotalPersonne();
+		this.dateDebut = mp.getDateDebut();
+		this.duree = mp.getDuree();
+		this.tabPerso = new ArrayList<String>();
 	}
-
-	public void setComptNbPersonne(String i, int nb) {
-		this.comptNbPersonne.put(i, new Integer(nb)) ;
-	}
-
-	public int getTotalPersonne() {
-		return totalPersonne;
-	}
-
-	public void setTotalPersonne(int totalPersonne) {
-		this.totalPersonne = totalPersonne;
-	}
-
-	public Date getDateDebut() {
-		return dateDebut;
-	}
-
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-
-	public int getDuree() {
-		return duree;
-	}
-
-	public void setDuree(int duree) {
-		this.duree = duree;
-	}
+        
+       public String getType(){
+            return "MissionEnCours";
+        }
+       
+       public String toString(){
+           String str = getType()+";"+this.id+";"+this.dateDebut+";"+this.duree+";"+this.totalPersonne+";";
+           Set<String> keys = competNbPersonne.keySet();
+            for(String key: keys){
+                Integer i = competNbPersonne.get(key);
+                str = str + key+";"+i.toString();
+            }
+           return str;
+        }
 }
