@@ -366,10 +366,7 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
     private void buttonAjouterAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterAjoutePersMouseClicked
         // TODO add your handling code here:
         if (this.Verifier()) {
-            this.entreprise.ajoutPersonnel(this.textFieldDateEntreAjoutePers.getText(),
-                this.textFieldNomAjoutePers.getText(),
-                this.textFieldPreAjoutePers.getText(),
-                this.tabC);
+            
         }
     }//GEN-LAST:event_buttonAjouterAjoutePersMouseClicked
 
@@ -399,8 +396,8 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxCompAjoutePers1ActionPerformed
 
     private void ButtonAjouterPersoAjouterCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAjouterPersoAjouterCompMouseClicked
-        if (this.tabC.indexOf(getIdCompet()) != -1) {
-            this.jLabel1.setText("Ce personnel à déjà cette compétence");
+        if (this.tabC.indexOf(getIdCompet()) == -1) {
+            this.jLabel1.setText("Cette personne à déjà cette compétence");
         } else {
             this.tabC.add(getIdCompet());
             DefaultTableModel model = (DefaultTableModel) this.tableAjouterPers.getModel();
