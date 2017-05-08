@@ -195,6 +195,11 @@ public class Entreprise {
             }
     }
     
+    public void sauvegarderTout() throws IOException {
+        this.sauvegarderCompetence();
+        this.sauvegarderPersonnel();
+    }
+    
     private void sauvegarderPersonnel() throws IOException{
         CSVWriter writer = new CSVWriter(new FileWriter("liste_personnel.csv"), ';' , CSVWriter.NO_QUOTE_CHARACTER);
         String  [] entries = "Prenom;Nom;date entrée entreprise;identifiant;".split(";");
