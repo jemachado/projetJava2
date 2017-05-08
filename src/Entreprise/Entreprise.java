@@ -32,18 +32,18 @@ import java.util.TreeMap;
  */
 public class Entreprise {
     
-    public static TreeMap<Integer,Personnel> tPersonnels;
-    public static TreeMap<String,Competence> tCompetences;
-    public static TreeMap<Integer,Mission> tMission;
-    public static Integer idPersonnel;
-    public static String idModifPerso;
+    private static TreeMap<Integer,Personnel> tPersonnels;
+    private static TreeMap<String,Competence> tCompetences;
+    private static TreeMap<Integer,Mission> tMissions;
+    private static Integer idPersonnel;
+    private static String idModifPerso;
     
     public Entreprise() { }
     
     public void initDonnees() throws NumberFormatException, IOException{
         this.tPersonnels = this.recupererPersonnel();
         this.tCompetences = this.recupererCompetence();
-        this.tMission = this.recupererMission();
+        this.tMissions = this.recupererMission();
     }
     
     /**
@@ -294,5 +294,25 @@ public class Entreprise {
     
     public String toStringDateFr(Date date){
         return date.getDay()+"/"+date.getMonth()+"/"+date.getYear();
+    }
+    
+    public TreeMap<Integer,Personnel> getTPersonnels(){
+        return this.tPersonnels;
+    }
+    
+    public TreeMap<String,Competence> getTCompetences(){
+        return this.tCompetences;
+    }
+    
+    public TreeMap<Integer,Mission> getTMissions(){
+        return this.tMissions;
+    }
+    
+    public String getIdModifPerso(){
+        return this.idModifPerso;
+    }
+    
+    public void setIdModifPerso(String idModifPerso){
+        this.idModifPerso = idModifPerso;
     }
 }

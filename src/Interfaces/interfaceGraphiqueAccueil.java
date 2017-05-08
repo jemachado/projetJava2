@@ -20,12 +20,12 @@ public class interfaceGraphiqueAccueil extends javax.swing.JFrame {
     /**
      * Creates new form interfaceGraphiqueAccueil
      */
-    
+    Entreprise entreprise;
     
     public interfaceGraphiqueAccueil() throws NumberFormatException, IOException {
-        Entreprise e = new Entreprise();
-        e.initDonnees();
         initComponents();
+        this.entreprise = new Entreprise();
+        this.entreprise.initDonnees();
     }
     
 

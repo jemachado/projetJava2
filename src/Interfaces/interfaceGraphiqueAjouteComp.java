@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,13 +20,15 @@ import javax.swing.table.DefaultTableModel;
  * @author clementraphaell
  */
 public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
-
+    Entreprise entreprise;
     /**
      * Creates new form interfaceGraphiqueAjouteComp
      */
     public interfaceGraphiqueAjouteComp() throws IOException {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        Entreprise e = new Entreprise();
+        this.entreprise = new Entreprise();
+        this.entreprise.initDonnees();
         this.initTabPersonnel();
     }
 
@@ -37,13 +40,13 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
         for (int j = rowCount - 1; j >= 0; j--) {
             model.removeRow(j);
         }
-        Iterator i = Entreprise.tCompetences.keySet().iterator();
+        Iterator i = this.entreprise.getTCompetences().keySet().iterator();
         String clef = null;
         Competence valeur = null;
         while (i.hasNext())
         {
             clef = (String)i.next();
-            valeur = Entreprise.tCompetences.get(clef);
+            valeur = this.entreprise.getTCompetences().get(clef);
             model.addRow(new Object[]{valeur.getId(), valeur.getLibelleFr()});
         }
     }
@@ -67,8 +70,6 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
         labelNomComp = new javax.swing.JLabel();
         labelDescrComp = new javax.swing.JLabel();
         LabelAjouterCompVerif = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TexteAreaAjouterCompVerif = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableCompetenceAjoutComp = new javax.swing.JTable();
@@ -76,6 +77,12 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(225, 225, 213));
+
+        textFieldNomComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldNomCompActionPerformed(evt);
+            }
+        });
 
         buttonAjoutComp.setText("Ajouter");
         buttonAjoutComp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,6 +100,11 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
 
         buttonSauvComp.setText("Sauvegarder");
         buttonSauvComp.setEnabled(false);
+        buttonSauvComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSauvCompActionPerformed(evt);
+            }
+        });
 
         labelAjoutComp.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         labelAjoutComp.setText("Ajouter Compétences");
@@ -100,12 +112,6 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
         labelNomComp.setText("Nom :");
 
         labelDescrComp.setText("Description :");
-
-        LabelAjouterCompVerif.setText("Verification:");
-
-        TexteAreaAjouterCompVerif.setColumns(20);
-        TexteAreaAjouterCompVerif.setRows(5);
-        jScrollPane1.setViewportView(TexteAreaAjouterCompVerif);
 
         jLabel1.setText("Liste:");
 
@@ -117,7 +123,7 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Identifiant", "Description"
+                "Identifiant", "Libelle"
             }
         ));
         jScrollPane2.setViewportView(tableCompetenceAjoutComp);
@@ -127,73 +133,87 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(labelAjoutComp)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(buttonSauvComp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonRetourComp, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonSauvComp)
-                        .addGap(150, 150, 150)
-                        .addComponent(buttonRetourComp))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(LabelAjouterCompVerif)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(372, 372, 372))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(labelNomComp)
-                                        .addGap(73, 73, 73)
-                                        .addComponent(textFieldNomComp, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(labelDescrComp))
-                                .addGap(204, 204, 204)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(textFieldDescComp, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonAjoutComp)
-                        .addGap(199, 199, 199))))
+                                        .addComponent(labelDescrComp)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(labelNomComp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldDescComp, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldNomComp, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(109, 109, 109)
+                                .addComponent(buttonAjoutComp, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(LabelAjouterCompVerif, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(639, 639, 639)
+                .addComponent(labelAjoutComp, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelAjoutComp)
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNomComp)
-                    .addComponent(textFieldNomComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(labelDescrComp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldDescComp, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAjoutComp)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LabelAjouterCompVerif)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonSauvComp)
-                    .addComponent(buttonRetourComp))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(labelAjoutComp))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel1)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textFieldDescComp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelDescrComp)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelNomComp)
+                                .addComponent(textFieldNomComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(46, 46, 46)
+                        .addComponent(buttonAjoutComp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(LabelAjouterCompVerif, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(buttonSauvComp, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonRetourComp, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,11 +241,19 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
         String lignes = new String();
         if(remplie == true){
             //tableAjouterPers.add(lignes);
-            TexteAreaAjouterCompVerif.setText("Bien remplie");
+            LabelAjouterCompVerif.setText("Bien remplie");
         }
         else
-            TexteAreaAjouterCompVerif.setText("Vous n'avez pas tous remplie");
+            LabelAjouterCompVerif.setText("Vous n'avez pas tous remplie");
     }//GEN-LAST:event_buttonAjoutCompMouseClicked
+
+    private void buttonSauvCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSauvCompActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSauvCompActionPerformed
+
+    private void textFieldNomCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNomCompActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldNomCompActionPerformed
 
     public boolean Verifier() 
         {
@@ -277,13 +305,11 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelAjouterCompVerif;
-    private javax.swing.JTextArea TexteAreaAjouterCompVerif;
     private javax.swing.JButton buttonAjoutComp;
     private javax.swing.JButton buttonRetourComp;
     private javax.swing.JButton buttonSauvComp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelAjoutComp;
     private javax.swing.JLabel labelDescrComp;

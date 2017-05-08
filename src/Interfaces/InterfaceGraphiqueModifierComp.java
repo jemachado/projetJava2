@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,23 +22,25 @@ import javax.swing.table.DefaultTableModel;
  * @author clementraphaell
  */
 public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
-
+    Entreprise entreprise;
     /**
      * Creates new form InterfaceGraphiqueModifierComp
      */
     public InterfaceGraphiqueModifierComp() throws IOException {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        Entreprise e = new Entreprise();
+        this.entreprise = new Entreprise();
         this.initTabCompetences();
+        this.entreprise.initDonnees();
         this.remplissage();
         
     }
     
     private void remplissage() throws IOException{
         Entreprise e = new Entreprise();
-        Set<String> keys = Entreprise.tCompetences.keySet();
+        Set<String> keys = this.entreprise.getTCompetences().keySet();
         for(String key: keys){
-            Competence p = Entreprise.tCompetences.get(key);
+            Competence p = this.entreprise.getTCompetences().get(key);
             this.comboBoxCompModifComp.addItem(p.toString());
         }
         this.comboBoxCompModifComp.addItem(" ");
@@ -50,13 +53,13 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
         for (int j = rowCount - 1; j >= 0; j--) {
             model.removeRow(j);
         }
-        Iterator i = Entreprise.tCompetences.keySet().iterator();
+        Iterator i = this.entreprise.getTCompetences().keySet().iterator();
         String clef = null;
         Competence valeur = null;
         while (i.hasNext())
         {
             clef = (String)i.next();
-            valeur = Entreprise.tCompetences.get(clef);
+            valeur = this.entreprise.getTCompetences().get(clef);
             model.addRow(new Object[]{valeur.getId(), valeur.getLibelleFr()});
         }
     }
@@ -79,15 +82,12 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
         labelModifComp = new javax.swing.JLabel();
         labelCompModifComp = new javax.swing.JLabel();
         comboBoxCompModifComp = new javax.swing.JComboBox<>();
-        labelNomModifComp = new javax.swing.JLabel();
-        textFieldNomModifComp = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TextAreaModifCompVerif = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         ButtonModifCompSupprimer = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableModifierComp = new javax.swing.JTable();
+        buttonSauvegarderModifComp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,15 +128,12 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
             }
         });
 
-        labelNomModifComp.setText("Nom :");
-
-        TextAreaModifCompVerif.setColumns(20);
-        TextAreaModifCompVerif.setRows(5);
-        jScrollPane1.setViewportView(TextAreaModifCompVerif);
-
-        jLabel1.setText("Verification:");
-
         ButtonModifCompSupprimer.setText("Supprimer");
+        ButtonModifCompSupprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonModifCompSupprimerActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Liste:");
 
@@ -148,91 +145,99 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Identifiant", "Description"
+                "Identifiant", "Libellé"
             }
         ));
         jScrollPane2.setViewportView(tableModifierComp);
+
+        buttonSauvegarderModifComp.setText("Sauvegarder");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonRetourModifComp))
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(109, 109, 109)
-                                .addComponent(labelModifComp))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonModifModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(279, 279, 279))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addComponent(buttonModifModifComp)
-                                .addGap(63, 63, 63)
-                                .addComponent(ButtonModifCompSupprimer))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
+                                .addGap(111, 111, 111)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labelCodeModifComp)
-                                                .addComponent(labelNomModifComp))
-                                            .addGap(35, 35, 35)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(textFieldNomModifComp, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                                .addComponent(textFieldCodeModifComp)))
-                                        .addComponent(jLabel1)
-                                        .addComponent(labelDescrModifComp)
-                                        .addComponent(jLabel2)
-                                        .addComponent(textFieldDescrModifComp)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(labelCompModifComp)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(comboBoxCompModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 55, Short.MAX_VALUE)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelCompModifComp)
+                                            .addComponent(labelCodeModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(comboBoxCompModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addContainerGap(44, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(textFieldCodeModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(65, 65, 65))
+                                            .addComponent(textFieldDescrModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ButtonModifCompSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(100, 100, 100))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(labelDescrModifComp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(buttonSauvegarderModifComp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonRetourModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(529, 529, 529))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(31, 31, 31)
                 .addComponent(labelModifComp)
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCompModifComp)
-                    .addComponent(comboBoxCompModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelNomModifComp)
-                    .addComponent(textFieldNomModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldCodeModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCodeModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelDescrModifComp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldDescrModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonModifModifComp)
-                    .addComponent(ButtonModifCompSupprimer))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(59, 59, 59)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonRetourModifComp)
-                .addGap(14, 14, 14))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(labelCompModifComp)
+                        .addGap(26, 26, 26)
+                        .addComponent(comboBoxCompModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelCodeModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldCodeModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDescrModifComp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldDescrModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(72, 72, 72)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(buttonModifModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ButtonModifCompSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(270, 270, 270))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonSauvegarderModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonRetourModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,7 +248,7 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, Short.MAX_VALUE)
         );
 
         pack();
@@ -275,16 +280,20 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
         String lignes = new String();
         if(remplie == true){
             //tableAjouterPers.add(lignes);
-            TextAreaModifCompVerif.setText("Bien remplie");
+            jLabel1.setText("Bien remplie");
         }
         else
-            TextAreaModifCompVerif.setText("Vous n'avez pas tous remplie");
+            jLabel1.setText("Vous n'avez pas tous remplie");
     }//GEN-LAST:event_buttonModifModifCompMouseClicked
+
+    private void ButtonModifCompSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModifCompSupprimerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonModifCompSupprimerActionPerformed
 
     public boolean Verifier() 
         {
             boolean verifier = true;
-            if((textFieldCodeModifComp.getText().equals(""))||(textFieldDescrModifComp.getText().equals(""))||(textFieldNomModifComp.getText().equals(""))){
+            if((textFieldCodeModifComp.getText().equals(""))||(textFieldDescrModifComp.getText().equals(""))){
                 verifier = false;        
             }
             return verifier;
@@ -330,23 +339,20 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonModifCompSupprimer;
-    private javax.swing.JTextArea TextAreaModifCompVerif;
     private javax.swing.JButton buttonModifModifComp;
     private javax.swing.JButton buttonRetourModifComp;
+    private javax.swing.JButton buttonSauvegarderModifComp;
     private javax.swing.JComboBox<String> comboBoxCompModifComp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelCodeModifComp;
     private javax.swing.JLabel labelCompModifComp;
     private javax.swing.JLabel labelDescrModifComp;
     private javax.swing.JLabel labelModifComp;
-    private javax.swing.JLabel labelNomModifComp;
     private javax.swing.JTable tableModifierComp;
     private javax.swing.JTextField textFieldCodeModifComp;
     private javax.swing.JTextField textFieldDescrModifComp;
-    private javax.swing.JTextField textFieldNomModifComp;
     // End of variables declaration//GEN-END:variables
 }

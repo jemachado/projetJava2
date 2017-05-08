@@ -32,24 +32,36 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
      */
     public InterfaceGraphiqueModifierPerso() throws IOException {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.entreprise = new Entreprise();
         initComponents();
-        System.out.println(Entreprise.tPersonnels.get(id).toString());
         this.tabC = new ArrayList<String>();
         this.remplissageComboBoxAjoutePers();
-        
+        this.initForm();
+    }
+    
+    private void initForm(){
+        Personnel p = this.entreprise.getTPersonnels().get(Integer.parseInt(this.entreprise.getIdModifPerso()));
+        this.textFieldDateEntreAjoutePers.setText(p.toStringDateFr());
+        this.textFieldNomAjoutePers.setText(p.getNom());
+        this.textFieldPreAjoutePers.setText(p.getPrenom());
+        DefaultTableModel model = (DefaultTableModel) this.tableAjouterPers.getModel();
+        for (int i = 0 ; i < p.getTabC().size() ; i++) {
+            Competence c = this.entreprise.getTCompetences().get(p.getTabC().get(i));
+            model.addRow(new Object[]{c.toString()});
+        }
     }
     
     private void remplissageComboBoxAjoutePers() throws IOException{
         Entreprise e = new Entreprise();
-        Set<String> keys = Entreprise.tCompetences.keySet();
+        Set<String> keys = entreprise.getTCompetences().keySet();
         this.comboBoxCompAjoutePers1.addItem("");
         for(String key: keys){
-            Competence p = Entreprise.tCompetences.get(key);
+            Competence p = entreprise.getTCompetences().get(key);
             this.comboBoxCompAjoutePers1.addItem(p.toString());
         }
     }
     
-    public boolean Verifier(){
+    private boolean Verifier(){
         
         if((textFieldPreAjoutePers.getText().equals(""))||
            (textFieldNomAjoutePers.getText().equals(""))||

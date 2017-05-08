@@ -42,11 +42,10 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
     }
     
     private void remplissageComboBoxAjoutePers() throws IOException{
-        Entreprise e = new Entreprise();
-        Set<String> keys = Entreprise.tCompetences.keySet();
+        Set<String> keys = entreprise.getTCompetences().keySet();
         this.comboBoxCompAjoutePers1.addItem("");
         for(String key: keys){
-            Competence p = Entreprise.tCompetences.get(key);
+            Competence p = entreprise.getTCompetences().get(key);
             this.comboBoxCompAjoutePers1.addItem(p.toString());
         }
     }

@@ -36,7 +36,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         this.entreprise = new Entreprise();
-        this.initTabPersonnel(Entreprise.tPersonnels);
+        this.initTabPersonnel(this.entreprise.getTPersonnels());
         this.remplissage();
     }
     
@@ -64,9 +64,9 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         this.comboBoxCompPers2.addItem(" ");
         this.comboBoxCompPers3.addItem(" ");
         Entreprise e = new Entreprise();
-        Set<String> keys = Entreprise.tCompetences.keySet();
+        Set<String> keys = entreprise.getTCompetences().keySet();
         for(String key: keys){
-            Competence p = Entreprise.tCompetences.get(key);
+            Competence p = entreprise.getTCompetences().get(key);
             this.comboBoxCompPers1.addItem(p.toString());
             this.comboBoxCompPers2.addItem(p.toString());
             this.comboBoxCompPers3.addItem(p.toString());
@@ -105,6 +105,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         TextFieldAnneeEntree = new javax.swing.JTextField();
         TextFieldMoisEntree = new javax.swing.JTextField();
+        erreurModif = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -228,20 +229,18 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelListePers)
-                                    .addComponent(tablePers))
-                                .addGap(390, 390, 390))
+                            .addComponent(labelListePers)
+                            .addComponent(tablePers))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonRetourPers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonRetourPers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(buttonAjoutePers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(buttonModifPers, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
-                                        .addGap(41, 41, 41))))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(buttonAjoutePers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(buttonModifPers, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)))
+                                .addGap(41, 41, 41))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(separatorPers)))
@@ -286,7 +285,9 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                         .addComponent(buttonAjoutePers)
                         .addGap(32, 32, 32)
                         .addComponent(buttonModifPers)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                         .addComponent(buttonRetourPers)
                         .addGap(14, 14, 14))))
         );
@@ -319,16 +320,21 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAjoutePersMouseClicked
 
     private void buttonModifPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifPersMouseClicked
-        DefaultTableModel model = (DefaultTableModel) this.tablePersonnel.getModel();
-        Entreprise.idModifPerso = ""+model.getValueAt(this.tablePersonnel.getSelectedRow(), 0);
-        InterfaceGraphiqueModifierPerso ModifPerso = null;
-        try {
-            ModifPerso = new InterfaceGraphiqueModifierPerso();
-        } catch (IOException ex) {
-            Logger.getLogger(InterfaceGraphiquePersonnel.class.getName()).log(Level.SEVERE, null, ex);
+        if ( this.tablePersonnel.getSelectedRowCount() !=0 ) {
+            DefaultTableModel model = (DefaultTableModel) this.tablePersonnel.getModel();
+            System.out.println(""+model.getValueAt(this.tablePersonnel.getSelectedRow(), 0));
+            entreprise.setIdModifPerso(""+model.getValueAt(this.tablePersonnel.getSelectedRow(), 0));
+            InterfaceGraphiqueModifierPerso ModifPerso = null;
+            try {
+                ModifPerso = new InterfaceGraphiqueModifierPerso();
+            } catch (IOException ex) {
+                Logger.getLogger(InterfaceGraphiquePersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.dispose();
+            ModifPerso.setVisible(true);
+        } else {
+            this.erreurModif.setText("Veuillez selectionner une personne");
         }
-        this.dispose();
-        ModifPerso.setVisible(true);
     }//GEN-LAST:event_buttonModifPersMouseClicked
 
     private void buttonRetourPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourPersMouseClicked
@@ -407,6 +413,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxCompPers1;
     private javax.swing.JComboBox<String> comboBoxCompPers2;
     private javax.swing.JComboBox<String> comboBoxCompPers3;
+    private javax.swing.JLabel erreurModif;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
