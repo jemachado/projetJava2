@@ -355,6 +355,28 @@ public class Entreprise {
         
     }
     
+    //CRUD Missions
+    
+    //TODO
+    public boolean ajoutMission(){
+        return false;
+    }
+    
+    // TODO
+    public boolean modifMission(){
+        return false;
+    }
+    
+    // TODO
+    public boolean SuppMission(){
+        return false;
+    }
+    
+    // TODO
+    public boolean rechercherMission(String status, int totalPersonne, Date dateDebut){
+        return false;
+    }
+    
     public Date dateFr(String dateFr){
         int jour = Integer.parseInt(""+dateFr.charAt(0)+dateFr.charAt(1));
         int mois = Integer.parseInt(""+dateFr.charAt(3)+dateFr.charAt(4));

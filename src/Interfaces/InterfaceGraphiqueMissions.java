@@ -58,12 +58,15 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
         buttonRechMissions = new javax.swing.JButton();
         buttonRetourMissions = new javax.swing.JButton();
         comboBoxMTypeMissions = new javax.swing.JComboBox<>();
-        labelNomMissions = new javax.swing.JLabel();
         labelDateDebMissions = new javax.swing.JLabel();
-        textFieldNomMissions = new javax.swing.JTextField();
         textFieldDateDebMissions = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMissions = new javax.swing.JTable();
+        labelDateDebMissions1 = new javax.swing.JLabel();
+        textFieldDuree = new javax.swing.JTextField();
+        textFieldNbPers = new javax.swing.JTextField();
+        labelDateDebMissions2 = new javax.swing.JLabel();
+        buttonModifierMissions1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,7 +79,7 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
 
         labelTypeMission.setText("Type de Mission :");
 
-        buttonModifierMissions.setText("Modifier");
+        buttonModifierMissions.setText("Fiche détails");
         buttonModifierMissions.setEnabled(false);
 
         buttonRechMissions.setText("Rechercher");
@@ -95,15 +98,7 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
             }
         });
 
-        labelNomMissions.setText("Nom :");
-
         labelDateDebMissions.setText("Date Début :");
-
-        textFieldNomMissions.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldNomMissionsActionPerformed(evt);
-            }
-        });
 
         tableMissions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,6 +119,13 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
         tableMissions.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tableMissions);
 
+        labelDateDebMissions1.setText("Durée :");
+
+        labelDateDebMissions2.setText("Nombre de personne mobilisé :");
+
+        buttonModifierMissions1.setText("Modifier");
+        buttonModifierMissions1.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -133,27 +135,32 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(labelDateDebMissions)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFieldDateDebMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(labelNomMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFieldNomMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(labelTypeMission)
-                            .addGap(18, 18, 18)
-                            .addComponent(comboBoxMTypeMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(614, 614, 614)
                         .addComponent(buttonRetourMissions))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(buttonModifierMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonAjouterMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonRechMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(buttonRechMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                        .addComponent(buttonModifierMissions1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(labelDateDebMissions2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldNbPers, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(labelDateDebMissions1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelDateDebMissions)
+                                .addComponent(labelTypeMission))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(textFieldDateDebMissions, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                                .addComponent(comboBoxMTypeMissions, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(buttonModifierMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(641, 641, 641)
                 .addComponent(labelMissionsMission)
@@ -172,17 +179,23 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
                             .addComponent(comboBoxMTypeMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelNomMissions)
-                            .addComponent(textFieldNomMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelDateDebMissions)
                             .addComponent(textFieldDateDebMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDateDebMissions1)
+                            .addComponent(textFieldDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDateDebMissions2)
+                            .addComponent(textFieldNbPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonRechMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonAjouterMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonModifierMissions1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonModifierMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonRetourMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,10 +218,6 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textFieldNomMissionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNomMissionsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldNomMissionsActionPerformed
 
     private void buttonRetourMissionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourMissionsMouseClicked
         interfaceGraphiqueAccueil  Accueil = null;
@@ -265,17 +274,20 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAjouterMissions;
     private javax.swing.JButton buttonModifierMissions;
+    private javax.swing.JButton buttonModifierMissions1;
     private javax.swing.JButton buttonRechMissions;
     private javax.swing.JButton buttonRetourMissions;
     private javax.swing.JComboBox<String> comboBoxMTypeMissions;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDateDebMissions;
+    private javax.swing.JLabel labelDateDebMissions1;
+    private javax.swing.JLabel labelDateDebMissions2;
     private javax.swing.JLabel labelMissionsMission;
-    private javax.swing.JLabel labelNomMissions;
     private javax.swing.JLabel labelTypeMission;
     private javax.swing.JTable tableMissions;
     private javax.swing.JTextField textFieldDateDebMissions;
-    private javax.swing.JTextField textFieldNomMissions;
+    private javax.swing.JTextField textFieldDuree;
+    private javax.swing.JTextField textFieldNbPers;
     // End of variables declaration//GEN-END:variables
 }

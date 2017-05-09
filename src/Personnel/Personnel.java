@@ -179,7 +179,7 @@ public class Personnel {
         }
     
         public String toStringDateFr(){
-            return this.dateEntree.getDay()+"/"+this.dateEntree.getMonth()+"/"+this.dateEntree.getYear();
+            return this.dateEntree.getDate()+"/"+this.dateEntree.getMonth()+"/"+(this.dateEntree.getYear()+1900);
         }
         
         public boolean compareTo(Personnel p){
@@ -187,8 +187,13 @@ public class Personnel {
                 return false;
             if ( !this.getClass().equals(p.getClass()) )
                 return false;
+            for (int i = 0 ; i < p.getTabC().size() ; i++) {
+                if(this.tabC.indexOf(p.getTabC().get(i)) == -1)
+                    return false;
+            }
             if ( (this.prenom.equals(p.prenom) || p.prenom.equals(""))
                      && (this.nom.equals(p.nom) || p.nom.equals("")))
+                
                 return true;
             return false;
         }

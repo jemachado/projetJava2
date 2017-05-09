@@ -48,4 +48,6 @@ public abstract class Mission {
     }
     
     public abstract String getType();
+ 
+    
 }

@@ -48,34 +48,41 @@
                   <Component id="jScrollPane1" min="-2" pref="876" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelDateDebMissions" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="textFieldDateDebMissions" min="-2" pref="183" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelNomMissions" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="textFieldNomMissions" min="-2" pref="183" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelTypeMission" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="comboBoxMTypeMissions" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="614" max="-2" attributes="0"/>
                           <Component id="buttonRetourMissions" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="buttonModifierMissions" alignment="0" max="32767" attributes="0"/>
                           <Component id="buttonAjouterMissions" alignment="0" max="32767" attributes="0"/>
                           <Component id="buttonRechMissions" alignment="0" pref="131" max="32767" attributes="0"/>
+                          <Component id="buttonModifierMissions1" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="labelDateDebMissions2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="textFieldNbPers" min="-2" pref="183" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="labelDateDebMissions1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="textFieldDuree" min="-2" pref="183" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelDateDebMissions" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTypeMission" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="75" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="textFieldDateDebMissions" pref="183" max="32767" attributes="0"/>
+                                  <Component id="comboBoxMTypeMissions" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Component id="buttonModifierMissions" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="641" max="-2" attributes="0"/>
@@ -98,19 +105,26 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelNomMissions" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldNomMissions" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelDateDebMissions" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="textFieldDateDebMissions" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelDateDebMissions1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldDuree" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelDateDebMissions2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldNbPers" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="buttonRechMissions" min="-2" pref="62" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="buttonAjouterMissions" min="-2" pref="67" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonModifierMissions1" min="-2" pref="67" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonModifierMissions" min="-2" pref="67" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="buttonRetourMissions" min="-2" pref="34" max="-2" attributes="0"/>
@@ -146,7 +160,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonModifierMissions">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Modifier"/>
+            <Property name="text" type="java.lang.String" value="Fiche d&#xe9;tails"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -182,20 +196,10 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelNomMissions">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nom :"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="labelDateDebMissions">
           <Properties>
             <Property name="text" type="java.lang.String" value="Date D&#xe9;but :"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="textFieldNomMissions">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldNomMissionsActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldDateDebMissions">
         </Component>
@@ -256,6 +260,26 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="labelDateDebMissions1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Dur&#xe9;e :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldDuree">
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldNbPers">
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelDateDebMissions2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre de personne mobilis&#xe9; :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonModifierMissions1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modifier"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

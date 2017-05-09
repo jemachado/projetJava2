@@ -55,7 +55,11 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         {
             clef = (Integer)i.next();
             valeur = tPers.get(clef);
-            model.addRow(new Object[]{valeur.getId(),valeur.getNom(),valeur.getPrenom(), valeur.getDateEntree()});
+            String competence = "";
+            for (int j = 0 ; j < valeur.getTabC().size() ; j++) {
+                competence +=  valeur.getTabC().get(j)+" - ";
+            }
+            model.addRow(new Object[]{valeur.getId(),valeur.getNom(),valeur.getPrenom(), valeur.getDateEntree(), competence});
         }   
     }
     
@@ -71,6 +75,16 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
             this.comboBoxCompPers2.addItem(p.toString());
             this.comboBoxCompPers3.addItem(p.toString());
         }
+    }
+    
+    private String getIdCompet(String compet){
+        String id = "";
+        int i = 0;
+        while( i<compet.length() && compet.charAt(i)!='-') {
+            id += compet.charAt(i);
+            i++;
+        }
+        return id;
     }
     
     
@@ -106,6 +120,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         TextFieldAnneeEntree = new javax.swing.JTextField();
         TextFieldMoisEntree = new javax.swing.JTextField();
         erreurModif = new javax.swing.JLabel();
+        jButtonSauvegarder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,6 +154,11 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
             }
         });
         tablePersonnel.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablePersonnel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tablePersonnelMouseReleased(evt);
+            }
+        });
         tablePers.setViewportView(tablePersonnel);
 
         buttonAjoutePers.setText("Ajouter");
@@ -149,6 +169,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         });
 
         buttonModifPers.setText("Modifier");
+        buttonModifPers.setEnabled(false);
         buttonModifPers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonModifPersMouseClicked(evt);
@@ -185,6 +206,13 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         jLabel1.setText("Année d'entrée :");
 
         jLabel2.setText("Mois d'entrée :");
+
+        jButtonSauvegarder.setText("Sauvegarder la base de données");
+        jButtonSauvegarder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSauvegarderMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -223,27 +251,32 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextFieldMoisEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(separatorPers))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelListePers)
-                            .addComponent(tablePers))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(buttonRetourPers, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonSauvegarder))
+                            .addComponent(tablePers, javax.swing.GroupLayout.PREFERRED_SIZE, 1122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonRetourPers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(buttonAjoutePers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(buttonModifPers, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)))
-                                .addGap(41, 41, 41))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(separatorPers)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 397, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -278,18 +311,18 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(tablePers, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(56, 56, 56))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(buttonAjoutePers)
-                        .addGap(32, 32, 32)
-                        .addComponent(buttonModifPers)
+                        .addComponent(buttonAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
                         .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
-                        .addComponent(buttonRetourPers)
-                        .addGap(14, 14, 14))))
+                        .addGap(0, 161, Short.MAX_VALUE))
+                    .addComponent(tablePers, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonRetourPers)
+                    .addComponent(jButtonSauvegarder))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -356,12 +389,33 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxCompPers2ActionPerformed
 
     private void buttonRechPersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRechPersMouseClicked
-        // TODO add your handling code here:
+        ArrayList<String> compet = new ArrayList<String>();
+        if (this.comboBoxCompPers1.getSelectedItem() != " ") {
+            compet.add(this.getIdCompet((String)this.comboBoxCompPers1.getSelectedItem()));
+        }
+        if (this.comboBoxCompPers2.getSelectedItem() != " ") {
+            compet.add(this.getIdCompet((String)this.comboBoxCompPers2.getSelectedItem()));
+        }
+        if (this.comboBoxCompPers3.getSelectedItem() != " ") {
+            compet.add(this.getIdCompet((String)this.comboBoxCompPers3.getSelectedItem()));
+        }
         this.initTabPersonnel(this.entreprise.rechercherPersonnels(null,
                                                                    this.textFieldNomPers.getText(),
                                                                    this.textFieldPrenPers.getText(),
-                                                                   new ArrayList<String>() ));
+                                                                   compet));
     }//GEN-LAST:event_buttonRechPersMouseClicked
+
+    private void jButtonSauvegarderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSauvegarderMouseClicked
+        try {
+            this.entreprise.sauvegarderTout();
+        } catch (IOException ex) {
+            Logger.getLogger(interfaceGraphiqueAjoutePerso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonSauvegarderMouseClicked
+
+    private void tablePersonnelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePersonnelMouseReleased
+        this.buttonModifPers.setEnabled(true);
+    }//GEN-LAST:event_tablePersonnelMouseReleased
 
     /**
      * @param args the command line arguments
@@ -414,6 +468,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxCompPers2;
     private javax.swing.JComboBox<String> comboBoxCompPers3;
     private javax.swing.JLabel erreurModif;
+    private javax.swing.JButton jButtonSauvegarder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
