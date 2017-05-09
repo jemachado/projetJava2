@@ -25,32 +25,9 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
      * Creates new form interfaceGraphiqueAjouteComp
      */
     public interfaceGraphiqueAjouteComp() throws IOException {
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         this.entreprise = new Entreprise();
-        this.entreprise.initDonnees();
-        this.initTabPersonnel();
     }
-
-    
-    private void initTabPersonnel() {
-        DefaultTableModel model = (DefaultTableModel) tableCompetenceAjoutComp.getModel();
-        int rowCount = model.getRowCount();
-        //Remove rows one by one from the end of the table
-        for (int j = rowCount - 1; j >= 0; j--) {
-            model.removeRow(j);
-        }
-        Iterator i = this.entreprise.getTCompetences().keySet().iterator();
-        String clef = null;
-        Competence valeur = null;
-        while (i.hasNext())
-        {
-            clef = (String)i.next();
-            valeur = this.entreprise.getTCompetences().get(clef);
-            model.addRow(new Object[]{valeur.getId(), valeur.getLibelleFr()});
-        }
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,28 +38,21 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        textFieldNomComp = new javax.swing.JTextField();
-        textFieldDescComp = new javax.swing.JTextField();
         buttonAjoutComp = new javax.swing.JButton();
         buttonRetourComp = new javax.swing.JButton();
-        buttonSauvComp = new javax.swing.JButton();
         labelAjoutComp = new javax.swing.JLabel();
-        labelNomComp = new javax.swing.JLabel();
-        labelDescrComp = new javax.swing.JLabel();
         LabelAjouterCompVerif = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextLibelleFr = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextLibelleEn = new javax.swing.JTextField();
+        jTextId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableCompetenceAjoutComp = new javax.swing.JTable();
+        msgErreur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(225, 225, 213));
-
-        textFieldNomComp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldNomCompActionPerformed(evt);
-            }
-        });
 
         buttonAjoutComp.setText("Ajouter");
         buttonAjoutComp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,167 +68,106 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
             }
         });
 
-        buttonSauvComp.setText("Sauvegarder");
-        buttonSauvComp.setEnabled(false);
-        buttonSauvComp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSauvCompActionPerformed(evt);
-            }
-        });
-
         labelAjoutComp.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         labelAjoutComp.setText("Ajouter Compétences");
 
-        labelNomComp.setText("Nom :");
+        jLabel2.setText("Libellé en français :");
 
-        labelDescrComp.setText("Description :");
+        jLabel3.setText("Libellé en anglais :");
 
-        jLabel1.setText("Liste:");
-
-        tableCompetenceAjoutComp.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Identifiant", "Libelle"
-            }
-        ));
-        jScrollPane2.setViewportView(tableCompetenceAjoutComp);
+        jLabel1.setText("Identifiant : ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(buttonSauvComp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonRetourComp, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(labelDescrComp)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(labelNomComp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(39, 39, 39)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldDescComp, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldNomComp, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(109, 109, 109)
+                        .addGap(887, 887, 887)
+                        .addComponent(LabelAjouterCompVerif, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(labelAjoutComp, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(msgErreur, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(buttonRetourComp, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                                 .addComponent(buttonAjoutComp, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(LabelAjouterCompVerif, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(639, 639, 639)
-                .addComponent(labelAjoutComp, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextLibelleFr, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextLibelleEn, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(labelAjoutComp))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel1)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(textFieldDescComp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelDescrComp)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(labelNomComp)
-                                .addComponent(textFieldNomComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(46, 46, 46)
-                        .addComponent(buttonAjoutComp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(LabelAjouterCompVerif, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(buttonSauvComp, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonRetourComp, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
+                .addContainerGap()
+                .addComponent(labelAjoutComp)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextLibelleFr, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextLibelleEn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(msgErreur, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonRetourComp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAjoutComp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(138, 138, 138)
+                .addComponent(LabelAjouterCompVerif, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonRetourCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourCompMouseClicked
-        // TODO add your handling code here:
-        InterfaceGraphiqueCompetences Competences = null;
-        try {
-            Competences = new InterfaceGraphiqueCompetences();
-        } catch (IOException ex) {
-            Logger.getLogger(interfaceGraphiqueAjouteComp.class.getName()).log(Level.SEVERE, null, ex);
-        }
         this.dispose();
-        Competences.setVisible(true);
     }//GEN-LAST:event_buttonRetourCompMouseClicked
 
     private void buttonAjoutCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjoutCompMouseClicked
-        // TODO add your handling code here:
-        boolean remplie = this.Verifier();
-        String lignes = new String();
-        if(remplie == true){
-            //tableAjouterPers.add(lignes);
-            LabelAjouterCompVerif.setText("Bien remplie");
+       
+        if(this.Verifier()){
+            if(this.entreprise.ajoutCompétence(this.jTextId.getText(), this.jTextLibelleEn.getText(), this.jTextLibelleFr.getText())){
+                this.dispose();
+            } else {
+                this.msgErreur.setText("Cette identifiant existe déjà");
+            }
+        } else {
+            this.msgErreur.setText("Saisie non complette du formulaire");
         }
-        else
-            LabelAjouterCompVerif.setText("Vous n'avez pas tous remplie");
     }//GEN-LAST:event_buttonAjoutCompMouseClicked
-
-    private void buttonSauvCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSauvCompActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonSauvCompActionPerformed
-
-    private void textFieldNomCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNomCompActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldNomCompActionPerformed
 
     public boolean Verifier() 
         {
             boolean verifier = true;
-            if((textFieldDescComp.getText().equals(""))||(textFieldNomComp.getText().equals(""))){
+            if((this.jTextId.getText().equals("")) || (this.jTextLibelleEn.getText().equals("")) || (this.jTextLibelleFr.getText().equals(""))){
                 verifier = false;        
             }
             return verifier;
@@ -307,15 +216,14 @@ public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
     private javax.swing.JLabel LabelAjouterCompVerif;
     private javax.swing.JButton buttonAjoutComp;
     private javax.swing.JButton buttonRetourComp;
-    private javax.swing.JButton buttonSauvComp;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextId;
+    private javax.swing.JTextField jTextLibelleEn;
+    private javax.swing.JTextField jTextLibelleFr;
     private javax.swing.JLabel labelAjoutComp;
-    private javax.swing.JLabel labelDescrComp;
-    private javax.swing.JLabel labelNomComp;
-    private javax.swing.JTable tableCompetenceAjoutComp;
-    private javax.swing.JTextField textFieldDescComp;
-    private javax.swing.JTextField textFieldNomComp;
+    private javax.swing.JLabel msgErreur;
     // End of variables declaration//GEN-END:variables
 }

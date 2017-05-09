@@ -37,6 +37,7 @@ public class Entreprise {
     private static TreeMap<Integer,Mission> tMissions;
     private static Integer idPersonnel;
     private static String idModifPerso;
+    private static String idModifCompet;
     
     public Entreprise() { }
     
@@ -242,6 +243,16 @@ public class Entreprise {
 	writer.close ();
     }
     
+    //CRUD Personnel
+    
+    /**
+     * rechercher une personne selon les critères rentrées en paramètre
+     * @param dateEntree
+     * @param nom
+     * @param prenom
+     * @param competences
+     * @return 
+     */
     public TreeMap<Integer,Personnel> rechercherPersonnels(Date dateEntree, String nom, String prenom, ArrayList<String> competences){
         TreeMap<Integer,Personnel> tPers = new TreeMap<Integer,Personnel>();
         Set<Integer> keys = this.tPersonnels.keySet();
@@ -255,6 +266,13 @@ public class Entreprise {
         return tPers;
     }
     
+    /**
+     * Ajouter une personne selon les variables rentrées en paramètre
+     * @param dateEntree
+     * @param nom
+     * @param prenom
+     * @param tabC 
+     */
     public void ajoutPersonnel(String dateEntree, String nom, String prenom, ArrayList<String> tabC){
         Personnel p = new Personnel(this.idPersonnel,dateEntree, nom, prenom);
         for (int i = 0 ; i < tabC.size() ; i++) {
@@ -264,6 +282,14 @@ public class Entreprise {
         this.idPersonnel++;
     }
     
+    /**
+     * Modifier une personne selon les variables rentrées en paramètre
+     * @param dateEntree
+     * @param nom
+     * @param prenom
+     * @param tabC
+     * @return 
+     */
     public boolean modifierPersonnel(String dateEntree, String nom, String prenom, ArrayList<String> tabC){
         if (dateEntree == null || dateEntree.equals("") || nom == null || nom.equals("") || prenom == null || prenom.equals("") ) {
             return false;
@@ -276,13 +302,55 @@ public class Entreprise {
         return true;
     }
     
+    // CUD Compétence
+    
+    /**
+     * Ajouter une compétence
+     * @param id
+     * @param libelleEn
+     * @param libelleFr
+     * @return 
+     */
     public boolean ajoutCompétence(String id, String libelleEn, String libelleFr){
         if(id == null || id.equals("") || libelleEn.equals("") || libelleEn == null || libelleFr == null || libelleFr.equals("") ){
             return false;
         }
-        Competence c = new Competence(id,libelleEn, libelleFr);
-        this.tCompetences.put(id, c);
-        return true;
+        if ( this.tCompetences.get(id) == null ) {
+            System.out.println("ca passe");
+            Competence c = new Competence(id,libelleEn, libelleFr);
+            this.tCompetences.put(id, c);
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public boolean modifCompétence(String id, String libelleEn, String libelleFr){
+        if(id == null || id.equals("") || libelleEn.equals("") || libelleEn == null || libelleFr == null || libelleFr.equals("") ){
+            return false;
+        }
+        if ( this.tCompetences.get(id) != null ) {
+            Competence c = new Competence(id,libelleEn, libelleFr);
+            this.tCompetences.put(id, c);
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public boolean supCompétence(String id){
+        if(id == null || id.equals("")){
+            return false;
+        }
+        if ( this.tCompetences.get(id) != null ) {
+            this.tCompetences.remove(id);
+            return true;
+        } else {
+            return false;
+        }
+        
     }
     
     public Date dateFr(String dateFr){
@@ -314,5 +382,13 @@ public class Entreprise {
     
     public void setIdModifPerso(String idModifPerso){
         this.idModifPerso = idModifPerso;
+    }
+    
+    public String getIdModifCompet(){
+        return this.idModifCompet;
+    }
+    
+    public void setIdModifCompet(String idModifCompet){
+        this.idModifCompet = idModifCompet;
     }
 }

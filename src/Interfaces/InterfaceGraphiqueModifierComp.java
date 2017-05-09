@@ -63,6 +63,12 @@ public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
             model.addRow(new Object[]{valeur.getId(), valeur.getLibelleFr()});
         }
     }
+    
+    private void initForm(){
+        Competence c = this.entreprise.getTCompetences().get(this.entreprise.getIdModifCompet());
+        this.textFieldCodeModifComp.setText(c.getId());
+        this.textFieldDescrModifComp.setText(c.getLibelleFr());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

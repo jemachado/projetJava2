@@ -188,7 +188,6 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
     }//GEN-LAST:event_textFieldNomMissionsActionPerformed
 
     private void buttonRetourMissionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourMissionsMouseClicked
-        // TODO add your handling code here:
         interfaceGraphiqueAccueil  Accueil = null;
         try {
             Accueil = new interfaceGraphiqueAccueil();
