@@ -405,9 +405,11 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRetourAjoutePersMouseClicked
 
     private void buttonSuppCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSuppCompMouseClicked
+
         if ( this.jTableCompet.getSelectedRowCount() !=0 ) {
             this.jDialogLibEn.setText(this.jTextLibelleEn.getText());
             this.jDialogLibFr.setText(this.jTextLibelleFr.getText());
+            jDialog1.setSize(350, 250);
             this.jDialog1.setVisible(true);
         } else {
             this.erreurModif.setText("Veuillez selectionner une competence");
