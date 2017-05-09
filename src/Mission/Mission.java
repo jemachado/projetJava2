@@ -42,4 +42,10 @@ public abstract class Mission {
     public int getId(){
         return this.id;
     }
+    
+    public String getDateDebutFr(){
+            return this.dateDebut.getDay()+"/"+this.dateDebut.getMonth()+"/"+(this.dateDebut.getYear()+1900);
+    }
+    
+    public abstract String getType();
 }

@@ -224,10 +224,12 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextLibelleEn" min="-2" pref="51" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="buttonModifComp" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
-                              <Component id="buttonSuppComp" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="buttonAjouteComp" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="buttonModifComp" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <Component id="buttonSuppComp" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>

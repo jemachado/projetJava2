@@ -192,6 +192,8 @@ public class Entreprise {
             }
     }
     
+    // Toutes les fonctions d'écriture dans les csv
+    
     public void sauvegarderTout() throws IOException {
         this.sauvegarderCompetence();
         this.sauvegarderPersonnel();
