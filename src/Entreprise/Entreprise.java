@@ -92,6 +92,13 @@ public class Entreprise {
             }
     }
 
+    /**
+     * Récupère toutes les compétences présentent dans le csv et lui associe toutes ces comptétences
+     * 
+     * @return
+     * @throws NumberFormatException
+     * @throws IOException 
+     */
     private TreeMap<String,Competence>  recupererCompetence() throws NumberFormatException, IOException{
             TreeMap<String,Competence> tabC = new TreeMap<String,Competence>();
             try {
@@ -112,6 +119,13 @@ public class Entreprise {
             }
     }
     
+    /**
+     * Récupère toutes les missions présentent dans le csv et lui associe toutes ces comptétences
+     * 
+     * @return
+     * @throws NumberFormatException
+     * @throws IOException 
+     */
     private TreeMap<Integer,Mission>  recupererMission() throws NumberFormatException, IOException{
             TreeMap<Integer,Mission> tabM = new TreeMap<Integer,Mission>();
             try {
@@ -192,13 +206,28 @@ public class Entreprise {
             }
     }
     
+    //TODO
+    private Mission miseAJourStatusMission(Mission m){
+        return null;
+    }
+    
     // Toutes les fonctions d'écriture dans les csv
     
+    /**
+     * Réécris tous les fichier csv
+     * 
+     * @throws IOException 
+     */
     public void sauvegarderTout() throws IOException {
         this.sauvegarderCompetence();
         this.sauvegarderPersonnel();
     }
     
+    /**
+     * Réécris tout le personnel dans le fichier csv
+     * 
+     * @throws IOException 
+     */
     private void sauvegarderPersonnel() throws IOException{
         CSVWriter writer = new CSVWriter(new FileWriter("liste_personnel.csv"), ';' , CSVWriter.NO_QUOTE_CHARACTER);
         String  [] entries = "Prenom;Nom;date entrée entreprise;identifiant;".split(";");
@@ -229,6 +258,11 @@ public class Entreprise {
         writer2.close();
     }
     
+    /**
+     * Réécris toutes les compétences dans le fichier csv
+     * 
+     * @throws IOException 
+     */
     private void sauvegarderCompetence() throws IOException{
         CSVWriter writer = new CSVWriter(new FileWriter("test.csv"), ';' , CSVWriter.NO_QUOTE_CHARACTER);
         String  [] entries;
@@ -328,6 +362,14 @@ public class Entreprise {
         
     }
     
+    /**
+     * Modifier une compétence
+     * 
+     * @param id
+     * @param libelleEn
+     * @param libelleFr
+     * @return 
+     */
     public boolean modifCompétence(String id, String libelleEn, String libelleFr){
         if(id == null || id.equals("") || libelleEn.equals("") || libelleEn == null || libelleFr == null || libelleFr.equals("") ){
             return false;
@@ -342,6 +384,12 @@ public class Entreprise {
         
     }
     
+    /**
+     * Supprimer une compétence
+     * 
+     * @param id
+     * @return 
+     */
     public boolean supCompétence(String id){
         if(id == null || id.equals("")){
             return false;
@@ -388,10 +436,18 @@ public class Entreprise {
         return date.getDay()+"/"+date.getMonth()+"/"+date.getYear();
     }
     
+    /**
+     * return tous le personnel
+     * @return 
+     */
     public TreeMap<Integer,Personnel> getTPersonnels(){
         return this.tPersonnels;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public TreeMap<String,Competence> getTCompetences(){
         return this.tCompetences;
     }
