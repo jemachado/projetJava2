@@ -338,6 +338,10 @@ public class Entreprise {
         return true;
     }
     
+    public void suppPersonnel(Integer id){
+        this.tPersonnels.remove(id);
+    }
+    
     // CUD Compétence
     
     /**

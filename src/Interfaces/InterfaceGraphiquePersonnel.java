@@ -121,6 +121,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         TextFieldMoisEntree = new javax.swing.JTextField();
         erreurModif = new javax.swing.JLabel();
         jButtonSauvegarder = new javax.swing.JButton();
+        buttonModifPers1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -214,6 +215,14 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
             }
         });
 
+        buttonModifPers1.setText("Supprimer");
+        buttonModifPers1.setEnabled(false);
+        buttonModifPers1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonModifPers1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -269,7 +278,8 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(buttonModifPers1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 397, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -314,8 +324,13 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                         .addComponent(buttonAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonModifPers1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 161, Short.MAX_VALUE))
                     .addComponent(tablePers, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -415,7 +430,12 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
 
     private void tablePersonnelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePersonnelMouseReleased
         this.buttonModifPers.setEnabled(true);
+        this.buttonModifPers1.setEnabled(true);
     }//GEN-LAST:event_tablePersonnelMouseReleased
+
+    private void buttonModifPers1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifPers1MouseClicked
+        // entreprise.suppPersonnel(entreprise.getIdModifPerso());
+    }//GEN-LAST:event_buttonModifPers1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -462,6 +482,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     private javax.swing.JTextField TextFieldMoisEntree;
     private javax.swing.JButton buttonAjoutePers;
     private javax.swing.JButton buttonModifPers;
+    private javax.swing.JButton buttonModifPers1;
     private javax.swing.JButton buttonRechPers;
     private javax.swing.JButton buttonRetourPers;
     private javax.swing.JComboBox<String> comboBoxCompPers1;

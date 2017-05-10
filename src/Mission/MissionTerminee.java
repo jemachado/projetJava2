@@ -37,6 +37,10 @@ public class MissionTerminee extends MissionNonModifiable {
 		this.tabPerso = new ArrayList<String>();
 	}
     
+    /**
+     * return le status de la mission
+     * @return 
+     */
      public String getType(){
         return "MissionTerminee";
     }
