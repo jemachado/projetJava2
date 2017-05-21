@@ -23,17 +23,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="449" max="32767" attributes="0"/>
+          <Component id="PanelAjoutComp" alignment="0" pref="449" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="366" max="32767" attributes="0"/>
+          <Component id="PanelAjoutComp" alignment="0" pref="366" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="PanelAjoutComp">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d5" green="e1" red="e1" type="rgb"/>
@@ -56,18 +56,18 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="msgErreur" alignment="0" max="32767" attributes="0"/>
+                              <Component id="LabelMsgErreurAjoutComp" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="buttonRetourComp" min="-2" pref="115" max="-2" attributes="0"/>
                                   <EmptySpace pref="173" max="32767" attributes="0"/>
                                   <Component id="buttonAjoutComp" min="-2" pref="108" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextId" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextLibelleFr" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextLibelleEn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="LabelIdAjoutComp" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TextIdAjoutComp" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                              <Component id="LabelLibFrAjoutComp" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelLibEnAjoutComp" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TextLibelleFrAjoutAccueil" alignment="0" max="32767" attributes="0"/>
+                              <Component id="TextLibelleEnAjoutAccueil" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -81,19 +81,19 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="labelAjoutComp" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="LabelIdAjoutComp" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextId" min="-2" max="-2" attributes="0"/>
+                  <Component id="TextIdAjoutComp" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="LabelLibFrAjoutComp" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextLibelleFr" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="TextLibelleFrAjoutAccueil" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelLibEnAjoutComp" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextLibelleEn" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="TextLibelleEnAjoutAccueil" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="msgErreur" min="-2" pref="13" max="-2" attributes="0"/>
+                  <Component id="LabelMsgErreurAjoutComp" min="-2" pref="13" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="buttonRetourComp" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
@@ -133,28 +133,31 @@
         </Component>
         <Component class="javax.swing.JLabel" name="LabelAjouterCompVerif">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="LabelLibFrAjoutComp">
           <Properties>
             <Property name="text" type="java.lang.String" value="Libell&#xe9; en fran&#xe7;ais :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextLibelleFr">
+        <Component class="javax.swing.JTextField" name="TextLibelleFrAjoutAccueil">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextLibelleFrAjoutAccueilActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="labelLibEnAjoutComp">
           <Properties>
             <Property name="text" type="java.lang.String" value="Libell&#xe9; en anglais :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextLibelleEn">
+        <Component class="javax.swing.JTextField" name="TextLibelleEnAjoutAccueil">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextId">
+        <Component class="javax.swing.JTextField" name="TextIdAjoutComp">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="LabelIdAjoutComp">
           <Properties>
             <Property name="text" type="java.lang.String" value="Identifiant : "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="msgErreur">
+        <Component class="javax.swing.JLabel" name="LabelMsgErreurAjoutComp">
         </Component>
       </SubComponents>
     </Container>

@@ -66,17 +66,17 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
         if((textFieldPreAjoutePers.getText().equals(""))||
            (textFieldNomAjoutePers.getText().equals(""))||
            (textFieldDateEntreAjoutePers.getText().equals(""))){
-            this.jLabel1.setText("Formulaire incomplet");
+            this.LabelControleSaisiModifPers.setText("Formulaire incomplet");
             return false;
         }
         else {
             if(this.textFieldDateEntreAjoutePers.getText().length() != 10){
-                this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)");
+                this.LabelControleSaisiModifPers.setText("La date d'entrée est non valide(jj/mm/aaaa)");
                 return false;
             }
             int mois = Integer.parseInt(""+this.textFieldDateEntreAjoutePers.getText().charAt(3)+this.textFieldDateEntreAjoutePers.getText().charAt(4));
             if(mois > 12){
-                this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)5");
+                this.LabelControleSaisiModifPers.setText("La date d'entrée est non valide(jj/mm/aaaa)5");
                 return false;
             }
             int jour = Integer.parseInt(""+this.textFieldDateEntreAjoutePers.getText().charAt(0)+this.textFieldDateEntreAjoutePers.getText().charAt(1));
@@ -92,7 +92,7 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
                 case 10:
                 case 12:
                     if(jour > 31){
-                        this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)1");
+                        this.LabelControleSaisiModifPers.setText("La date d'entrée est non valide(jj/mm/aaaa)1");
                         return false;
                     }
                     break;
@@ -101,7 +101,7 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
                 case 9:
                 case 11:
                     if(jour > 30){
-                        this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)2");
+                        this.LabelControleSaisiModifPers.setText("La date d'entrée est non valide(jj/mm/aaaa)2");
                         return false;
                     }
                     break;
@@ -110,14 +110,14 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
                          !(annee % 100 == 0))
                          || (annee % 400 == 0)){
                             if(jour > 29){
-                                this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)3");
+                                this.LabelControleSaisiModifPers.setText("La date d'entrée est non valide(jj/mm/aaaa)3");
                                 return false;
                             }
                         break;
                     }
                     else{
                         if(jour > 28){
-                            this.jLabel1.setText("La date d'entrée est non valide(jj/mm/aaaa)4");
+                            this.LabelControleSaisiModifPers.setText("La date d'entrée est non valide(jj/mm/aaaa)4");
                             return false;
                         }
                         }
@@ -126,7 +126,7 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
             }
             
         }
-        this.jLabel1.setText("valide");
+        this.LabelControleSaisiModifPers.setText("valide");
         return true;
     }
     
@@ -150,7 +150,7 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        PanelModifPers = new javax.swing.JPanel();
         buttonAjouterAjoutePers = new javax.swing.JButton();
         labelDateEntAjoutePers = new javax.swing.JLabel();
         buttonRetourAjoutePers = new javax.swing.JButton();
@@ -160,19 +160,18 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
         labelCompAjoutePers = new javax.swing.JLabel();
         comboBoxCompAjoutePers1 = new javax.swing.JComboBox<>();
         labelAjoutePers = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        ScrollPaneModifPers = new javax.swing.JScrollPane();
         tableAjouterPers = new javax.swing.JTable();
         labelPrenAjoutePers = new javax.swing.JLabel();
         labelNomAjoutePers = new javax.swing.JLabel();
         ButtonAjouterPersoAjouterComp = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        LabelControleSaisiModifPers = new javax.swing.JLabel();
         SupprCompe = new javax.swing.JButton();
-        jButtonSauvegarder = new javax.swing.JButton();
+        ButtonSauvegarder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1580, 605));
 
-        jPanel1.setBackground(new java.awt.Color(225, 225, 213));
+        PanelModifPers.setBackground(new java.awt.Color(225, 225, 213));
 
         buttonAjouterAjoutePers.setText("Modifier");
         buttonAjouterAjoutePers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,7 +230,7 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
             }
         });
         tableAjouterPers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(tableAjouterPers);
+        ScrollPaneModifPers.setViewportView(tableAjouterPers);
 
         labelPrenAjoutePers.setText("Prénom :");
 
@@ -256,52 +255,52 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
             }
         });
 
-        jButtonSauvegarder.setText("Sauvegarder la base de données");
-        jButtonSauvegarder.addMouseListener(new java.awt.event.MouseAdapter() {
+        ButtonSauvegarder.setText("Sauvegarder la base de données");
+        ButtonSauvegarder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonSauvegarderMouseClicked(evt);
+                ButtonSauvegarderMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelModifPersLayout = new javax.swing.GroupLayout(PanelModifPers);
+        PanelModifPers.setLayout(PanelModifPersLayout);
+        PanelModifPersLayout.setHorizontalGroup(
+            PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelModifPersLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelModifPersLayout.createSequentialGroup()
+                        .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelModifPersLayout.createSequentialGroup()
                                 .addGap(316, 316, 316)
                                 .addComponent(labelAjoutePers))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(PanelModifPersLayout.createSequentialGroup()
                                 .addComponent(buttonRetourAjoutePers)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonSauvegarder)))
+                                .addComponent(ButtonSauvegarder)))
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelModifPersLayout.createSequentialGroup()
+                        .addComponent(ScrollPaneModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelModifPersLayout.createSequentialGroup()
                                 .addComponent(labelCompAjoutePers)
                                 .addGap(37, 37, 37)
                                 .addComponent(comboBoxCompAjoutePers1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ButtonAjouterPersoAjouterComp)
                                 .addGap(0, 193, Short.MAX_VALUE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(LabelControleSaisiModifPers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(PanelModifPersLayout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(buttonAjouterAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelModifPersLayout.createSequentialGroup()
+                                        .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(labelNomAjoutePers)
                                             .addComponent(labelPrenAjoutePers))
                                         .addGap(70, 70, 70)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(textFieldNomAjoutePers, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                                             .addComponent(textFieldDateEntreAjoutePers)
                                             .addComponent(textFieldPreAjoutePers)))
@@ -309,41 +308,41 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
                                     .addComponent(SupprCompe))
                                 .addContainerGap())))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PanelModifPersLayout.setVerticalGroup(
+            PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelModifPersLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(labelAjoutePers)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelModifPersLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ScrollPaneModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonRetourAjoutePers)
-                            .addComponent(jButtonSauvegarder)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(ButtonSauvegarder)))
+                    .addGroup(PanelModifPersLayout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelPrenAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldPreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelNomAjoutePers)
                             .addComponent(textFieldNomAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelDateEntAjoutePers)
                             .addComponent(textFieldDateEntreAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelModifPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelCompAjoutePers)
                             .addComponent(comboBoxCompAjoutePers1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ButtonAjouterPersoAjouterComp))
                         .addGap(18, 18, 18)
                         .addComponent(SupprCompe)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LabelControleSaisiModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)
                         .addComponent(buttonAjouterAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -353,11 +352,11 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanelModifPers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanelModifPers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -397,7 +396,7 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
 
     private void ButtonAjouterPersoAjouterCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAjouterPersoAjouterCompMouseClicked
         if (this.tabC.indexOf(getIdCompet()) == -1) {
-            this.jLabel1.setText("Cette personne à déjà cette compétence");
+            this.LabelControleSaisiModifPers.setText("Cette personne à déjà cette compétence");
         } else {
             this.tabC.add(getIdCompet());
             DefaultTableModel model = (DefaultTableModel) this.tableAjouterPers.getModel();
@@ -422,13 +421,13 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
         model.removeRow(this.tableAjouterPers.getSelectedRow());
     }//GEN-LAST:event_SupprCompeActionPerformed
 
-    private void jButtonSauvegarderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSauvegarderMouseClicked
+    private void ButtonSauvegarderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonSauvegarderMouseClicked
         try {
             this.entreprise.sauvegarderTout();
         } catch (IOException ex) {
             Logger.getLogger(interfaceGraphiqueAjoutePerso.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonSauvegarderMouseClicked
+    }//GEN-LAST:event_ButtonSauvegarderMouseClicked
 
     
     /**
@@ -472,14 +471,14 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAjouterPersoAjouterComp;
+    private javax.swing.JButton ButtonSauvegarder;
+    private javax.swing.JLabel LabelControleSaisiModifPers;
+    private javax.swing.JPanel PanelModifPers;
+    private javax.swing.JScrollPane ScrollPaneModifPers;
     private javax.swing.JButton SupprCompe;
     private javax.swing.JButton buttonAjouterAjoutePers;
     private javax.swing.JButton buttonRetourAjoutePers;
     private javax.swing.JComboBox<String> comboBoxCompAjoutePers1;
-    private javax.swing.JButton jButtonSauvegarder;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAjoutePers;
     private javax.swing.JLabel labelCompAjoutePers;
     private javax.swing.JLabel labelDateEntAjoutePers;

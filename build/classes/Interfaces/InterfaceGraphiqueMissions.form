@@ -23,17 +23,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="PanelMissions" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" max="32767" attributes="0"/>
+          <Component id="PanelMissions" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="PanelMissions">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d5" green="e1" red="e1" type="rgb"/>
@@ -45,7 +45,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="876" max="-2" attributes="0"/>
+                  <Component id="ScrollPaneMissions" min="-2" pref="876" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -57,12 +57,12 @@
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelDateDebMissions2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelNbPersMissions" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="textFieldNbPers" min="-2" pref="183" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="labelDateDebMissions1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelDureeMissions" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="textFieldDuree" min="-2" pref="183" max="-2" attributes="0"/>
                                   </Group>
@@ -74,7 +74,7 @@
                                       <EmptySpace min="75" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="textFieldDateDebMissions" max="32767" attributes="0"/>
-                                          <Component id="comboBoxMTypeMissions" max="32767" attributes="0"/>
+                                          <Component id="comboBoxTypeMissionsMissions" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -106,7 +106,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelTypeMission" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="comboBoxMTypeMissions" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboBoxTypeMissionsMissions" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -115,12 +115,12 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelDateDebMissions1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDureeMissions" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="textFieldDuree" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelDateDebMissions2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNbPersMissions" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="textFieldNbPers" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -132,7 +132,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonModifierMissions" min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" alignment="0" min="-2" pref="645" max="-2" attributes="0"/>
+                      <Component id="ScrollPaneMissions" alignment="0" min="-2" pref="645" max="-2" attributes="0"/>
                       <Component id="buttonRetourMissions" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="26" pref="50" max="32767" attributes="0"/>
@@ -153,6 +153,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonAjouterMissionsMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelTypeMission">
           <Properties>
@@ -178,7 +181,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonRetourMissionsMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="comboBoxMTypeMissions">
+        <Component class="javax.swing.JComboBox" name="comboBoxTypeMissionsMissions">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="5">
@@ -191,7 +194,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxMTypeMissionsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxTypeMissionsMissionsActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -204,7 +207,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldDateDebMissions">
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="ScrollPaneMissions">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -261,7 +264,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="labelDateDebMissions1">
+        <Component class="javax.swing.JLabel" name="labelDureeMissions">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dur&#xe9;e :"/>
           </Properties>
@@ -270,7 +273,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldNbPers">
         </Component>
-        <Component class="javax.swing.JLabel" name="labelDateDebMissions2">
+        <Component class="javax.swing.JLabel" name="labelNbPersMissions">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre de personne mobilis&#xe9; :"/>
           </Properties>
@@ -280,6 +283,9 @@
             <Property name="text" type="java.lang.String" value="Modifier"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonModifierMissions1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

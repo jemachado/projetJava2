@@ -23,17 +23,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="PanelModifPers" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="PanelModifPers" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="PanelModifPers">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d5" green="e1" red="e1" type="rgb"/>
@@ -55,13 +55,13 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="buttonRetourAjoutePers" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButtonSauvegarder" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ButtonSauvegarder" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="954" max="-2" attributes="0"/>
+                          <Component id="ScrollPaneModifPers" min="-2" pref="954" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -72,7 +72,7 @@
                                   <Component id="ButtonAjouterPersoAjouterComp" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="193" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="LabelControleSaisiModifPers" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -108,11 +108,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="488" max="-2" attributes="0"/>
+                          <Component id="ScrollPaneModifPers" min="-2" pref="488" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonRetourAjoutePers" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonSauvegarder" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ButtonSauvegarder" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -140,7 +140,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="SupprCompe" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="LabelControleSaisiModifPers" min="-2" pref="28" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Component id="buttonAjouterAjoutePers" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
@@ -211,7 +211,7 @@
             <Property name="text" type="java.lang.String" value="Modifier un personnel"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="ScrollPaneModifPers">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -253,7 +253,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonAjouterPersoAjouterCompMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="LabelControleSaisiModifPers">
         </Component>
         <Component class="javax.swing.JButton" name="SupprCompe">
           <Properties>
@@ -264,12 +264,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SupprCompeActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonSauvegarder">
+        <Component class="javax.swing.JButton" name="ButtonSauvegarder">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sauvegarder la base de donn&#xe9;es"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSauvegarderMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonSauvegarderMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

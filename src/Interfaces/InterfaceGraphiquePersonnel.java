@@ -37,7 +37,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         initComponents();
         this.entreprise = new Entreprise();
         this.initTabPersonnel(this.entreprise.getTPersonnels());
-        this.remplissage();
+        this.remplissageComboBoxCompPersonnel();
     }
     
     private void initTabPersonnel(TreeMap<Integer,Personnel> tPers){
@@ -63,7 +63,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         }   
     }
     
-    private void remplissage() throws IOException{
+    private void remplissageComboBoxCompPersonnel() throws IOException{
         this.comboBoxCompPers1.addItem(" ");
         this.comboBoxCompPers2.addItem(" ");
         this.comboBoxCompPers3.addItem(" ");
@@ -97,7 +97,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        PanelPers = new javax.swing.JPanel();
         labelPrenPers = new javax.swing.JLabel();
         labelListePers = new javax.swing.JLabel();
         tablePers = new javax.swing.JScrollPane();
@@ -115,17 +115,17 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         buttonRechPers = new javax.swing.JButton();
         labelNomPer = new javax.swing.JLabel();
         separatorPers = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        LabelAnneeEntrPers = new javax.swing.JLabel();
+        LabelmoisEntrePers = new javax.swing.JLabel();
         TextFieldAnneeEntree = new javax.swing.JTextField();
         TextFieldMoisEntree = new javax.swing.JTextField();
         erreurModif = new javax.swing.JLabel();
-        jButtonSauvegarder = new javax.swing.JButton();
+        ButtonSauvegarder = new javax.swing.JButton();
         buttonModifPers1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(225, 225, 213));
+        PanelPers.setBackground(new java.awt.Color(225, 225, 213));
 
         labelPrenPers.setText("Prénom :");
 
@@ -204,14 +204,14 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
 
         labelNomPer.setText("Nom :");
 
-        jLabel1.setText("Année d'entrée :");
+        LabelAnneeEntrPers.setText("Année d'entrée :");
 
-        jLabel2.setText("Mois d'entrée :");
+        LabelmoisEntrePers.setText("Mois d'entrée :");
 
-        jButtonSauvegarder.setText("Sauvegarder la base de données");
-        jButtonSauvegarder.addMouseListener(new java.awt.event.MouseAdapter() {
+        ButtonSauvegarder.setText("Sauvegarder la base de données");
+        ButtonSauvegarder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonSauvegarderMouseClicked(evt);
+                ButtonSauvegarderMouseClicked(evt);
             }
         });
 
@@ -223,27 +223,27 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelPersLayout = new javax.swing.GroupLayout(PanelPers);
+        PanelPers.setLayout(PanelPersLayout);
+        PanelPersLayout.setHorizontalGroup(
+            PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPersLayout.createSequentialGroup()
                 .addGap(498, 498, 498)
                 .addComponent(labelPersPers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(440, 440, 440))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(PanelPersLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelPersLayout.createSequentialGroup()
                         .addComponent(labelCompPers)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(comboBoxCompPers3, 0, 242, Short.MAX_VALUE)
                             .addComponent(comboBoxCompPers2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(comboBoxCompPers1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(229, 229, 229)
                         .addComponent(buttonRechPers, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PanelPersLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(labelNomPer)
                         .addGap(18, 18, 18)
@@ -253,63 +253,63 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(textFieldPrenPers, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
+                        .addComponent(LabelAnneeEntrPers)
                         .addGap(18, 18, 18)
                         .addComponent(TextFieldAnneeEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(LabelmoisEntrePers)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextFieldMoisEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(PanelPersLayout.createSequentialGroup()
+                .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelPersLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(separatorPers))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelPersLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelListePers)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(PanelPersLayout.createSequentialGroup()
                                 .addComponent(buttonRetourPers, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonSauvegarder))
+                                .addComponent(ButtonSauvegarder))
                             .addComponent(tablePers, javax.swing.GroupLayout.PREFERRED_SIZE, 1122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelPersLayout.createSequentialGroup()
                                 .addComponent(buttonModifPers1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 397, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelPersLayout.createSequentialGroup()
+                                .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(buttonModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(14, 14, 14))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PanelPersLayout.setVerticalGroup(
+            PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPersLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(labelPersPers, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldPrenPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPrenPers)
                     .addComponent(textFieldNomPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNomPer)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
+                    .addComponent(LabelAnneeEntrPers)
+                    .addComponent(LabelmoisEntrePers)
                     .addComponent(TextFieldAnneeEntree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextFieldMoisEntree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxCompPers1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelCompPers))
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxCompPers2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonRechPers, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
@@ -319,24 +319,24 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelListePers)
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelPersLayout.createSequentialGroup()
                         .addComponent(buttonAjoutePers, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonModifPers, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelPersLayout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(PanelPersLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonModifPers1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 161, Short.MAX_VALUE))
                     .addComponent(tablePers, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonRetourPers)
-                    .addComponent(jButtonSauvegarder))
+                    .addComponent(ButtonSauvegarder))
                 .addContainerGap())
         );
 
@@ -344,11 +344,11 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanelPers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanelPers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -420,13 +420,13 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
                                                                    compet));
     }//GEN-LAST:event_buttonRechPersMouseClicked
 
-    private void jButtonSauvegarderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSauvegarderMouseClicked
+    private void ButtonSauvegarderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonSauvegarderMouseClicked
         try {
             this.entreprise.sauvegarderTout();
         } catch (IOException ex) {
             Logger.getLogger(interfaceGraphiqueAjoutePerso.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonSauvegarderMouseClicked
+    }//GEN-LAST:event_ButtonSauvegarderMouseClicked
 
     private void tablePersonnelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePersonnelMouseReleased
         this.buttonModifPers.setEnabled(true);
@@ -478,6 +478,10 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonSauvegarder;
+    private javax.swing.JLabel LabelAnneeEntrPers;
+    private javax.swing.JLabel LabelmoisEntrePers;
+    private javax.swing.JPanel PanelPers;
     private javax.swing.JTextField TextFieldAnneeEntree;
     private javax.swing.JTextField TextFieldMoisEntree;
     private javax.swing.JButton buttonAjoutePers;
@@ -489,10 +493,6 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxCompPers2;
     private javax.swing.JComboBox<String> comboBoxCompPers3;
     private javax.swing.JLabel erreurModif;
-    private javax.swing.JButton jButtonSauvegarder;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelCompPers;
     private javax.swing.JLabel labelListePers;
     private javax.swing.JLabel labelNomPer;
