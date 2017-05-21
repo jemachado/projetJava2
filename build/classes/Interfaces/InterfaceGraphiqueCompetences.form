@@ -2,22 +2,22 @@
 
 <Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="DialogConfirmationSuppComp">
+    <Container class="javax.swing.JDialog" name="jDialog1">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="PanelConfSuppComp" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="PanelConfSuppComp" max="32767" attributes="0"/>
+              <Component id="jPanel2" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="PanelConfSuppComp">
+        <Container class="javax.swing.JPanel" name="jPanel2">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -26,7 +26,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="LabelQuestConfSuppComp" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="confirmeSuppOui" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -50,7 +50,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="LabelQuestConfSuppComp" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jDialogLibFr" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -66,7 +66,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="LabelQuestConfSuppComp">
+            <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Etes vous sure de vouloir supprimer la comp&#xe9;tence :"/>
               </Properties>
@@ -129,17 +129,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PanelCompetence" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PanelCompetence" alignment="1" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="PanelCompetence">
+    <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d5" green="e1" red="e1" type="rgb"/>
@@ -163,13 +163,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="ScrollPaneComp" min="-2" pref="850" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="850" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="LabelIdComp" min="-2" max="-2" attributes="0"/>
-                              <Component id="TextFieldId" min="-2" pref="312" max="-2" attributes="0"/>
-                              <Component id="LabelLibFrComp" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="LabelLibEnComp" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextId" min="-2" pref="312" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="buttonAjouteComp" min="-2" pref="185" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -178,18 +178,18 @@
                                   <Component id="buttonSuppComp" min="-2" pref="185" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="TextFieldLibFrComp" alignment="0" pref="490" max="32767" attributes="0"/>
-                                  <Component id="TextFieldLibEnComp" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextLibelleFr" alignment="0" pref="490" max="32767" attributes="0"/>
+                                  <Component id="jTextLibelleEn" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="ButtonActuComp" min="-2" max="-2" attributes="0"/>
-                              <Component id="LabelActuComp" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <Component id="erreurModif" min="-2" pref="260" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="buttonRetourAjoutePers" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="ButtonSauvegarder" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonSauvegarder" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -206,17 +206,17 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="LabelIdComp" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TextFieldId" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextId" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="LabelLibFrComp" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TextFieldLibFrComp" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="jTextLibelleFr" min="-2" pref="51" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="LabelLibEnComp" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TextFieldLibEnComp" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="jTextLibelleEn" min="-2" pref="51" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="buttonAjouteComp" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
@@ -228,17 +228,17 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="erreurModif" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="LabelActuComp" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ButtonActuComp" min="-2" pref="54" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" pref="54" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="193" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="ScrollPaneComp" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="buttonRetourAjoutePers" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButtonSauvegarder" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonSauvegarder" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -278,13 +278,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="erreurModif">
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonSauvegarder">
+        <Component class="javax.swing.JButton" name="jButtonSauvegarder">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sauvegarder la base de donn&#xe9;es"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonSauvegarderMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonSauvegarderActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSauvegarderMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonRetourAjoutePers">
@@ -295,26 +294,23 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonRetourAjoutePersMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelIdComp">
+        <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Identifiant : "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TextFieldId">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldIdActionPerformed"/>
-          </Events>
+        <Component class="javax.swing.JTextField" name="jTextId">
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelLibFrComp">
+        <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Libell&#xe9; en fran&#xe7;ais :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TextFieldLibFrComp">
+        <Component class="javax.swing.JTextField" name="jTextLibelleFr">
         </Component>
-        <Component class="javax.swing.JTextField" name="TextFieldLibEnComp">
+        <Component class="javax.swing.JTextField" name="jTextLibelleEn">
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelLibEnComp">
+        <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Libell&#xe9; en anglais :"/>
           </Properties>
@@ -329,15 +325,15 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSuppCompActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonActuComp">
+        <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Actualiser la liste de comp&#xe9;tence"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonActuCompMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="ScrollPaneComp">
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -386,7 +382,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="LabelActuComp">
+        <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Actualiser le tableau apr&#xe8;s un ajout :"/>
           </Properties>

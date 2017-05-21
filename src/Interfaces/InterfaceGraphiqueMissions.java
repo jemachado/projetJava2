@@ -50,27 +50,27 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelMissions = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         labelMissionsMission = new javax.swing.JLabel();
         buttonAjouterMissions = new javax.swing.JButton();
         labelTypeMission = new javax.swing.JLabel();
         buttonModifierMissions = new javax.swing.JButton();
         buttonRechMissions = new javax.swing.JButton();
         buttonRetourMissions = new javax.swing.JButton();
-        comboBoxTypeMissionsMissions = new javax.swing.JComboBox<>();
+        comboBoxMTypeMissions = new javax.swing.JComboBox<>();
         labelDateDebMissions = new javax.swing.JLabel();
         textFieldDateDebMissions = new javax.swing.JTextField();
-        ScrollPaneMissions = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         tableMissions = new javax.swing.JTable();
-        labelDureeMissions = new javax.swing.JLabel();
+        labelDateDebMissions1 = new javax.swing.JLabel();
         textFieldDuree = new javax.swing.JTextField();
         textFieldNbPers = new javax.swing.JTextField();
-        labelNbPersMissions = new javax.swing.JLabel();
+        labelDateDebMissions2 = new javax.swing.JLabel();
         buttonModifierMissions1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PanelMissions.setBackground(new java.awt.Color(225, 225, 213));
+        jPanel1.setBackground(new java.awt.Color(225, 225, 213));
 
         labelMissionsMission.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         labelMissionsMission.setText("Missions");
@@ -96,10 +96,10 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
             }
         });
 
-        comboBoxTypeMissionsMissions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "MissionPlanifiée", "MissionPlanification", "MissionEnCours", "MissionTerminée" }));
-        comboBoxTypeMissionsMissions.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxMTypeMissions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "MissionPlanifiée", "MissionPlanification", "MissionEnCours", "MissionTerminée" }));
+        comboBoxMTypeMissions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxTypeMissionsMissionsActionPerformed(evt);
+                comboBoxMTypeMissionsActionPerformed(evt);
             }
         });
 
@@ -122,85 +122,80 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
             }
         });
         tableMissions.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        ScrollPaneMissions.setViewportView(tableMissions);
+        jScrollPane1.setViewportView(tableMissions);
 
-        labelDureeMissions.setText("Durée :");
+        labelDateDebMissions1.setText("Durée :");
 
-        labelNbPersMissions.setText("Nombre de personne mobilisé :");
+        labelDateDebMissions2.setText("Nombre de personne mobilisé :");
 
         buttonModifierMissions1.setText("Modifier");
         buttonModifierMissions1.setEnabled(false);
-        buttonModifierMissions1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonModifierMissions1ActionPerformed(evt);
-            }
-        });
 
-        javax.swing.GroupLayout PanelMissionsLayout = new javax.swing.GroupLayout(PanelMissions);
-        PanelMissions.setLayout(PanelMissionsLayout);
-        PanelMissionsLayout.setHorizontalGroup(
-            PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelMissionsLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollPaneMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelMissionsLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(buttonAjouterMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buttonRechMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                                 .addComponent(buttonModifierMissions1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelMissionsLayout.createSequentialGroup()
-                                    .addComponent(labelNbPersMissions)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(labelDateDebMissions2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(textFieldNbPers, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(PanelMissionsLayout.createSequentialGroup()
-                                    .addComponent(labelDureeMissions)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(labelDateDebMissions1)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(textFieldDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(PanelMissionsLayout.createSequentialGroup()
-                                    .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(labelDateDebMissions)
                                         .addComponent(labelTypeMission))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(textFieldDateDebMissions)
-                                        .addComponent(comboBoxTypeMissionsMissions, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(comboBoxMTypeMissions, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(buttonModifierMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(204, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMissionsLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonRetourMissions)
                         .addContainerGap())))
-            .addGroup(PanelMissionsLayout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(641, 641, 641)
                 .addComponent(labelMissionsMission)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        PanelMissionsLayout.setVerticalGroup(
-            PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelMissionsLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelMissionsMission)
                 .addGap(48, 48, 48)
-                .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelMissionsLayout.createSequentialGroup()
-                        .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelTypeMission)
-                            .addComponent(comboBoxTypeMissionsMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboBoxMTypeMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelDateDebMissions)
                             .addComponent(textFieldDateDebMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelDureeMissions)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDateDebMissions1)
                             .addComponent(textFieldDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelNbPersMissions)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDateDebMissions2)
                             .addComponent(textFieldNbPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonRechMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,7 +205,7 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
                         .addComponent(buttonModifierMissions1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonModifierMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ScrollPaneMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonRetourMissions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 50, Short.MAX_VALUE))
         );
@@ -219,11 +214,11 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelMissions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelMissions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -242,20 +237,20 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
         Accueil.setVisible(true);
     }//GEN-LAST:event_buttonRetourMissionsMouseClicked
 
-    private void comboBoxTypeMissionsMissionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTypeMissionsMissionsActionPerformed
+    private void comboBoxMTypeMissionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxMTypeMissionsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxTypeMissionsMissionsActionPerformed
+    }//GEN-LAST:event_comboBoxMTypeMissionsActionPerformed
 
     private void buttonAjouterMissionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterMissionsMouseClicked
-        // TODO add your handling code here:
-        InterfaceGraphiqueCreationMissions CreationMissions = new InterfaceGraphiqueCreationMissions();
+        InterfaceGraphiqueCreationMissions  createMission = null;
+        try {
+            createMission = new InterfaceGraphiqueCreationMissions();
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(InterfaceGraphiqueMissions.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
-        CreationMissions.setVisible(true);
+        createMission.setVisible(true);
     }//GEN-LAST:event_buttonAjouterMissionsMouseClicked
-
-    private void buttonModifierMissions1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifierMissions1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonModifierMissions1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,18 +288,18 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PanelMissions;
-    private javax.swing.JScrollPane ScrollPaneMissions;
     private javax.swing.JButton buttonAjouterMissions;
     private javax.swing.JButton buttonModifierMissions;
     private javax.swing.JButton buttonModifierMissions1;
     private javax.swing.JButton buttonRechMissions;
     private javax.swing.JButton buttonRetourMissions;
-    private javax.swing.JComboBox<String> comboBoxTypeMissionsMissions;
+    private javax.swing.JComboBox<String> comboBoxMTypeMissions;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDateDebMissions;
-    private javax.swing.JLabel labelDureeMissions;
+    private javax.swing.JLabel labelDateDebMissions1;
+    private javax.swing.JLabel labelDateDebMissions2;
     private javax.swing.JLabel labelMissionsMission;
-    private javax.swing.JLabel labelNbPersMissions;
     private javax.swing.JLabel labelTypeMission;
     private javax.swing.JTable tableMissions;
     private javax.swing.JTextField textFieldDateDebMissions;

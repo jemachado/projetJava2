@@ -58,34 +58,34 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        DialogConfirmationSuppComp = new javax.swing.JDialog();
-        PanelConfSuppComp = new javax.swing.JPanel();
-        LabelQuestConfSuppComp = new javax.swing.JLabel();
+        jDialog1 = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jDialogLibFr = new javax.swing.JLabel();
         jDialogLibEn = new javax.swing.JLabel();
         confirmeSuppOui = new javax.swing.JButton();
         confirmeSuppNon = new javax.swing.JButton();
-        PanelCompetence = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         buttonAjouteComp = new javax.swing.JButton();
         buttonModifComp = new javax.swing.JButton();
         labelCompComp = new javax.swing.JLabel();
         labelListeComp = new javax.swing.JLabel();
         erreurModif = new javax.swing.JLabel();
-        ButtonSauvegarder = new javax.swing.JButton();
+        jButtonSauvegarder = new javax.swing.JButton();
         buttonRetourAjoutePers = new javax.swing.JButton();
-        LabelIdComp = new javax.swing.JLabel();
-        TextFieldId = new javax.swing.JTextField();
-        LabelLibFrComp = new javax.swing.JLabel();
-        TextFieldLibFrComp = new javax.swing.JTextField();
-        TextFieldLibEnComp = new javax.swing.JTextField();
-        LabelLibEnComp = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextId = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextLibelleFr = new javax.swing.JTextField();
+        jTextLibelleEn = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         buttonSuppComp = new javax.swing.JButton();
-        ButtonActuComp = new javax.swing.JButton();
-        ScrollPaneComp = new javax.swing.JScrollPane();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jTableCompet = new javax.swing.JTable();
-        LabelActuComp = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        LabelQuestConfSuppComp.setText("Etes vous sure de vouloir supprimer la compétence :");
+        jLabel5.setText("Etes vous sure de vouloir supprimer la compétence :");
 
         jDialogLibFr.setText("Libellé fr");
 
@@ -115,58 +115,58 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout PanelConfSuppCompLayout = new javax.swing.GroupLayout(PanelConfSuppComp);
-        PanelConfSuppComp.setLayout(PanelConfSuppCompLayout);
-        PanelConfSuppCompLayout.setHorizontalGroup(
-            PanelConfSuppCompLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelConfSuppCompLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PanelConfSuppCompLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelConfSuppCompLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(LabelQuestConfSuppComp)
-                        .addGroup(PanelConfSuppCompLayout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel5)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(confirmeSuppOui)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(confirmeSuppNon)
                             .addGap(11, 11, 11)))
-                    .addGroup(PanelConfSuppCompLayout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addGroup(PanelConfSuppCompLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jDialogLibEn)
                             .addComponent(jDialogLibFr))))
                 .addContainerGap(169, Short.MAX_VALUE))
         );
-        PanelConfSuppCompLayout.setVerticalGroup(
-            PanelConfSuppCompLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelConfSuppCompLayout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(LabelQuestConfSuppComp)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jDialogLibFr)
                 .addGap(18, 18, 18)
                 .addComponent(jDialogLibEn)
                 .addGap(23, 23, 23)
-                .addGroup(PanelConfSuppCompLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmeSuppOui)
                     .addComponent(confirmeSuppNon))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout DialogConfirmationSuppCompLayout = new javax.swing.GroupLayout(DialogConfirmationSuppComp.getContentPane());
-        DialogConfirmationSuppComp.getContentPane().setLayout(DialogConfirmationSuppCompLayout);
-        DialogConfirmationSuppCompLayout.setHorizontalGroup(
-            DialogConfirmationSuppCompLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelConfSuppComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        DialogConfirmationSuppCompLayout.setVerticalGroup(
-            DialogConfirmationSuppCompLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelConfSuppComp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 51, 51));
 
-        PanelCompetence.setBackground(new java.awt.Color(225, 225, 213));
+        jPanel1.setBackground(new java.awt.Color(225, 225, 213));
 
         buttonAjouteComp.setText("Ajouter");
         buttonAjouteComp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -188,15 +188,10 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
 
         labelListeComp.setText("Liste :");
 
-        ButtonSauvegarder.setText("Sauvegarder la base de données");
-        ButtonSauvegarder.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonSauvegarder.setText("Sauvegarder la base de données");
+        jButtonSauvegarder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ButtonSauvegarderMouseClicked(evt);
-            }
-        });
-        ButtonSauvegarder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonSauvegarderActionPerformed(evt);
+                jButtonSauvegarderMouseClicked(evt);
             }
         });
 
@@ -207,17 +202,11 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
             }
         });
 
-        LabelIdComp.setText("Identifiant : ");
+        jLabel1.setText("Identifiant : ");
 
-        TextFieldId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldIdActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Libellé en français :");
 
-        LabelLibFrComp.setText("Libellé en français :");
-
-        LabelLibEnComp.setText("Libellé en anglais :");
+        jLabel3.setText("Libellé en anglais :");
 
         buttonSuppComp.setText("Supprimer");
         buttonSuppComp.setEnabled(false);
@@ -232,10 +221,10 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
             }
         });
 
-        ButtonActuComp.setText("Actualiser la liste de compétence");
-        ButtonActuComp.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton1.setText("Actualiser la liste de compétence");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ButtonActuCompMouseClicked(evt);
+                jButton1MouseClicked(evt);
             }
         });
 
@@ -264,90 +253,91 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
                 jTableCompetMouseReleased(evt);
             }
         });
-        ScrollPaneComp.setViewportView(jTableCompet);
+        jScrollPane1.setViewportView(jTableCompet);
 
-        LabelActuComp.setText("Actualiser le tableau après un ajout :");
+        jLabel4.setText("Actualiser le tableau après un ajout :");
 
-        javax.swing.GroupLayout PanelCompetenceLayout = new javax.swing.GroupLayout(PanelCompetence);
-        PanelCompetence.setLayout(PanelCompetenceLayout);
-        PanelCompetenceLayout.setHorizontalGroup(
-            PanelCompetenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCompetenceLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(656, 656, 656)
                 .addComponent(labelCompComp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(404, 404, 404))
-            .addGroup(PanelCompetenceLayout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelListeComp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(PanelCompetenceLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelCompetenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelCompetenceLayout.createSequentialGroup()
-                        .addComponent(ScrollPaneComp, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(PanelCompetenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelIdComp)
-                            .addComponent(TextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LabelLibFrComp)
-                            .addComponent(LabelLibEnComp)
-                            .addGroup(PanelCompetenceLayout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(buttonAjouteComp, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonSuppComp, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelCompetenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(TextFieldLibFrComp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-                                .addComponent(TextFieldLibEnComp, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(ButtonActuComp)
-                            .addComponent(LabelActuComp)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextLibelleFr, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                                .addComponent(jTextLibelleEn, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jButton1)
+                            .addComponent(jLabel4)
                             .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PanelCompetenceLayout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(buttonRetourAjoutePers)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButtonSauvegarder)))
+                        .addComponent(jButtonSauvegarder)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        PanelCompetenceLayout.setVerticalGroup(
-            PanelCompetenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelCompetenceLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(labelCompComp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelListeComp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelCompetenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelCompetenceLayout.createSequentialGroup()
-                        .addComponent(LabelIdComp)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LabelLibFrComp)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextFieldLibFrComp, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextLibelleFr, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LabelLibEnComp)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextFieldLibEnComp, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextLibelleEn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addGroup(PanelCompetenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonAjouteComp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PanelCompetenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(buttonModifComp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(buttonSuppComp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(erreurModif, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
-                        .addComponent(LabelActuComp)
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonActuComp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 193, Short.MAX_VALUE))
-                    .addComponent(ScrollPaneComp))
+                    .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
-                .addGroup(PanelCompetenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonRetourAjoutePers)
-                    .addComponent(ButtonSauvegarder))
+                    .addComponent(jButtonSauvegarder))
                 .addContainerGap())
         );
 
@@ -355,11 +345,11 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelCompetence, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelCompetence, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -379,12 +369,12 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
 
     private void buttonModifCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifCompMouseClicked
         if ( this.jTableCompet.getSelectedRowCount() !=0 ) {
-            if ( this.entreprise.modifCompétence(this.TextFieldId.getText(), this.TextFieldLibEnComp.getText(), this.TextFieldLibFrComp.getText()) ) {
+            if ( this.entreprise.modifCompétence(this.jTextId.getText(), this.jTextLibelleEn.getText(), this.jTextLibelleFr.getText()) ) {
                 this.erreurModif.setText("Modification bien éffectué");
                 this.initTabCompetences();
-                this.TextFieldId.setText("");
-                this.TextFieldLibEnComp.setText("");
-                this.TextFieldLibFrComp.setText("");
+                this.jTextId.setText("");
+                this.jTextLibelleEn.setText("");
+                this.jTextLibelleFr.setText("");
             } else {
                 this.erreurModif.setText("Modification non éffectué");
             }
@@ -393,13 +383,13 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonModifCompMouseClicked
 
-    private void ButtonSauvegarderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonSauvegarderMouseClicked
+    private void jButtonSauvegarderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSauvegarderMouseClicked
         try {
             this.entreprise.sauvegarderTout();
         } catch (IOException ex) {
             Logger.getLogger(interfaceGraphiqueAjoutePerso.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_ButtonSauvegarderMouseClicked
+    }//GEN-LAST:event_jButtonSauvegarderMouseClicked
 
     private void buttonRetourAjoutePersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourAjoutePersMouseClicked
         interfaceGraphiqueAccueil  Accueil = null;
@@ -417,18 +407,18 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
     private void buttonSuppCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSuppCompMouseClicked
 
         if ( this.jTableCompet.getSelectedRowCount() !=0 ) {
-            this.jDialogLibEn.setText(this.TextFieldLibEnComp.getText());
-            this.jDialogLibFr.setText(this.TextFieldLibFrComp.getText());
-            DialogConfirmationSuppComp.setSize(350, 250);
-            this.DialogConfirmationSuppComp.setVisible(true);
+            this.jDialogLibEn.setText(this.jTextLibelleEn.getText());
+            this.jDialogLibFr.setText(this.jTextLibelleFr.getText());
+            jDialog1.setSize(350, 250);
+            this.jDialog1.setVisible(true);
         } else {
             this.erreurModif.setText("Veuillez selectionner une competence");
         }
     }//GEN-LAST:event_buttonSuppCompMouseClicked
 
-    private void ButtonActuCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonActuCompMouseClicked
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         this.initTabCompetences();
-    }//GEN-LAST:event_ButtonActuCompMouseClicked
+    }//GEN-LAST:event_jButton1MouseClicked
 
     private void buttonSuppCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSuppCompActionPerformed
         // TODO add your handling code here:
@@ -445,9 +435,9 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
             this.buttonSuppComp.setEnabled(true);
             DefaultTableModel model = (DefaultTableModel) this.jTableCompet.getModel();
             Competence c = this.entreprise.getTCompetences().get(""+model.getValueAt(this.jTableCompet.getSelectedRow(), 0));
-            this.TextFieldId.setText(c.getId());
-            this.TextFieldLibFrComp.setText(c.getLibelleFr());
-            this.TextFieldLibEnComp.setText(c.getLibelleEn());
+            this.jTextId.setText(c.getId());
+            this.jTextLibelleFr.setText(c.getLibelleFr());
+            this.jTextLibelleEn.setText(c.getLibelleEn());
         } else {
             this.erreurModif.setText("Veuillez selectionner une competence");
         }
@@ -462,29 +452,21 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmeSuppNonActionPerformed
 
     private void confirmeSuppOuiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmeSuppOuiMouseClicked
-        if (entreprise.supCompétence(this.TextFieldId.getText()) ) {
+        if (entreprise.supCompétence(this.jTextId.getText()) ) {
             this.erreurModif.setText("Suppression bien effectuée");
             this.initTabCompetences();
-            this.TextFieldId.setText("");
-            this.TextFieldLibEnComp.setText("");
-            this.TextFieldLibFrComp.setText("");
+            this.jTextId.setText("");
+            this.jTextLibelleEn.setText("");
+            this.jTextLibelleFr.setText("");
         } else {
             this.erreurModif.setText("Suppression non effectuée");
         }
-        this.DialogConfirmationSuppComp.setVisible(false);
+        this.jDialog1.setVisible(false);
     }//GEN-LAST:event_confirmeSuppOuiMouseClicked
 
     private void confirmeSuppNonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmeSuppNonMouseClicked
-        this.DialogConfirmationSuppComp.setVisible(false);
+        this.jDialog1.setVisible(false);
     }//GEN-LAST:event_confirmeSuppNonMouseClicked
-
-    private void ButtonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSauvegarderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonSauvegarderActionPerformed
-
-    private void TextFieldIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -526,20 +508,6 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonActuComp;
-    private javax.swing.JButton ButtonSauvegarder;
-    private javax.swing.JDialog DialogConfirmationSuppComp;
-    private javax.swing.JLabel LabelActuComp;
-    private javax.swing.JLabel LabelIdComp;
-    private javax.swing.JLabel LabelLibEnComp;
-    private javax.swing.JLabel LabelLibFrComp;
-    private javax.swing.JLabel LabelQuestConfSuppComp;
-    private javax.swing.JPanel PanelCompetence;
-    private javax.swing.JPanel PanelConfSuppComp;
-    private javax.swing.JScrollPane ScrollPaneComp;
-    private javax.swing.JTextField TextFieldId;
-    private javax.swing.JTextField TextFieldLibEnComp;
-    private javax.swing.JTextField TextFieldLibFrComp;
     private javax.swing.JButton buttonAjouteComp;
     private javax.swing.JButton buttonModifComp;
     private javax.swing.JButton buttonRetourAjoutePers;
@@ -547,9 +515,23 @@ public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
     private javax.swing.JButton confirmeSuppNon;
     private javax.swing.JButton confirmeSuppOui;
     private javax.swing.JLabel erreurModif;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSauvegarder;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jDialogLibEn;
     private javax.swing.JLabel jDialogLibFr;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCompet;
+    private javax.swing.JTextField jTextId;
+    private javax.swing.JTextField jTextLibelleEn;
+    private javax.swing.JTextField jTextLibelleFr;
     private javax.swing.JLabel labelCompComp;
     private javax.swing.JLabel labelListeComp;
     // End of variables declaration//GEN-END:variables
