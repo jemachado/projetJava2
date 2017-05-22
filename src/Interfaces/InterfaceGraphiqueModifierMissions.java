@@ -29,7 +29,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         this.entreprise = new Entreprise();
         this.cptCompetence = 0;
         this.initComboBoxPerso();
-        this.initComboBocCompetence();
+        this.initComboBoxCompetence();
         this.comboBoxCompetence2.setEnabled(false);
     }
     
@@ -162,7 +162,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         }
     }
     
-    private void initComboBocCompetence(){
+    private void initComboBoxCompetence(){
         Set<String> keys = entreprise.getTCompetences().keySet();
         this.comboBoxCompetence.addItem("");
         for(String key: keys){

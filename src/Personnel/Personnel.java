@@ -221,4 +221,13 @@ public class Personnel {
                 return true;
             return false;
         }
+        
+        public boolean getCompetence(ArrayList<String> c){
+            for (int i = 0 ; i < c.size() ; i++) {
+                if (tabC.indexOf(c)!=-1) {
+                    return true;
+                }
+            }
+            return false;
+        }
 }

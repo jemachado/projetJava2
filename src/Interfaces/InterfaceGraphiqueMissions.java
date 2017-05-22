@@ -252,10 +252,7 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxMTypeMissionsActionPerformed
 
     private void buttonAjouterMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterMissionMouseClicked
-        if ( this.tableMissions.getSelectedRowCount() !=0 ) {
-            DefaultTableModel model = (DefaultTableModel) this.tableMissions.getModel();
-            System.out.println(""+model.getValueAt(this.tableMissions.getSelectedRow(), 0));
-            entreprise.setIdModifMission(""+model.getValueAt(this.tableMissions.getSelectedRow(), 0));
+       
             InterfaceGraphiqueCreationMissions  createMission = null;
             try {
                 createMission = new InterfaceGraphiqueCreationMissions();
@@ -266,9 +263,6 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
             }
             this.dispose();
             createMission.setVisible(true);
-        } else {
-            
-        }
         
     }//GEN-LAST:event_buttonAjouterMissionMouseClicked
 
