@@ -34,17 +34,31 @@ public class Entreprise {
     
     private static TreeMap<Integer,Personnel> tPersonnels;
     private static TreeMap<String,Competence> tCompetences;
-    private static TreeMap<Integer,Mission> tMissions;
+    private static TreeMap<Integer,MissionPreparation> tMissionsPreparation;
+    private static TreeMap<Integer,MissionPlanifiee> tMissionsPlanifiee;
+    private static TreeMap<Integer,MissionEnCours> tMissionsEnCours;
+    private static TreeMap<Integer,MissionTerminee> tMissionsTerminee;
     private static Integer idPersonnel;
+    private static Integer idMission;
     private static String idModifPerso;
     private static String idModifCompet;
+    private static String idModifMission;
+
+
+
     
     public Entreprise() { }
     
     public void initDonnees() throws NumberFormatException, IOException{
+        tMissionsPreparation = new TreeMap<Integer,MissionPreparation>();
+        tMissionsPlanifiee = new TreeMap<Integer,MissionPlanifiee>();
+        tMissionsEnCours = new TreeMap<Integer,MissionEnCours>();
+        tMissionsTerminee = new TreeMap<Integer,MissionTerminee>();
+        this.recupererMission();
         this.tPersonnels = this.recupererPersonnel();
         this.tCompetences = this.recupererCompetence();
-        this.tMissions = this.recupererMission();
+        this.recupererAffectation();
+        this.majEtatPersonnel();
     }
     
     /**
@@ -85,8 +99,9 @@ public class Entreprise {
                     }
                     i++;
                 }
-            this.idPersonnel = new Integer((int)tabP.lastKey() + 1);
-            return tabP;
+                
+                this.idPersonnel = new Integer((int)tabP.lastKey() + 1);
+                return tabP;
             } catch (FileNotFoundException e) {
                      return null;
             }
@@ -136,6 +151,7 @@ public class Entreprise {
                      
                     // nextLine[] is an array of values from the line
                     if(i!=0){
+                        this.idMission = (new Integer(nextLine[1]))+1;
                         if (nextLine[0].equals("MissionPreparation")) {
                             TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
                             if(nextLine.length>5){
@@ -144,13 +160,14 @@ public class Entreprise {
                                     competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
                                 }
                             }
-                            
-                            tabM.put(Integer.parseInt(nextLine[1]), new MissionPreparation(competNbPersonne,
+                            if (dateFr(nextLine[2]).compareTo(new Date()) > 0) {
+                                tMissionsPreparation.put(Integer.parseInt(nextLine[1]), new MissionPreparation(competNbPersonne,
                                                                         Integer.parseInt(nextLine[4]),
                                                                         dateFr(nextLine[2]),
-                                                                        Integer.parseInt(nextLine[3]),
+                                                                        dateFr(nextLine[3]),
                                                                         Integer.parseInt(nextLine[1])
                                                                         ));
+                            }
                             
                             
                         } else if (nextLine[0].equals("MissionPlanifiee")) {
@@ -161,12 +178,29 @@ public class Entreprise {
                                     competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
                                 }
                             }
-                            tabM.put(Integer.parseInt(nextLine[1]), new MissionPlanifiee(competNbPersonne,
+                            if ((dateFr(nextLine[2]).compareTo(new Date()) < 0) && (dateFr(nextLine[3]).compareTo(new Date()) > 0)) {
+                                tMissionsEnCours.put(Integer.parseInt(nextLine[1]), new MissionEnCours(competNbPersonne,
                                                                         Integer.parseInt(nextLine[4]),
                                                                         dateFr(nextLine[2]),
-                                                                        Integer.parseInt(nextLine[3]),
+                                                                        dateFr(nextLine[3]),
                                                                         Integer.parseInt(nextLine[1])
                                                                         ));
+                            } else if (dateFr(nextLine[3]).compareTo(new Date()) < 0){
+                                tMissionsTerminee.put(Integer.parseInt(nextLine[1]), new MissionTerminee(competNbPersonne,
+                                                                        Integer.parseInt(nextLine[4]),
+                                                                        dateFr(nextLine[2]),
+                                                                        dateFr(nextLine[3]),
+                                                                        Integer.parseInt(nextLine[1])
+                                                                        ));
+                            } else {
+                                tMissionsPlanifiee.put(Integer.parseInt(nextLine[1]), new MissionPlanifiee(competNbPersonne,
+                                                                        Integer.parseInt(nextLine[4]),
+                                                                        dateFr(nextLine[2]),
+                                                                        dateFr(nextLine[3]),
+                                                                        Integer.parseInt(nextLine[1])
+                                                                        ));
+                            }
+                            
                         } else if (nextLine[0].equals("MissionEnCours")) {
                             TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
                             if(nextLine.length>5){
@@ -175,12 +209,22 @@ public class Entreprise {
                                     competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
                                 }
                             }
-                            tabM.put(Integer.parseInt(nextLine[1]), new MissionEnCours(competNbPersonne,
+                            if (dateFr(nextLine[3]).compareTo(new Date()) < 0) {
+                                tMissionsTerminee.put(Integer.parseInt(nextLine[1]), new MissionTerminee(competNbPersonne,
                                                                         Integer.parseInt(nextLine[4]),
                                                                         dateFr(nextLine[2]),
-                                                                        Integer.parseInt(nextLine[3]),
+                                                                        dateFr(nextLine[3]),
                                                                         Integer.parseInt(nextLine[1])
                                                                         ));
+                            } else {
+                                tMissionsEnCours.put(Integer.parseInt(nextLine[1]), new MissionEnCours(competNbPersonne,
+                                                                        Integer.parseInt(nextLine[4]),
+                                                                        dateFr(nextLine[2]),
+                                                                        dateFr(nextLine[3]),
+                                                                        Integer.parseInt(nextLine[1])
+                                                                        ));
+                            }
+                            
                         } else if (nextLine[0].equals("MissionTerminee")) {
                             TreeMap<String, Integer> competNbPersonne = new TreeMap<String, Integer>();
                             if(nextLine.length>5){
@@ -189,21 +233,66 @@ public class Entreprise {
                                     competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
                                 }
                             }
-                            tabM.put(Integer.parseInt(nextLine[1]), new MissionTerminee(competNbPersonne,
+                            tMissionsTerminee.put(Integer.parseInt(nextLine[1]), new MissionTerminee(competNbPersonne,
                                                                         Integer.parseInt(nextLine[4]),
                                                                         dateFr(nextLine[2]),
-                                                                        Integer.parseInt(nextLine[3]),
+                                                                        dateFr(nextLine[3]),
                                                                         Integer.parseInt(nextLine[1])
                                                                         ));
                         }
                     }
                     i++;
                  }
-             return tabM;
+                 
+                return tabM;
             } catch (Exception e) {
                      System.out.println(e.toString());
                      return null;
             }
+    }
+    
+    private void recupererAffectation(){
+            try {
+                CSVReader readerAffectation = new CSVReader(new FileReader("mission_personnel.csv"), ';');
+                String [] nextLine;
+                int i = 0;
+                while ((nextLine = readerAffectation.readNext()) != null) {
+                    // nextLine[] is an array of values from the line
+                    if(i!=0){
+                        for(int j = 1; j<nextLine.length ;j++){
+                            
+                            Integer id = new Integer(nextLine[0]);
+                            Integer idPerso = new Integer(nextLine[j]);
+                            if (this.tMissionsPreparation.get(id) != null) {
+                                this.tMissionsPreparation.get(id).addPerso(nextLine[j]);
+                            } else if(this.tMissionsPlanifiee.get(id) != null) {
+                                this.tMissionsPlanifiee.get(id).addPerso(nextLine[j]);
+                                this.tPersonnels.get(idPerso).setDispo(false);
+                            } else if(this.tMissionsEnCours.get(id) != null) {
+                                this.tMissionsEnCours.get(id).addPerso(nextLine[j]);
+                            } else if(this.tMissionsTerminee.get(id) != null) {
+                                this.tMissionsTerminee.get(id).addPerso(nextLine[j]);
+                                
+                            }
+                        }
+                    }
+                    i++;
+                }
+            } catch (Exception e) {
+                     System.out.println(e.toString());
+            }
+    }
+    
+    private void majEtatPersonnel(){
+        Set<Integer> keys = tMissionsEnCours.keySet();
+        for(Integer key: keys){
+            MissionEnCours m = tMissionsEnCours.get(key);
+            ArrayList<String> tabPerso = m.getTabPerso();
+            for (int i = 0 ; i < tabPerso.size() ; i++) {
+                System.out.println(tabPerso.get(i));
+                this.tPersonnels.get(new Integer(tabPerso.get(i))).setDispo(false);
+            }
+        }
     }
     
     //TODO
@@ -278,6 +367,23 @@ public class Entreprise {
         }
 	writer.close ();
     }
+    
+    
+    /*private void sauvegarderMission() throws IOException{
+        CSVWriter writer = new CSVWriter(new FileWriter("test.csv"), ';' , CSVWriter.NO_QUOTE_CHARACTER);
+        String  [] entries;
+        Iterator i = this.tCompetences.keySet().iterator();
+        String clef = null;
+        Competence valeur = null;
+        while (i.hasNext())
+        {
+            clef = (String)i.next();
+            valeur = this.tCompetences.get(clef);
+            entries = valeur.toStringCsv().split(";");
+            writer.writeNext(entries);
+        }
+	writer.close ();
+    }*/
     
     //CRUD Personnel
     
@@ -410,7 +516,16 @@ public class Entreprise {
     //CRUD Missions
     
     //TODO
-    public boolean ajoutMission(){
+    public boolean ajoutMissionPreparation(TreeMap<String, Integer> competNbPersonne,
+                                           int totalPersonne,
+                                           String dateDebut,
+                                           String dateFin){
+        this.idMission++;
+        this.tMissionsPreparation.put(idMission, new MissionPreparation(competNbPersonne,
+                                                                    totalPersonne,
+                                                                    this.dateFr(dateDebut),
+                                                                    this.dateFr(dateFin),
+                                                                    idMission));
         return false;
     }
     
@@ -429,6 +544,8 @@ public class Entreprise {
         return false;
     }
     
+    
+    
     public Date dateFr(String dateFr){
         int jour = Integer.parseInt(""+dateFr.charAt(0)+dateFr.charAt(1));
         int mois = Integer.parseInt(""+dateFr.charAt(3)+dateFr.charAt(4));
@@ -437,7 +554,21 @@ public class Entreprise {
     }
     
     public String toStringDateFr(Date date){
-        return date.getDay()+"/"+date.getMonth()+"/"+date.getYear();
+        String jour;
+        String mois;
+                
+        if (date.getDay() < 10) {
+            jour = "0"+date.getDay();
+        } else {
+            jour = ""+date.getDay();
+        }
+        
+        if (date.getMonth() < 10) {
+            mois = "0"+date.getMonth();
+        } else {
+            mois = ""+date.getMonth();
+        }
+        return jour+"/"+mois+"/"+date.getYear();
     }
     
     /**
@@ -456,8 +587,45 @@ public class Entreprise {
         return this.tCompetences;
     }
     
+    public TreeMap<Integer,MissionPlanifiee> getTMissionsPlanifiee(){
+        return this.tMissionsPlanifiee;
+    }
+    
+    public TreeMap<Integer,MissionPreparation> getTMissionsPreparation(){
+        return this.tMissionsPreparation;
+    }
+    
+    public TreeMap<Integer,MissionEnCours> getTMissionsEnCours(){
+        return this.tMissionsEnCours;
+    }
+    
+    public TreeMap<Integer,MissionTerminee> getTMissionsTerminee(){
+        return this.tMissionsTerminee;
+    }
+    
     public TreeMap<Integer,Mission> getTMissions(){
-        return this.tMissions;
+        TreeMap<Integer,Mission> tabMission = new TreeMap<Integer,Mission>();
+        Set<Integer> keys = tMissionsPreparation.keySet();
+        for(Integer key: keys){
+            Mission m = tMissionsPreparation.get(key);
+            tabMission.put(m.getId(),m);
+        }
+        keys = tMissionsPlanifiee.keySet();
+        for(Integer key: keys){
+            Mission m = tMissionsPlanifiee.get(key);
+            tabMission.put(m.getId(),m);
+        }
+        keys = tMissionsEnCours.keySet();
+        for(Integer key: keys){
+            Mission m = tMissionsEnCours.get(key);
+            tabMission.put(m.getId(),m);
+        }
+        keys = tMissionsTerminee.keySet();
+        for(Integer key: keys){
+            Mission m = tMissionsTerminee.get(key);
+            tabMission.put(m.getId(),m);
+        }
+        return tabMission;
     }
     
     public String getIdModifPerso(){
@@ -474,5 +642,51 @@ public class Entreprise {
     
     public void setIdModifCompet(String idModifCompet){
         this.idModifCompet = idModifCompet;
+    }
+    
+    public void setIdModifMission(String idModifMission){
+        this.idModifMission = idModifMission;
+    }
+    
+    public Mission getIdModifMission(){
+        System.out.println(this.idModifMission);
+        if (this.tMissionsPlanifiee.get(new Integer(this.idModifMission)) != null) {
+            return this.tMissionsPlanifiee.get(new Integer(this.idModifMission));
+        } else {
+            return this.tMissionsPreparation.get(new Integer(this.idModifMission));
+        }
+    }
+    
+    public TreeMap<Integer,Personnel> getTabPersoDispo(Mission m){
+        TreeMap<Integer,Personnel> tabPerso = this.getTPersonnels();
+        Set<Integer> keys = tMissionsPreparation.keySet();
+        for(Integer key: keys){
+            System.out.println(tMissionsPreparation.get(key).dispo(m.getDateDebut(), m.getDateFin()));
+            if(!tMissionsPreparation.get(key).dispo(m.getDateDebut(), m.getDateFin())){
+                ArrayList<String> tabPer = tMissionsPreparation.get(key).getTabPerso();
+                for (int i = 0 ; i < tabPer.size() ; i++) {
+                    tabPerso.remove(Integer.parseInt(tabPer.get(i)));
+                }
+            }
+        }
+        keys = tMissionsPlanifiee.keySet();
+        for(Integer key: keys){
+            if(!tMissionsPlanifiee.get(key).dispo(m.getDateDebut(), m.getDateFin())){
+                ArrayList<String> tabPer = tMissionsPlanifiee.get(key).getTabPerso();
+                for (int i = 0 ; i < tabPer.size() ; i++) {
+                    tabPerso.remove(Integer.parseInt(tabPer.get(i)));
+                }
+            }
+        }
+        keys = this.tMissionsEnCours.keySet();
+        for(Integer key: keys){
+            if(!tMissionsEnCours.get(key).dispo(m.getDateDebut(), m.getDateFin())){
+                ArrayList<String> tabPer = tMissionsEnCours.get(key).getTabPerso();
+                for (int i = 0 ; i < tabPer.size() ; i++) {
+                    tabPerso.remove(Integer.parseInt(tabPer.get(i)));
+                }
+            }
+        }
+        return tabPerso;
     }
 }

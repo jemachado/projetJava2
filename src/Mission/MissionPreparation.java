@@ -11,17 +11,17 @@ public class MissionPreparation extends Mission {
 	public MissionPreparation(TreeMap<String, Integer> competNbPersonne,
                                 int totalPersonne,
                                 Date dateDebut,
-                                int duree,
+                                Date dateFin,
                                 int id){
                 this.id = id;
 		this.competNbPersonne = competNbPersonne;
 		this.totalPersonne = totalPersonne;
 		this.dateDebut = dateDebut;
-		this.duree = duree;
+		this.dateFin = dateFin;
 	}
         
         public String toString(){
-           String str = getType()+";"+this.id+";"+this.dateDebut+";"+this.duree+";"+this.totalPersonne+";";
+           String str = getType()+";"+this.id+";"+this.dateDebut+";"+this.dateFin.toString()+";"+this.totalPersonne+";";
            Set<String> keys = competNbPersonne.keySet();
             for(String key: keys){
                 Integer i = competNbPersonne.get(key);

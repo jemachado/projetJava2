@@ -21,7 +21,7 @@ public abstract class MissionModifiable extends Mission {
         this.dateDebut = dateDebut;
     }
     
-    public void setDuree(int duree) {
-        this.duree = duree;
+    public void setDuree(Date dateFin) {
+        this.dateFin = dateFin;
     }
 }

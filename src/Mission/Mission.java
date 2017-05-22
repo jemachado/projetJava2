@@ -5,6 +5,7 @@
  */
 package Mission;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 
@@ -17,7 +18,8 @@ public abstract class Mission {
     protected TreeMap<String, Integer> competNbPersonne;
     protected int totalPersonne;
     protected Date dateDebut;
-    protected int duree;
+    protected Date dateFin;
+    protected ArrayList<String> tabPerso;
     
     public Integer getComptNbPersonne(String i) {
         return competNbPersonne.get(i);
@@ -31,8 +33,8 @@ public abstract class Mission {
         return totalPersonne;
     }
 
-    public int getDuree() {
-        return duree;
+    public Date getDateFin() {
+        return dateFin;
      }
     
     public Date getDateDebut() {
@@ -43,11 +45,44 @@ public abstract class Mission {
         return this.id;
     }
     
+    public ArrayList<String> getTabPerso(){
+        return this.tabPerso;
+    }
+    
     public String getDateDebutFr(){
-            return this.dateDebut.getDay()+"/"+this.dateDebut.getMonth()+"/"+(this.dateDebut.getYear()+1900);
+        String mois;
+        if (this.dateDebut.getMonth() != 0) {
+            mois = ""+this.dateDebut.getMonth();
+        } else {
+            mois = "12";
+        }
+        return this.dateDebut.getDate()+"/"+mois+"/"+(this.dateDebut.getYear()+1900);
+    }
+    
+    public String getDateFinFr(){
+        String mois;
+        if (this.dateFin.getMonth() != 0) {
+            mois = ""+this.dateFin.getMonth();
+        } else {
+            mois = "12";
+        }
+        return this.dateFin.getDate()+"/"+mois+"/"+(this.dateFin.getYear()+1900);
     }
     
     public abstract String getType();
  
+    public void addPerso(String p) {
+        if(tabPerso.size()<=this.totalPersonne){
+                tabPerso.add(p);
+        }
+    }
     
+    public boolean dispo(Date dateDeb, Date dateFin){
+        if ((dateDeb.compareTo(this.dateDebut)>0) && (dateDeb.compareTo(this.dateFin)<0)
+             || (dateFin.compareTo(this.dateDebut)>0 && (dateFin.compareTo(this.dateFin)<0))
+             || (dateDeb.compareTo(this.dateDebut)<0 && (dateFin.compareTo(this.dateFin)>0))){
+            return false;
+        }
+        return true;
+    }
 }

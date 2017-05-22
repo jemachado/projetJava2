@@ -59,7 +59,7 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
             for (int j = 0 ; j < valeur.getTabC().size() ; j++) {
                 competence +=  valeur.getTabC().get(j)+" - ";
             }
-            model.addRow(new Object[]{valeur.getId(),valeur.getNom(),valeur.getPrenom(), valeur.getDateEntree(), competence});
+            model.addRow(new Object[]{valeur.getId(),valeur.getNom(),valeur.getPrenom(), valeur.getDateEntree(), competence, valeur.getDispo()});
         }   
     }
     
@@ -136,14 +136,14 @@ public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identtifiant", "Nom", "Prénom", "Date Début", "Compétences"
+                "Identtifiant", "Nom", "Prénom", "Date Début", "Compétences", "Dispo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -20,20 +20,20 @@ public class MissionTerminee extends MissionNonModifiable {
 		this.competNbPersonne = mp.getComptNbPersonne();
 		this.totalPersonne = mp.getTotalPersonne();
 		this.dateDebut = mp.getDateDebut();
-		this.duree = mp.getDuree();
+		this.dateFin = mp.getDateFin();
 		this.tabPerso = new ArrayList<String>();
 	}
     
     public MissionTerminee(TreeMap<String, Integer> competNbPersonne,
 							int totalPersonne,
 							Date dateDebut,
-							int duree,
+							Date dateFin,
                                                         int id){
                 this.id = id;
 		this.competNbPersonne = competNbPersonne;
 		this.totalPersonne = totalPersonne;
 		this.dateDebut = dateDebut;
-		this.duree = duree;
+		this.dateFin = dateFin;
 		this.tabPerso = new ArrayList<String>();
 	}
     

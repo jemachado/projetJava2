@@ -37,7 +37,7 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
          Set<Integer> keys = tabM.keySet();
         for(Integer key: keys){
             Mission m = tabM.get(key);
-            model.addRow(new Object[] {m.getType(), m.getId(), m.getDateDebutFr(), m.getDuree(), m.getTotalPersonne()});
+            model.addRow(new Object[] {m.getType(), m.getId(), m.getDateDebutFr(), m.getDateFinFr(), m.getTotalPersonne()});
         }
     }
 
@@ -52,7 +52,7 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         labelMissionsMission = new javax.swing.JLabel();
-        buttonAjouterMissions = new javax.swing.JButton();
+        buttonAjouterMission = new javax.swing.JButton();
         labelTypeMission = new javax.swing.JLabel();
         buttonModifierMissions = new javax.swing.JButton();
         buttonRechMissions = new javax.swing.JButton();
@@ -66,7 +66,7 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
         textFieldDuree = new javax.swing.JTextField();
         textFieldNbPers = new javax.swing.JTextField();
         labelDateDebMissions2 = new javax.swing.JLabel();
-        buttonModifierMissions1 = new javax.swing.JButton();
+        buttonModifierMission = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,10 +75,10 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
         labelMissionsMission.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         labelMissionsMission.setText("Missions");
 
-        buttonAjouterMissions.setText("Ajouter");
-        buttonAjouterMissions.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonAjouterMission.setText("Ajouter un mission en péparation");
+        buttonAjouterMission.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonAjouterMissionsMouseClicked(evt);
+                buttonAjouterMissionMouseClicked(evt);
             }
         });
 
@@ -122,14 +122,24 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
             }
         });
         tableMissions.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableMissions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableMissionsMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableMissions);
 
         labelDateDebMissions1.setText("Durée :");
 
         labelDateDebMissions2.setText("Nombre de personne mobilisé :");
 
-        buttonModifierMissions1.setText("Modifier");
-        buttonModifierMissions1.setEnabled(false);
+        buttonModifierMission.setText("Modifier et assigner le personnel");
+        buttonModifierMission.setEnabled(false);
+        buttonModifierMission.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonModifierMissionMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,10 +152,6 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(buttonAjouterMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonRechMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                                .addComponent(buttonModifierMissions1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(labelDateDebMissions2)
@@ -163,7 +169,11 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(textFieldDateDebMissions)
                                         .addComponent(comboBoxMTypeMissions, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addComponent(buttonModifierMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(buttonModifierMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonAjouterMission, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonRechMissions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonModifierMission, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap(204, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -200,9 +210,9 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonRechMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonAjouterMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonAjouterMission, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonModifierMissions1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonModifierMission, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonModifierMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,16 +251,54 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxMTypeMissionsActionPerformed
 
-    private void buttonAjouterMissionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterMissionsMouseClicked
-        InterfaceGraphiqueCreationMissions  createMission = null;
-        try {
-            createMission = new InterfaceGraphiqueCreationMissions();
-        } catch (NumberFormatException ex) {
-            Logger.getLogger(InterfaceGraphiqueMissions.class.getName()).log(Level.SEVERE, null, ex);
+    private void buttonAjouterMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterMissionMouseClicked
+        if ( this.tableMissions.getSelectedRowCount() !=0 ) {
+            DefaultTableModel model = (DefaultTableModel) this.tableMissions.getModel();
+            System.out.println(""+model.getValueAt(this.tableMissions.getSelectedRow(), 0));
+            entreprise.setIdModifMission(""+model.getValueAt(this.tableMissions.getSelectedRow(), 0));
+            InterfaceGraphiqueCreationMissions  createMission = null;
+            try {
+                createMission = new InterfaceGraphiqueCreationMissions();
+            } catch (NumberFormatException ex) {
+                Logger.getLogger(InterfaceGraphiqueMissions.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(InterfaceGraphiqueMissions.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.dispose();
+            createMission.setVisible(true);
+        } else {
+            
         }
-        this.dispose();
-        createMission.setVisible(true);
-    }//GEN-LAST:event_buttonAjouterMissionsMouseClicked
+        
+    }//GEN-LAST:event_buttonAjouterMissionMouseClicked
+
+    private void tableMissionsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMissionsMouseReleased
+        DefaultTableModel model = (DefaultTableModel) this.tableMissions.getModel();
+        String statut = ""+model.getValueAt(this.tableMissions.getSelectedRow(), 0);
+        if (statut.equals("MissionPreparation") || statut.equals("MissionPlanifiee")) {
+            this.buttonModifierMission.setEnabled(true);
+            this.buttonModifierMissions.setEnabled(true);
+        } else {
+            this.buttonModifierMission.setEnabled(false);
+            this.buttonModifierMissions.setEnabled(false);
+        }
+        
+        
+    }//GEN-LAST:event_tableMissionsMouseReleased
+
+    private void buttonModifierMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifierMissionMouseClicked
+        if ( this.tableMissions.getSelectedRowCount() !=0 ) {
+            DefaultTableModel model = (DefaultTableModel) this.tableMissions.getModel();
+            System.out.println(""+model.getValueAt(this.tableMissions.getSelectedRow(), 1));
+            entreprise.setIdModifMission(""+model.getValueAt(this.tableMissions.getSelectedRow(), 1));
+            InterfaceGraphiqueModifierMissions ModifMission = null;
+            ModifMission = new InterfaceGraphiqueModifierMissions();
+            this.dispose();
+            ModifMission.setVisible(true);
+        } else {
+            
+        }
+    }//GEN-LAST:event_buttonModifierMissionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -288,9 +336,9 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAjouterMissions;
+    private javax.swing.JButton buttonAjouterMission;
+    private javax.swing.JButton buttonModifierMission;
     private javax.swing.JButton buttonModifierMissions;
-    private javax.swing.JButton buttonModifierMissions1;
     private javax.swing.JButton buttonRechMissions;
     private javax.swing.JButton buttonRetourMissions;
     private javax.swing.JComboBox<String> comboBoxMTypeMissions;

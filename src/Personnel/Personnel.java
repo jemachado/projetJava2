@@ -19,6 +19,7 @@ public class Personnel {
 	private String nom;
 	private String prenom;
 	private ArrayList<String> tabC;
+        private boolean dispo;
 	
 	/**
 	 * Construteur de la classe Personnel
@@ -34,6 +35,7 @@ public class Personnel {
 		this.nom=nom;
 		this.prenom=prenom;
 		this.tabC = new ArrayList<String>();
+                this.dispo = true;
 	}
         
         public Personnel(Date dateEntree, String nom, String prenom, ArrayList<String> tabC){
@@ -42,8 +44,16 @@ public class Personnel {
 		this.nom=nom;
 		this.prenom=prenom;
 		this.tabC = tabC;
+                this.dispo = true;
 	}
+        
+        public void setDispo(boolean dispo){
+            this.dispo = dispo;
+        }
 	
+        public boolean getDispo(){
+            return this.dispo;
+        }
 	
 	/**
 	 * Retourne l'identifiant du personnel
@@ -179,7 +189,21 @@ public class Personnel {
         }
     
         public String toStringDateFr(){
-            return this.dateEntree.getDate()+"/"+this.dateEntree.getMonth()+"/"+(this.dateEntree.getYear()+1900);
+            String jour;
+            String mois;
+
+            if (this.dateEntree.getDate() < 10) {
+                jour = "0"+this.dateEntree.getDate();
+            } else {
+                jour = ""+this.dateEntree.getDate();
+            }
+
+            if (this.dateEntree.getMonth() < 10) {
+                mois = "0"+this.dateEntree.getMonth();
+            } else {
+                mois = ""+this.dateEntree.getMonth();
+            }
+            return jour+"/"+mois+"/"+(this.dateEntree.getYear()+1900);
         }
         
         public boolean compareTo(Personnel p){

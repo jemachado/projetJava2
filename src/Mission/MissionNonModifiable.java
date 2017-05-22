@@ -13,7 +13,6 @@ import java.util.Date;
  * @author jerem
  */
 public abstract class MissionNonModifiable extends Mission {
-    protected ArrayList<String> tabPerso;
     
     public void setTotalPersonne(int totalPersonne) {
         this.totalPersonne = totalPersonne;
@@ -23,8 +22,8 @@ public abstract class MissionNonModifiable extends Mission {
         this.dateDebut = dateDebut;
     }
 
-    public void setDuree(int duree) {
-        this.duree = duree;
+    public void setDuree(Date dateFin) {
+        this.dateFin = dateFin;
     }
 
     public ArrayList<String> getTabPerso() {

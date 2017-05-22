@@ -6,18 +6,17 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class MissionPlanifiee extends MissionModifiable {
-	private ArrayList<String> tabPerso;
 	
 	public MissionPlanifiee(TreeMap<String, Integer> competNbPersonne,
 							int totalPersonne,
 							Date dateDebut,
-							int duree,
+							Date dateFin,
                                                         int id){
                 this.id = id;
 		this.competNbPersonne = competNbPersonne;
 		this.totalPersonne = totalPersonne;
 		this.dateDebut = dateDebut;
-		this.duree = duree;
+		this.dateFin = dateFin;
 		this.tabPerso = new ArrayList<String>();
 	}
 	
@@ -26,20 +25,14 @@ public class MissionPlanifiee extends MissionModifiable {
 		this.competNbPersonne = mp.getComptNbPersonne();
 		this.totalPersonne = mp.getTotalPersonne();
 		this.dateDebut = mp.getDateDebut();
-		this.duree = mp.getDuree();
+		this.dateFin = mp.getDateFin();
 		this.tabPerso = new ArrayList<String>();
 	}
 	
 	public ArrayList<String> getTabPerso() {
 		return tabPerso;
 	}
-	
-	public void addPerso(String p) {
-		if(tabPerso.size()<=this.totalPersonne){
-			tabPerso.add(p);
-		}
-	}
-	
+        
 	public void deletePerso(String p) {
 		try{
 			tabPerso.remove(p);
@@ -49,7 +42,7 @@ public class MissionPlanifiee extends MissionModifiable {
 	}
         
         public String toString(){
-           String str = getType()+";"+this.id+";"+this.dateDebut+";"+this.duree+";"+this.totalPersonne+";";
+           String str = getType()+";"+this.id+";"+this.dateDebut+";"+this.dateFin.toString()+";"+this.totalPersonne+";";
            Set<String> keys = competNbPersonne.keySet();
             for(String key: keys){
                 Integer i = competNbPersonne.get(key);
