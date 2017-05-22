@@ -170,6 +170,18 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
             this.comboBoxCompetence.addItem(p.toString());
         }
     }
+    
+    private String getIdCompet(){
+        String item = (String)this.comboBoxCompetence.getSelectedItem();
+        String id = "";
+        int i = 0;
+        while (item.charAt(i) != '-' && i < item.length()){
+            id += item.charAt(i);
+            i++;
+        }
+        System.out.println(id);
+        return id;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -477,7 +489,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
             this.jLabelValidation.setText("La valeur du nombre de compétence doit être supérieur à zéro");
         } else {
             this.cptCompetence += value;
-            // this.tabC.put(getIdCompet(),value);
+            this.tabC.put(getIdCompet(),value);
             DefaultTableModel model = (DefaultTableModel) this.tableCompetence2.getModel();
             model.addRow(new Object[]{(String)this.comboBoxCompetence.getSelectedItem()+" --"+value});
         }
@@ -501,8 +513,8 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
             nbCompet += item.charAt(i);
             i++;
         }
-        this.cptCompetence -= Integer.parseInt(nbCompet);
         this.tabC.remove(id);
+        this.cptCompetence -= Integer.parseInt(nbCompet);
         model.removeRow(this.tableCompetence2.getSelectedRow());
     }//GEN-LAST:event_SupprCompe2MouseClicked
 

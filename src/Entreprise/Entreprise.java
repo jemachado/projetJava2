@@ -44,8 +44,6 @@ public class Entreprise {
     private static String idModifCompet;
     private static String idModifMission;
 
-
-
     
     public Entreprise() { }
     
