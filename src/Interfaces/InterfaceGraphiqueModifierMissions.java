@@ -31,6 +31,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         this.initComboBoxPerso();
         this.initComboBoxCompetence();
         this.comboBoxCompetence2.setEnabled(false);
+        this.tabC = new TreeMap<String, Integer>();
     }
     
     private boolean verifier(){
@@ -179,7 +180,6 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
             id += item.charAt(i);
             i++;
         }
-        System.out.println(id);
         return id;
     }
 
@@ -219,7 +219,6 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         comboBoxCompetence2 = new javax.swing.JComboBox<>();
         ButtonAjouterPersoAjouterComp3 = new javax.swing.JButton();
         SupprCompe3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -322,8 +321,6 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout PanelAjoutPers2Layout = new javax.swing.GroupLayout(PanelAjoutPers2);
         PanelAjoutPers2.setLayout(PanelAjoutPers2Layout);
         PanelAjoutPers2Layout.setHorizontalGroup(
@@ -388,9 +385,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
                             .addGroup(PanelAjoutPers2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonAjouterAjoutePers2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(buttonAjouterAjoutePers2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         PanelAjoutPers2Layout.setVerticalGroup(
@@ -439,10 +434,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PanelAjoutPers2Layout.createSequentialGroup()
-                                .addComponent(buttonAjouterAjoutePers2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(buttonAjouterAjoutePers2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonRetourAjoutePers2)
@@ -483,7 +475,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRetourAjoutePers2MouseClicked
 
     private void ButtonAjouterPersoAjouterComp2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAjouterPersoAjouterComp2MouseClicked
-        int value = (Integer) this.nbCompetence.getValue();
+        int value = (Integer)this.nbCompetence.getValue();
 
         if (value <= 0) {
             this.jLabelValidation.setText("La valeur du nombre de compétence doit être supérieur à zéro");
@@ -497,7 +489,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
 
     private void SupprCompe2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupprCompe2MouseClicked
         DefaultTableModel model = (DefaultTableModel) this.tableCompetence2.getModel();
-        String item = (String) model.getValueAt( this.tableCompetence2.getSelectedRow(), this.tableCompetence2.getSelectedColumn());
+        String item = (String) model.getValueAt( this.tableCompetence2.getSelectedRow(),0);
         String id = "";
         String nbCompet = "";
         int i = 0;
@@ -509,6 +501,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         while (item.charAt(i) != '-' && i > 0){
             i--;
         }
+        i++;
         while (i < item.length()){
             nbCompet += item.charAt(i);
             i++;
@@ -574,7 +567,6 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxCompetence;
     private javax.swing.JComboBox<String> comboBoxCompetence2;
     private javax.swing.JComboBox<String> comboBoxPersonnel;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelValidation;
