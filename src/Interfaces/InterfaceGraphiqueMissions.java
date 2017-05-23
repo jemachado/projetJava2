@@ -86,6 +86,11 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
 
         buttonModifierMissions.setText("Fiche détails");
         buttonModifierMissions.setEnabled(false);
+        buttonModifierMissions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonModifierMissionsMouseClicked(evt);
+            }
+        });
 
         buttonRechMissions.setText("Rechercher");
 
@@ -282,16 +287,24 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
     private void buttonModifierMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifierMissionMouseClicked
         if ( this.tableMissions.getSelectedRowCount() !=0 ) {
             DefaultTableModel model = (DefaultTableModel) this.tableMissions.getModel();
-            System.out.println(""+model.getValueAt(this.tableMissions.getSelectedRow(), 1));
             entreprise.setIdModifMission(""+model.getValueAt(this.tableMissions.getSelectedRow(), 1));
             InterfaceGraphiqueModifierMissions ModifMission = null;
             ModifMission = new InterfaceGraphiqueModifierMissions();
             this.dispose();
             ModifMission.setVisible(true);
-        } else {
-            
         }
     }//GEN-LAST:event_buttonModifierMissionMouseClicked
+
+    private void buttonModifierMissionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModifierMissionsMouseClicked
+        if ( this.tableMissions.getSelectedRowCount() !=0 ) {
+            DefaultTableModel model = (DefaultTableModel) this.tableMissions.getModel();
+            entreprise.setIdModifMission(""+model.getValueAt(this.tableMissions.getSelectedRow(), 1));
+            InterfaceGraphiqueFicheDetailsMissions ModifMission = null;
+            ModifMission = new InterfaceGraphiqueFicheDetailsMissions();
+            this.dispose();
+            ModifMission.setVisible(true);
+        }
+    }//GEN-LAST:event_buttonModifierMissionsMouseClicked
 
     /**
      * @param args the command line arguments

@@ -167,6 +167,9 @@
             <Property name="text" type="java.lang.String" value="Fiche d&#xe9;tails"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonModifierMissionsMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonRechMissions">
           <Properties>

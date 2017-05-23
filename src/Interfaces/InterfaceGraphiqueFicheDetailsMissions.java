@@ -5,17 +5,53 @@
  */
 package Interfaces;
 
+import Competence.Competence;
+import Entreprise.Entreprise;
+import Mission.Mission;
+import java.util.Set;
+import java.util.TreeMap;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author clementraphaell
+ * @author jmachado
  */
 public class InterfaceGraphiqueFicheDetailsMissions extends javax.swing.JFrame {
-
+    Entreprise e;
     /**
      * Creates new form InterfaceGraphiqueFicheDetailsMissions
      */
     public InterfaceGraphiqueFicheDetailsMissions() {
         initComponents();
+        e = new Entreprise();
+        Mission m = this.e.getIdModifMission();
+        this.LabelTypeDetailsMissions.setText("Type : "+m.getType());
+        this.LabelDateDebDetailsMission.setText("Date de début :"+m.getDateDebutFr());
+        this.LabelDateFinDetailsMissions.setText("Date de fin :"+m.getDateFinFr());
+        this.jLabel1.setText("Nombre de personne affecté au total :"+m.getTotalPersonne());
+        this.identifiant.setText("Identifiant: "+m.getId());
+        initTableCompet();
+        initTablePerso();
+    }
+    
+    private void initTableCompet(){
+        TreeMap<String, Integer> tabCompet = this.e.getIdModifMission().getComptNbPersonne();
+        DefaultTableModel model = (DefaultTableModel) this.tableCompetence2.getModel();
+        Set<String> keys = tabCompet.keySet();
+        for(String key: keys){
+            Competence c = this.e.getTCompetences().get(key);
+            model.addRow(new Object[]{c.toString()+" --"+tabCompet.get(key)});
+        }
+    }
+    
+    private void initTablePerso(){
+        TreeMap<Integer,String> tabPerso = new TreeMap<Integer,String>();
+        tabPerso = this.e.getIdModifMission().getTabPerso();
+        DefaultTableModel model = (DefaultTableModel) this.tablePerso.getModel();
+        Set<Integer> keys = tabPerso.keySet();
+        for(Integer key: keys){
+            model.addRow(new Object[]{tabPerso.get(key).toString(),e.getTPersonnels().get(key).toStringCsv()});
+        }
     }
 
     /**
@@ -30,18 +66,19 @@ public class InterfaceGraphiqueFicheDetailsMissions extends javax.swing.JFrame {
         PanelFicheDetailsMissions = new javax.swing.JPanel();
         LabelDetailsMissions = new javax.swing.JLabel();
         LabelTypeDetailsMissions = new javax.swing.JLabel();
-        TextFieldTypeDetailsMissions = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        TextFieldNbPersonneDetailsMissions = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TableCompetenceDetailsMissions = new javax.swing.JTable();
         LabelDateDebDetailsMission = new javax.swing.JLabel();
-        TextFieldDateDebDetailsMissions = new javax.swing.JTextField();
         LabelDateFinDetailsMissions = new javax.swing.JLabel();
-        TextFieldDateFinDetailsMissions = new javax.swing.JTextField();
         ButtonRetourDetailsMissions = new javax.swing.JButton();
+        ScrollpaneAjoutPers2 = new javax.swing.JScrollPane();
+        tableCompetence2 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablePerso = new javax.swing.JTable();
+        identifiant = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        PanelFicheDetailsMissions.setBackground(new java.awt.Color(225, 225, 213));
 
         LabelDetailsMissions.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         LabelDetailsMissions.setText("Détails Missions");
@@ -50,95 +87,112 @@ public class InterfaceGraphiqueFicheDetailsMissions extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre de personnes :");
 
-        TableCompetenceDetailsMissions.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Compétences", "Nombre de personnes possédant la compétence"
-            }
-        ));
-        jScrollPane1.setViewportView(TableCompetenceDetailsMissions);
-
         LabelDateDebDetailsMission.setText("Date début :");
 
         LabelDateFinDetailsMissions.setText("Date fin :");
 
-        TextFieldDateFinDetailsMissions.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldDateFinDetailsMissionsActionPerformed(evt);
+        ButtonRetourDetailsMissions.setText("Retour");
+        ButtonRetourDetailsMissions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ButtonRetourDetailsMissionsMouseClicked(evt);
             }
         });
 
-        ButtonRetourDetailsMissions.setText("Retour");
+        tableCompetence2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Identifiant -- Libellé de la compétence -- Besoin"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableCompetence2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ScrollpaneAjoutPers2.setViewportView(tableCompetence2);
+
+        tablePerso.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Compétence", "Personnel"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablePerso.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tablePerso);
+
+        identifiant.setText("Identifiant:");
 
         javax.swing.GroupLayout PanelFicheDetailsMissionsLayout = new javax.swing.GroupLayout(PanelFicheDetailsMissions);
         PanelFicheDetailsMissions.setLayout(PanelFicheDetailsMissionsLayout);
         PanelFicheDetailsMissionsLayout.setHorizontalGroup(
             PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFicheDetailsMissionsLayout.createSequentialGroup()
+                    .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
+                        .addGap(255, 255, 255)
                         .addComponent(LabelDetailsMissions)
-                        .addGap(402, 402, 402))
+                        .addGap(123, 123, 123))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFicheDetailsMissionsLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
-                                .addComponent(LabelTypeDetailsMissions)
-                                .addGap(79, 79, 79)
-                                .addComponent(TextFieldTypeDetailsMissions, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
-                                .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFicheDetailsMissionsLayout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
-                                        .addGap(33, 33, 33)
-                                        .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(LabelDateFinDetailsMissions)
-                                            .addComponent(LabelDateDebDetailsMission))
-                                        .addGap(54, 54, 54)))
-                                .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TextFieldNbPersonneDetailsMissions)
-                                    .addComponent(TextFieldDateDebDetailsMissions, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                                    .addComponent(TextFieldDateFinDetailsMissions))))
-                        .addGap(71, 71, 71))
-                    .addComponent(ButtonRetourDetailsMissions, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addContainerGap()
+                        .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addComponent(ScrollpaneAjoutPers2, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelTypeDetailsMissions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
+                        .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(identifiant)
+                            .addComponent(jLabel1)
+                            .addComponent(LabelDateFinDetailsMissions)
+                            .addComponent(LabelDateDebDetailsMission))
+                        .addGap(0, 709, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ButtonRetourDetailsMissions)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelFicheDetailsMissionsLayout.setVerticalGroup(
             PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(146, 146, 146)
+                .addComponent(identifiant)
+                .addGap(39, 39, 39)
+                .addComponent(LabelTypeDetailsMissions)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addGap(46, 46, 46)
+                .addComponent(LabelDateDebDetailsMission)
+                .addGap(43, 43, 43)
+                .addComponent(LabelDateFinDetailsMissions)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(LabelDetailsMissions)
-                .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelTypeDetailsMissions)
-                            .addComponent(TextFieldTypeDetailsMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(TextFieldNbPersonneDetailsMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelDateDebDetailsMission)
-                            .addComponent(TextFieldDateDebDetailsMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addGroup(PanelFicheDetailsMissionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelDateFinDetailsMissions)
-                            .addComponent(TextFieldDateFinDetailsMissions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PanelFicheDetailsMissionsLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(ButtonRetourDetailsMissions))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ScrollpaneAjoutPers2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(ButtonRetourDetailsMissions)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,9 +209,11 @@ public class InterfaceGraphiqueFicheDetailsMissions extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextFieldDateFinDetailsMissionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldDateFinDetailsMissionsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldDateFinDetailsMissionsActionPerformed
+    private void ButtonRetourDetailsMissionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonRetourDetailsMissionsMouseClicked
+        InterfaceGraphiqueMissions Missions = new InterfaceGraphiqueMissions();
+        this.dispose();
+        Missions.setVisible(true);
+    }//GEN-LAST:event_ButtonRetourDetailsMissionsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -201,12 +257,11 @@ public class InterfaceGraphiqueFicheDetailsMissions extends javax.swing.JFrame {
     private javax.swing.JLabel LabelDetailsMissions;
     private javax.swing.JLabel LabelTypeDetailsMissions;
     private javax.swing.JPanel PanelFicheDetailsMissions;
-    private javax.swing.JTable TableCompetenceDetailsMissions;
-    private javax.swing.JTextField TextFieldDateDebDetailsMissions;
-    private javax.swing.JTextField TextFieldDateFinDetailsMissions;
-    private javax.swing.JTextField TextFieldNbPersonneDetailsMissions;
-    private javax.swing.JTextField TextFieldTypeDetailsMissions;
+    private javax.swing.JScrollPane ScrollpaneAjoutPers2;
+    private javax.swing.JLabel identifiant;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableCompetence2;
+    private javax.swing.JTable tablePerso;
     // End of variables declaration//GEN-END:variables
 }
