@@ -52,7 +52,19 @@ public class Entreprise {
         tMissionsPlanifiee = new TreeMap<Integer,MissionPlanifiee>();
         tMissionsEnCours = new TreeMap<Integer,MissionEnCours>();
         tMissionsTerminee = new TreeMap<Integer,MissionTerminee>();
-        this.recupererMission();
+        this.recupererMission(new Date());
+        this.tPersonnels = this.recupererPersonnel();
+        this.tCompetences = this.recupererCompetence();
+        this.recupererAffectation();
+        this.majEtatPersonnel();
+    }
+    
+    public void initDonnees(String d) throws NumberFormatException, IOException{
+        tMissionsPreparation = new TreeMap<Integer,MissionPreparation>();
+        tMissionsPlanifiee = new TreeMap<Integer,MissionPlanifiee>();
+        tMissionsEnCours = new TreeMap<Integer,MissionEnCours>();
+        tMissionsTerminee = new TreeMap<Integer,MissionTerminee>();
+        this.recupererMission(this.dateFr(d));
         this.tPersonnels = this.recupererPersonnel();
         this.tCompetences = this.recupererCompetence();
         this.recupererAffectation();
@@ -139,7 +151,7 @@ public class Entreprise {
      * @throws NumberFormatException
      * @throws IOException 
      */
-    private TreeMap<Integer,Mission>  recupererMission() throws NumberFormatException, IOException{
+    private TreeMap<Integer,Mission>  recupererMission(Date d) throws NumberFormatException, IOException{
             TreeMap<Integer,Mission> tabM = new TreeMap<Integer,Mission>();
             try {
                 CSVReader reader = new CSVReader(new FileReader("liste_mission.csv"), ';');
@@ -158,7 +170,7 @@ public class Entreprise {
                                     competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
                                 }
                             }
-                            if (dateFr(nextLine[2]).compareTo(new Date()) > 0) {
+                            if (dateFr(nextLine[2]).compareTo(d) > 0) {
                                 tMissionsPreparation.put(Integer.parseInt(nextLine[1]), new MissionPreparation(competNbPersonne,
                                                                         Integer.parseInt(nextLine[4]),
                                                                         dateFr(nextLine[2]),
@@ -175,14 +187,14 @@ public class Entreprise {
                                     competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
                                 }
                             }
-                            if ((dateFr(nextLine[2]).compareTo(new Date()) < 0) && (dateFr(nextLine[3]).compareTo(new Date()) > 0)) {
+                            if ((dateFr(nextLine[2]).compareTo(d) < 0) && (dateFr(nextLine[3]).compareTo(d) > 0)) {
                                 tMissionsEnCours.put(Integer.parseInt(nextLine[1]), new MissionEnCours(competNbPersonne,
                                                                         Integer.parseInt(nextLine[4]),
                                                                         dateFr(nextLine[2]),
                                                                         dateFr(nextLine[3]),
                                                                         Integer.parseInt(nextLine[1])
                                                                         ));
-                            } else if (dateFr(nextLine[3]).compareTo(new Date()) < 0){
+                            } else if (dateFr(nextLine[3]).compareTo(d) < 0){
                                 tMissionsTerminee.put(Integer.parseInt(nextLine[1]), new MissionTerminee(competNbPersonne,
                                                                         Integer.parseInt(nextLine[4]),
                                                                         dateFr(nextLine[2]),
@@ -206,7 +218,7 @@ public class Entreprise {
                                     competNbPersonne.put(nextLine[j],new Integer(nextLine[f]));
                                 }
                             }
-                            if (dateFr(nextLine[3]).compareTo(new Date()) < 0) {
+                            if (dateFr(nextLine[3]).compareTo(d) < 0) {
                                 tMissionsTerminee.put(Integer.parseInt(nextLine[1]), new MissionTerminee(competNbPersonne,
                                                                         Integer.parseInt(nextLine[4]),
                                                                         dateFr(nextLine[2]),
