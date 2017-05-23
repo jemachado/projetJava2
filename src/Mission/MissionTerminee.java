@@ -15,14 +15,7 @@ import java.util.TreeMap;
  * @author clementraphaell
  */
 public class MissionTerminee extends MissionNonModifiable {
-    public MissionTerminee(MissionEnCours mp){
-                this.id = mp.id;
-		this.competNbPersonne = mp.getComptNbPersonne();
-		this.totalPersonne = mp.getTotalPersonne();
-		this.dateDebut = mp.getDateDebut();
-		this.dateFin = mp.getDateFin();
-		this.tabPerso = new TreeMap<Integer, String>();
-	}
+    
     
     public MissionTerminee(TreeMap<String, Integer> competNbPersonne,
 							int totalPersonne,

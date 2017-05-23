@@ -1,7 +1,4 @@
 status;id;dateDebut;dateFin;totalePersonne;listeBesoin
-MissionPlanifiee;1;10/10/2016;20/01/2017;3;A.2.;2;A.3.;1
-MissionPlanifiee;12;10/10/2016;20/10/2017;3;A.2.;2;A.3.;1
-MissionPlanifiee;2;10/10/2018;10/12/2018;3;A.2.;2;A.3.;1
 MissionPreparation;3;10/10/2018;10/10/2018;5
 MissionPreparation;4;10/10/2018;10/10/2018;0
 MissionPreparation;5;10/10/2018;10/10/2018;0
@@ -11,3 +8,6 @@ MissionPreparation;8;10/10/2018;10/10/2018;0
 MissionPreparation;9;10/10/2018;10/10/2018;0
 MissionPreparation;10;10/10/2018;10/10/2018;0
 MissionPreparation;11;10/10/2018;10/10/2018;0
+MissionPlanifiee;2;10/10/2018;10/12/2019;3;A.2.;2;A.3.;1
+MissionEnCours;12;10/10/2016;20/10/2017;3;A.2.;2;A.3.;1
+MissionTerminee;1;10/10/2016;20/1/2017;3;A.2.;2;A.3.;1

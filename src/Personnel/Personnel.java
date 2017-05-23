@@ -12,6 +12,8 @@ import Interfaces.interfaceGraphiqueAjoutePerso;
 import Interfaces.InterfaceGraphiquePersonnel;
 
 import Competence.Competence;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class Personnel {
 	private int id;
@@ -156,6 +158,10 @@ public class Personnel {
 		tabC.add(c);
 	}
 	
+        /**
+         * Supprimer une compétence à la personne
+         * @param c 
+         */
 	public void supprimerCompetence(String c){
 		try{
 			tabC.remove(c);
@@ -163,24 +169,20 @@ public class Personnel {
 			
 		}
 	}
-	
-        public void ajouterPersonnel(String c){
-            this.getId();
-            tabC.add(c);
-        }
         
-        public void supprimerPersonnel(String c){
-		try{
-			tabC.remove(c);
-		}catch(Exception e){
-			
-		}
-	}
-        
+        /**
+         * toString au format csv
+         * @return 
+         */
         public String toStringCsv(){
             return this.prenom+";"+this.nom+";"+this.toStringDateFr()+";"+this.id;
         }
         
+        /**
+         * 
+         * @param dateFr
+         * @return 
+         */
         public Date dateFr(String dateFr){
             int jour = Integer.parseInt(""+dateFr.charAt(0)+dateFr.charAt(1));
             int mois = Integer.parseInt(""+dateFr.charAt(3)+dateFr.charAt(4));
@@ -188,6 +190,10 @@ public class Personnel {
             return new Date(année-1900,mois,jour);
         }
     
+        /**
+         * 
+         * @return 
+         */
         public String toStringDateFr(){
             String jour;
             String mois;
@@ -206,6 +212,11 @@ public class Personnel {
             return jour+"/"+mois+"/"+(this.dateEntree.getYear()+1900);
         }
         
+        /**
+         * Renvoie true si les deux personnes sont les mêmes
+         * @param p
+         * @return 
+         */
         public boolean compareTo(Personnel p){
             if ( p == null )
                 return false;
@@ -222,11 +233,14 @@ public class Personnel {
             return false;
         }
         
-        public boolean getCompetence(ArrayList<String> c){
-            for (int i = 0 ; i < c.size() ; i++) {
-                if (tabC.indexOf(c)!=-1) {
-                    return true;
-                }
+        /**
+         * Retourne true si il a la compétence passé en paramètre 
+         * @param c
+         * @return 
+         */
+        public boolean getCompetence(Competence c){
+            if (tabC.indexOf(c.getId()) != -1) {
+                return true;
             }
             return false;
         }

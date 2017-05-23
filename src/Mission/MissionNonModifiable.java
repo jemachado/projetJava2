@@ -15,15 +15,4 @@ import java.util.TreeMap;
  */
 public abstract class MissionNonModifiable extends Mission {
     
-    public void setTotalPersonne(int totalPersonne) {
-        this.totalPersonne = totalPersonne;
-    }
-
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public void setDuree(Date dateFin) {
-        this.dateFin = dateFin;
-    }
 }

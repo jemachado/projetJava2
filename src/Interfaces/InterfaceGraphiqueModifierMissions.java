@@ -7,10 +7,13 @@ package Interfaces;
 
 import Competence.Competence;
 import Entreprise.Entreprise;
+import Mission.MissionPlanifiee;
+import Mission.MissionPreparation;
 import Personnel.Personnel;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeMap;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
     Entreprise entreprise;
     TreeMap<String, Integer> tabC;
+    TreeMap<Integer, String> tabPerso;
     
     int cptCompetence;
     /**
@@ -28,13 +32,27 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
      */
     public InterfaceGraphiqueModifierMissions() {
         initComponents();
+        this.tabC = new TreeMap<String, Integer>();
+        this.tabPerso = new TreeMap<Integer, String>();
         this.entreprise = new Entreprise();
         this.cptCompetence = 0;
-        this.initComboBoxPerso();
         this.initComboBoxCompetence();
-        this.comboBoxPersonnel.setEnabled(false);
-        this.tabC = new TreeMap<String, Integer>();
         this.initTableCompet();
+        this.initComboBoxCompetence2();
+        this.actualiserPerso.setEnabled(true);
+        this.initTablePerso();
+        this.initDate();
+        if (this.entreprise.getIdModifMission().getType().equals("MissionPlanifiee")) {
+            this.textFieldDateDebut.setEnabled(false);
+            this.textFieldDateFin.setEnabled(false);
+            this.ButtonAjouterPersoAjouterComp2.setEnabled(false);
+            this.SupprCompe2.setEnabled(false);
+            this.comboBoxCompetence.setEnabled(false);
+            this.nbCompetence.setEnabled(false);
+        }
+        if (this.entreprise.getIdModifMission().getType().equals("MissionPreparation")) {
+            this.changeMissionPlan.setEnabled(true);
+        }
     }
     
     private boolean verifier(){
@@ -157,32 +175,57 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
     }
     
     private void initComboBoxPerso(){
-        TreeMap<Integer,Personnel> tPers = entreprise.getTabPersoDispo(entreprise.getIdModifMission());
-        Set<Integer> keys = tPers.keySet();
+        while ( this.comboBoxPersonnel.getItemCount() !=0 ) {
+            this.comboBoxPersonnel.removeItemAt(this.comboBoxPersonnel.getItemCount()-1);
+        }
         this.comboBoxPersonnel.addItem(" ");
-        for(Integer key: keys){
-            Personnel p = tPers.get(key);
-            this.comboBoxPersonnel.addItem(p.getId()+" - "+p.getNom()+" "+p.getPrenom());
+        if (!this.comboBoxCompetence2.getSelectedItem().equals(" ")) {
+            String item = (String)this.comboBoxCompetence2.getSelectedItem();
+            String id = "";
+            int i = 0;
+            while (item.charAt(i) != '-' && i < item.length()){
+                id += item.charAt(i);
+                i++;
+            }
+            Competence c = this.entreprise.getTCompetences().get(id);
+            TreeMap<Integer,Personnel> tPers = entreprise.getTabPersoDispo(entreprise.getIdModifMission(),c);
+            Set<Integer> keys = tPers.keySet();
+            for(Integer key: keys){
+                Personnel p = tPers.get(key);
+                this.comboBoxPersonnel.addItem(p.getId()+" - "+p.getNom()+" "+p.getPrenom());
+            }
         }
     }
     
     private void initComboBoxCompetence2() {
-        ArrayList<String> tabCompetence = new ArrayList<String>();
-        
+        while ( this.comboBoxCompetence2.getItemCount() !=0 ) {
+            this.comboBoxCompetence2.removeItemAt(this.comboBoxCompetence2.getItemCount()-1);
+        }
+        Set<String> keys = tabC.keySet();
+        this.comboBoxCompetence2.addItem(" ");
+        for(String key: keys){
+            this.comboBoxCompetence2.addItem(this.entreprise.getTCompetences().get(key).toString());
+        }
+        this.initComboBoxPerso();
     }
     
     private void initTableCompet(){
         TreeMap<String, Integer> tabCompet = this.entreprise.getIdModifMission().getComptNbPersonne();
         DefaultTableModel model = (DefaultTableModel) this.tableCompetence2.getModel();
         Set<String> keys = tabCompet.keySet();
-        this.comboBoxPersonnel.addItem(" ");
         for(String key: keys){
+            if (this.tabC.get(key) == null) {
+                this.tabC.put(key,tabCompet.get(key));
+            }
             Competence c = this.entreprise.getTCompetences().get(key);
             model.addRow(new Object[]{c.toString()+" --"+tabCompet.get(key)});
         }
     }
     
     private void initComboBoxCompetence(){
+        while ( this.comboBoxCompetence.getItemCount() !=0 ) {
+            this.comboBoxCompetence.removeItemAt(this.comboBoxCompetence.getItemCount()-1);
+        }
         Set<String> keys = entreprise.getTCompetences().keySet();
         this.comboBoxCompetence.addItem("");
         for(String key: keys){
@@ -201,6 +244,31 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         }
         return id;
     }
+    
+    private void initTablePerso(){
+        System.out.println(this.entreprise.getIdModifMission().getTabPerso());
+        this.tabPerso = this.entreprise.getIdModifMission().getTabPerso();
+        DefaultTableModel model = (DefaultTableModel) this.tablePerso.getModel();
+        Set<Integer> keys = this.tabPerso.keySet();
+        for(Integer key: keys){
+            model.addRow(new Object[]{this.tabPerso.get(key).toString(),this.entreprise.getTPersonnels().get(key).toStringCsv()});
+        }
+        initAjoutPerso();
+    }
+    
+    private void initAjoutPerso(){
+        if (this.tabPerso.size()<this.cptCompetence) {
+            this.ButtonAjouterPersoAjouterComp3.setEnabled(true);
+        } else {
+            this.ButtonAjouterPersoAjouterComp3.setEnabled(false);
+        }
+    }
+    
+    private void initDate(){
+        this.textFieldDateDebut.setText(this.entreprise.getIdModifMission().getDateDebutFr());
+        this.textFieldDateFin.setText(this.entreprise.getIdModifMission().getDateFinFr());
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -212,7 +280,6 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelAjoutPers2 = new javax.swing.JPanel();
-        buttonAjouterAjoutePers2 = new javax.swing.JButton();
         labelDateEntAjoutePers2 = new javax.swing.JLabel();
         buttonRetourAjoutePers2 = new javax.swing.JButton();
         textFieldDateDebut = new javax.swing.JTextField();
@@ -232,23 +299,18 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         jLabelValidation = new javax.swing.JLabel();
         nbCompetence = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablePerso = new javax.swing.JTable();
         labelCompAjoutePers3 = new javax.swing.JLabel();
-        comboBoxPersonnel = new javax.swing.JComboBox<>();
         comboBoxCompetence2 = new javax.swing.JComboBox<>();
+        comboBoxPersonnel = new javax.swing.JComboBox<>();
         ButtonAjouterPersoAjouterComp3 = new javax.swing.JButton();
         SupprCompe3 = new javax.swing.JButton();
+        actualiserPerso = new javax.swing.JButton();
+        changeMissionPlan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanelAjoutPers2.setBackground(new java.awt.Color(225, 225, 213));
-
-        buttonAjouterAjoutePers2.setText("Modifier");
-        buttonAjouterAjoutePers2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonAjouterAjoutePers2MouseClicked(evt);
-            }
-        });
 
         labelDateEntAjoutePers2.setText("Date de fin :");
 
@@ -307,7 +369,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
 
         jLabel6.setText("Format : jj/mm/aaaa");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePerso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -323,10 +385,21 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
+        tablePerso.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tablePerso);
 
-        labelCompAjoutePers3.setText("Personnel / Compétences :");
+        labelCompAjoutePers3.setText("Compétence / Personnel :");
+
+        comboBoxCompetence2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboBoxCompetence2MouseClicked(evt);
+            }
+        });
+        comboBoxCompetence2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxCompetence2ActionPerformed(evt);
+            }
+        });
 
         ButtonAjouterPersoAjouterComp3.setText("Affecter");
         ButtonAjouterPersoAjouterComp3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -339,6 +412,26 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         SupprCompe3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SupprCompe3MouseClicked(evt);
+            }
+        });
+
+        actualiserPerso.setText("Actualiser cette liste");
+        actualiserPerso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                actualiserPersoMouseClicked(evt);
+            }
+        });
+
+        changeMissionPlan.setText("Passer cette mission en planifiée");
+        changeMissionPlan.setEnabled(false);
+        changeMissionPlan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changeMissionPlanMouseClicked(evt);
+            }
+        });
+        changeMissionPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeMissionPlanActionPerformed(evt);
             }
         });
 
@@ -361,15 +454,18 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
                             .addGroup(PanelAjoutPers2Layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SupprCompe2)
                                     .addGroup(PanelAjoutPers2Layout.createSequentialGroup()
                                         .addComponent(labelCompAjoutePers3)
-                                        .addGap(37, 37, 37)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(comboBoxCompetence2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(SupprCompe2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelAjoutPers2Layout.createSequentialGroup()
                                         .addComponent(comboBoxPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(comboBoxCompetence2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ButtonAjouterPersoAjouterComp3))))
+                                        .addGap(29, 29, 29)
+                                        .addComponent(ButtonAjouterPersoAjouterComp3))
+                                    .addComponent(actualiserPerso)))
                             .addComponent(SupprCompe3)
                             .addGroup(PanelAjoutPers2Layout.createSequentialGroup()
                                 .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,8 +501,8 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
                                 .addComponent(labelAjoutePers2))
                             .addGroup(PanelAjoutPers2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonAjouterAjoutePers2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(320, 320, 320)
+                                .addComponent(changeMissionPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         PanelAjoutPers2Layout.setVerticalGroup(
@@ -442,20 +538,24 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
                                     .addComponent(ButtonAjouterPersoAjouterComp2)
                                     .addComponent(nbCompetence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(SupprCompe2)
+                                .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(SupprCompe2)
+                                    .addComponent(actualiserPerso))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(labelCompAjoutePers3)
-                                    .addComponent(comboBoxPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboBoxCompetence2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ButtonAjouterPersoAjouterComp3))
+                                    .addComponent(ButtonAjouterPersoAjouterComp3)
+                                    .addComponent(comboBoxPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SupprCompe3)
                                 .addGap(27, 27, 27)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonAjouterAjoutePers2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelAjoutPers2Layout.createSequentialGroup()
+                                .addGap(152, 152, 152)
+                                .addComponent(changeMissionPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PanelAjoutPers2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonRetourAjoutePers2)
@@ -479,66 +579,112 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonAjouterAjoutePers2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterAjoutePers2MouseClicked
-        if (this.verifier()) {
-            this.entreprise.ajoutMissionPreparation(this.tabC, this.cptCompetence, this.textFieldDateDebut.getText(), this.textFieldDateFin.getText());
-        }
-        InterfaceGraphiqueMissions Missions = new InterfaceGraphiqueMissions();
-        this.dispose();
-        Missions.setVisible(true);
-    }//GEN-LAST:event_buttonAjouterAjoutePers2MouseClicked
-
     private void buttonRetourAjoutePers2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourAjoutePers2MouseClicked
-        // TODO add your handling code here:
         InterfaceGraphiqueMissions Missions = new InterfaceGraphiqueMissions();
         this.dispose();
         Missions.setVisible(true);
     }//GEN-LAST:event_buttonRetourAjoutePers2MouseClicked
 
     private void ButtonAjouterPersoAjouterComp2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAjouterPersoAjouterComp2MouseClicked
-        int value = (Integer)this.nbCompetence.getValue();
-
-        if (value <= 0) {
-            this.jLabelValidation.setText("La valeur du nombre de compétence doit être supérieur à zéro");
-        } else {
-            this.cptCompetence += value;
-            this.tabC.put(getIdCompet(),value);
-            DefaultTableModel model = (DefaultTableModel) this.tableCompetence2.getModel();
-            model.addRow(new Object[]{(String)this.comboBoxCompetence.getSelectedItem()+" --"+value});
+        if (this.ButtonAjouterPersoAjouterComp2.isEnabled()) {
+            int value = (Integer)this.nbCompetence.getValue();
+            if (value <= 0) {
+                this.jLabelValidation.setText("La valeur du nombre de compétence doit être supérieur à zéro");
+            } else {
+                this.cptCompetence += value;
+                this.tabC.put(getIdCompet(),value);
+                DefaultTableModel model = (DefaultTableModel) this.tableCompetence2.getModel();
+                model.addRow(new Object[]{(String)this.comboBoxCompetence.getSelectedItem()+" --"+value});
+                this.initComboBoxCompetence2();
+            }
         }
     }//GEN-LAST:event_ButtonAjouterPersoAjouterComp2MouseClicked
 
     private void SupprCompe2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupprCompe2MouseClicked
-        DefaultTableModel model = (DefaultTableModel) this.tableCompetence2.getModel();
-        String item = (String) model.getValueAt( this.tableCompetence2.getSelectedRow(),0);
-        String id = "";
-        String nbCompet = "";
-        int i = 0;
-        while (item.charAt(i) != '-' && i < item.length()){
-            id += item.charAt(i);
+        if (this.SupprCompe2.isEnabled()) {
+            DefaultTableModel model = (DefaultTableModel) this.tableCompetence2.getModel();
+            String item = (String) model.getValueAt( this.tableCompetence2.getSelectedRow(),0);
+            String id = "";
+            String nbCompet = "";
+            int i = 0;
+            while (item.charAt(i) != '-' && i < item.length()){
+                id += item.charAt(i);
+                i++;
+            }
+            i = item.length()-1;
+            while (item.charAt(i) != '-' && i > 0){
+                i--;
+            }
             i++;
+            while (i < item.length()){
+                nbCompet += item.charAt(i);
+                i++;
+            }
+            this.tabC.remove(id);
+            this.cptCompetence -= Integer.parseInt(nbCompet);
+            model.removeRow(this.tableCompetence2.getSelectedRow());
         }
-        i = item.length()-1;
-        while (item.charAt(i) != '-' && i > 0){
-            i--;
-        }
-        i++;
-        while (i < item.length()){
-            nbCompet += item.charAt(i);
-            i++;
-        }
-        this.tabC.remove(id);
-        this.cptCompetence -= Integer.parseInt(nbCompet);
-        model.removeRow(this.tableCompetence2.getSelectedRow());
     }//GEN-LAST:event_SupprCompe2MouseClicked
 
     private void ButtonAjouterPersoAjouterComp3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAjouterPersoAjouterComp3MouseClicked
-        // TODO add your handling code here:
+        if (this.ButtonAjouterPersoAjouterComp3.isEnabled()) {
+            String itemComp = (String)this.comboBoxCompetence2.getSelectedItem();
+            String itemPerso = (String)this.comboBoxPersonnel.getSelectedItem();
+            String idPerso = "";
+            String idCompet = "";
+            int i = 0;
+            while (itemComp.charAt(i) != '-' && i < itemComp.length()){
+                idCompet += itemComp.charAt(i);
+                i++;
+            }
+            i = 0;
+            while (itemPerso.charAt(i) != ' ' && i < itemPerso.length()){
+                idPerso += itemPerso.charAt(i);
+                i++;
+            }
+            this.entreprise.getIdModifMission().addPerso(new Integer(idPerso), idCompet);
+            DefaultTableModel model = (DefaultTableModel) this.tablePerso.getModel();
+            model.addRow( new Object[]{idCompet,this.entreprise.getTPersonnels().get(new Integer(idPerso)).toStringCsv()});
+        }
     }//GEN-LAST:event_ButtonAjouterPersoAjouterComp3MouseClicked
 
     private void SupprCompe3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupprCompe3MouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_SupprCompe3MouseClicked
+
+    private void comboBoxCompetence2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxCompetence2MouseClicked
+        
+    }//GEN-LAST:event_comboBoxCompetence2MouseClicked
+
+    private void comboBoxCompetence2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCompetence2ActionPerformed
+        this.actualiserPerso.setEnabled(true);
+        this.comboBoxPersonnel.setEnabled(false);
+    }//GEN-LAST:event_comboBoxCompetence2ActionPerformed
+
+    private void actualiserPersoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualiserPersoMouseClicked
+        this.initComboBoxPerso();
+        this.comboBoxPersonnel.setEnabled(true);
+        this.actualiserPerso.setEnabled(false);
+    }//GEN-LAST:event_actualiserPersoMouseClicked
+
+    private void changeMissionPlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMissionPlanMouseClicked
+        
+    }//GEN-LAST:event_changeMissionPlanMouseClicked
+
+    private void changeMissionPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeMissionPlanActionPerformed
+        if (verifier()) {
+            MissionPlanifiee mp = new MissionPlanifiee(this.entreprise.getIdModifMission());
+            this.entreprise.getTMissionsPlanifiee().put((Integer)mp.getId(), mp);
+            this.entreprise.getTMissionsPreparation().remove(mp.getId());
+            this.changeMissionPlan.setEnabled(false);
+            this.textFieldDateDebut.setEnabled(false);
+            this.textFieldDateFin.setEnabled(false);
+            this.ButtonAjouterPersoAjouterComp2.setEnabled(false);
+            this.SupprCompe2.setEnabled(false);
+            this.comboBoxCompetence.setEnabled(false);
+            this.nbCompetence.setEnabled(false);
+        }
+    }//GEN-LAST:event_changeMissionPlanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -583,8 +729,9 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollpaneAjoutPers2;
     private javax.swing.JButton SupprCompe2;
     private javax.swing.JButton SupprCompe3;
-    private javax.swing.JButton buttonAjouterAjoutePers2;
+    private javax.swing.JButton actualiserPerso;
     private javax.swing.JButton buttonRetourAjoutePers2;
+    private javax.swing.JButton changeMissionPlan;
     private javax.swing.JComboBox<String> comboBoxCompetence;
     private javax.swing.JComboBox<String> comboBoxCompetence2;
     private javax.swing.JComboBox<String> comboBoxPersonnel;
@@ -592,7 +739,6 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelValidation;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelAjoutePers2;
     private javax.swing.JLabel labelCompAjoutePers2;
     private javax.swing.JLabel labelCompAjoutePers3;
@@ -601,6 +747,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
     private javax.swing.JLabel labelNomAjoutePers2;
     private javax.swing.JSpinner nbCompetence;
     private javax.swing.JTable tableCompetence2;
+    private javax.swing.JTable tablePerso;
     private javax.swing.JTextField textFieldDateDebut;
     private javax.swing.JTextField textFieldDateFin;
     // End of variables declaration//GEN-END:variables

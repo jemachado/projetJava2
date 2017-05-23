@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Mission;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 import java.util.TreeMap;
 
-/**
- *
- * @author clementraphaell
- */
 public abstract class Mission {
     protected int id;
     protected TreeMap<String, Integer> competNbPersonne;
@@ -73,9 +65,7 @@ public abstract class Mission {
     public abstract String getType();
  
     public void addPerso(Integer p, String compet) {
-        if(tabPerso.size()<=this.totalPersonne){
-                tabPerso.put(p,compet);
-        }
+        tabPerso.put(p,compet);
     }
     
     public boolean dispo(Date dateDeb, Date dateFin){
@@ -85,5 +75,23 @@ public abstract class Mission {
             return false;
         }
         return true;
+    }
+    
+    public String toStringCsv(){
+        String str = this.getType()+";"+this.getId()+";"+this.getDateDebutFr()+";"+this.getDateFinFr()+";"+this.getTotalPersonne();
+        Set<String> keys = this.competNbPersonne.keySet();
+        for (String key: keys) {
+            str += ";"+key+";"+this.competNbPersonne.get(key);
+        }
+        return str;
+    }
+    
+    public String toStringCsvTabPerso(){
+        String str = ""+this.getId();
+        Set<Integer> keys = this.tabPerso.keySet();
+        for (Integer key: keys) {
+            str += ";"+this.tabPerso.get(key)+";"+key;
+        }
+        return str;
     }
 }

@@ -269,12 +269,11 @@ public class InterfaceGraphiqueMissions extends javax.swing.JFrame {
     private void tableMissionsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMissionsMouseReleased
         DefaultTableModel model = (DefaultTableModel) this.tableMissions.getModel();
         String statut = ""+model.getValueAt(this.tableMissions.getSelectedRow(), 0);
+        this.buttonModifierMissions.setEnabled(true);
         if (statut.equals("MissionPreparation") || statut.equals("MissionPlanifiee")) {
             this.buttonModifierMission.setEnabled(true);
-            this.buttonModifierMissions.setEnabled(true);
         } else {
             this.buttonModifierMission.setEnabled(false);
-            this.buttonModifierMissions.setEnabled(false);
         }
         
         

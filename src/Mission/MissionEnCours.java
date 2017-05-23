@@ -20,15 +20,6 @@ public class MissionEnCours  extends MissionNonModifiable {
 		this.dateFin = dateFin;
 		this.tabPerso = new TreeMap<Integer, String>();
 	}
-	
-	public MissionEnCours(MissionPlanifiee mp){
-                this.id = mp.id;
-		this.competNbPersonne = mp.getComptNbPersonne();
-		this.totalPersonne = mp.getTotalPersonne();
-		this.dateDebut = mp.getDateDebut();
-		this.dateFin = mp.getDateFin();
-		this.tabPerso = new TreeMap<Integer, String>();
-	}
         
        public String getType(){
             return "MissionEnCours";

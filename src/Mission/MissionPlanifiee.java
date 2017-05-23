@@ -19,16 +19,20 @@ public class MissionPlanifiee extends MissionModifiable {
 		this.dateFin = dateFin;
 		this.tabPerso = new TreeMap<Integer, String>();
 	}
-	
-	public MissionPlanifiee(MissionPreparation mp){
+        
+        public MissionPlanifiee(Mission mp){
                 this.id = mp.id;
 		this.competNbPersonne = mp.getComptNbPersonne();
 		this.totalPersonne = mp.getTotalPersonne();
 		this.dateDebut = mp.getDateDebut();
 		this.dateFin = mp.getDateFin();
-		this.tabPerso = new TreeMap<Integer, String>();
+		this.tabPerso = mp.getTabPerso();
 	}
         
+        /**
+         * supprimer une personne de la mission
+         * @param p 
+         */
 	public void deletePerso(String p) {
 		try{
 			tabPerso.remove(p);
@@ -37,6 +41,10 @@ public class MissionPlanifiee extends MissionModifiable {
 		}
 	}
         
+        /**
+         * toString
+         * @return 
+         */
         public String toString(){
            String str = getType()+";"+this.id+";"+this.dateDebut+";"+this.dateFin.toString()+";"+this.totalPersonne+";";
            Set<String> keys = competNbPersonne.keySet();
@@ -47,6 +55,10 @@ public class MissionPlanifiee extends MissionModifiable {
            return str;
         }
         
+        /**
+         * retourne le type de la mission
+         * @return 
+         */
         public String getType(){
             return "MissionPlanifiee";
         }
