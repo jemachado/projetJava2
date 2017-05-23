@@ -23,9 +23,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InterfaceGraphiqueModifierComp extends javax.swing.JFrame {
     Entreprise entreprise;
-    /**
-     * Creates new form InterfaceGraphiqueModifierComp
-     */
+    
+    
     public InterfaceGraphiqueModifierComp() throws IOException {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();

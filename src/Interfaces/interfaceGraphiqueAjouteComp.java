@@ -21,9 +21,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class interfaceGraphiqueAjouteComp extends javax.swing.JFrame {
     Entreprise entreprise;
-    /**
-     * Creates new form interfaceGraphiqueAjouteComp
-     */
+    
+    
     public interfaceGraphiqueAjouteComp() throws IOException {
         initComponents();
         this.entreprise = new Entreprise();

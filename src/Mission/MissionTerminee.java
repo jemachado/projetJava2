@@ -32,7 +32,7 @@ public class MissionTerminee extends MissionNonModifiable {
     
     /**
      * return le status de la mission
-     * @return 
+     * @return String
      */
      public String getType(){
         return "MissionTerminee";

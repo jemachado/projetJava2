@@ -13,14 +13,26 @@ import java.util.Date;
  */
 public abstract class MissionModifiable extends Mission {
     
+    /**
+     * permet de modifier le nombre total de personne
+     * @param totalPersonne int
+     */
     public void setTotalPersonne(int totalPersonne) {
         this.totalPersonne = totalPersonne;
     }
     
+    /**
+     * permet de modifier la date de debut de la mission
+     * @param dateDebut Date
+     */
     public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
     }
     
+    /**
+     * permet de modifier la date de fin
+     * @param dateFin Date
+     */
     public void setDuree(Date dateFin) {
         this.dateFin = dateFin;
     }

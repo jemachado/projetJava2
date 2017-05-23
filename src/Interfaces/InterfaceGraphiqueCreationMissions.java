@@ -24,9 +24,8 @@ public class InterfaceGraphiqueCreationMissions extends javax.swing.JFrame {
     Entreprise entreprise;
     TreeMap<String, Integer> tabC;
     int cptCompetence;
-    /**
-     * Creates new form InterfaceGraphiqueCreationMissions
-     */
+    
+    
     public InterfaceGraphiqueCreationMissions() throws IOException {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.tabC = new TreeMap<String, Integer>();

@@ -21,9 +21,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InterfaceGraphiqueCompetences extends javax.swing.JFrame {
     Entreprise entreprise;
-    /**
-     * Creates new form InterfaceGraphiqueCompetences
-     */
+    
+    
     public InterfaceGraphiqueCompetences() throws IOException {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();

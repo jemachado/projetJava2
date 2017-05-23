@@ -31,7 +31,7 @@ public class MissionPlanifiee extends MissionModifiable {
         
         /**
          * supprimer une personne de la mission
-         * @param p 
+         * @param p String
          */
 	public void deletePerso(String p) {
 		try{
@@ -43,7 +43,7 @@ public class MissionPlanifiee extends MissionModifiable {
         
         /**
          * toString
-         * @return 
+         * @return String
          */
         public String toString(){
            String str = getType()+";"+this.id+";"+this.dateDebut+";"+this.dateFin.toString()+";"+this.totalPersonne+";";
@@ -57,7 +57,7 @@ public class MissionPlanifiee extends MissionModifiable {
         
         /**
          * retourne le type de la mission
-         * @return 
+         * @return String
          */
         public String getType(){
             return "MissionPlanifiee";

@@ -23,7 +23,7 @@ public class MissionPreparation extends Mission {
 
     /**
      * toString
-     * @return 
+     * @return String
      */
     public String toString(){
        String str = getType()+";"+this.id+";"+this.dateDebut+";"+this.dateFin.toString()+";"+this.totalPersonne+";";
@@ -37,8 +37,8 @@ public class MissionPreparation extends Mission {
         
     /**
      * Ajouter une compétence à la mission
-     * @param s
-     * @param i 
+     * @param s String
+     * @param i Integer
      */
     public void addComptNbPersonne(String s, Integer i){
     if(s!=null && s.equals("") && i!=null ){
@@ -48,7 +48,7 @@ public class MissionPreparation extends Mission {
     
     /**
      * retourne le type de la mission
-     * @return 
+     * @return String
      */
     public String getType(){
         return "MissionPreparation";
@@ -56,7 +56,7 @@ public class MissionPreparation extends Mission {
     
     /**
      * toString en csv
-     * @return 
+     * @return String
      */
     public String toStringCsv(){
         String str = this.getType()+";"+this.getId()+";"+this.getDateDebutFr()+";"+this.getDateFinFr()+";"+this.getTotalPersonne();

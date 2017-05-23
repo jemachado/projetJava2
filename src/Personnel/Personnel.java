@@ -98,7 +98,7 @@ public class Personnel {
 	/**
 	 * Mettre à jour le nom du personnel
          * 
-	 * @param nom
+	 * @param nom String
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -118,7 +118,7 @@ public class Personnel {
 	/**
 	 * Mettre à jour le prenom du personnel
          * 
-	 * @param prenom
+	 * @param prenom String
 	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
@@ -160,7 +160,7 @@ public class Personnel {
 	
         /**
          * Supprimer une compétence à la personne
-         * @param c 
+         * @param c  String
          */
 	public void supprimerCompetence(String c){
 		try{
@@ -172,7 +172,7 @@ public class Personnel {
         
         /**
          * toString au format csv
-         * @return 
+         * @return String
          */
         public String toStringCsv(){
             return this.prenom+";"+this.nom+";"+this.toStringDateFr()+";"+this.id;
@@ -180,8 +180,8 @@ public class Personnel {
         
         /**
          * 
-         * @param dateFr
-         * @return 
+         * @param dateFr String
+         * @return Date
          */
         public Date dateFr(String dateFr){
             int jour = Integer.parseInt(""+dateFr.charAt(0)+dateFr.charAt(1));
@@ -192,7 +192,7 @@ public class Personnel {
     
         /**
          * 
-         * @return 
+         * @return String
          */
         public String toStringDateFr(){
             String jour;
@@ -214,8 +214,8 @@ public class Personnel {
         
         /**
          * Renvoie true si les deux personnes sont les mêmes
-         * @param p
-         * @return 
+         * @param p Personnel
+         * @return boolean
          */
         public boolean compareTo(Personnel p){
             if ( p == null )
@@ -235,8 +235,8 @@ public class Personnel {
         
         /**
          * Retourne true si il a la compétence passé en paramètre 
-         * @param c
-         * @return 
+         * @param c Competence
+         * @return boolean
          */
         public boolean getCompetence(Competence c){
             if (tabC.indexOf(c.getId()) != -1) {

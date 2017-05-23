@@ -26,10 +26,8 @@ public class InterfaceGraphiqueModifierPerso extends javax.swing.JFrame {
     Entreprise entreprise;
     ArrayList<String> tabC;
     
-    /**
-     * Creates new form InterfaceGraphiqueModifierPerso
-     * @throws java.io.IOException
-     */
+    
+    
     public InterfaceGraphiqueModifierPerso() throws IOException {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.entreprise = new Entreprise();

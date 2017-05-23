@@ -108,7 +108,7 @@ public class Entreprise {
     /**
      * Récupère toutes les compétences présentent dans le csv et lui associe toutes ces comptétences
      * 
-     * @return
+     * @return TreeMap<String,Competence>
      * @throws NumberFormatException
      * @throws IOException 
      */
@@ -135,7 +135,7 @@ public class Entreprise {
     /**
      * Récupère toutes les missions présentent dans le csv et lui associe toutes ces comptétences
      * 
-     * @return
+     * @return TreeMap<Integer,Mission>
      * @throws NumberFormatException
      * @throws IOException 
      */
@@ -298,7 +298,7 @@ public class Entreprise {
      * Met à jour le status des missions
      * 
      * @param m
-     * @return 
+     * @return type 
      */
     private Mission miseAJourStatusMission(Mission m){
         return null;
@@ -309,7 +309,7 @@ public class Entreprise {
     /**
      * Réécris tous les fichier csv
      * 
-     * @throws IOException 
+     * @throws IOException E
      */
     public void sauvegarderTout() throws IOException {
         this.sauvegarderCompetence();
@@ -439,11 +439,11 @@ public class Entreprise {
     
     /**
      * rechercher une personne selon les critères rentrées en paramètre
-     * @param dateEntree
-     * @param nom
-     * @param prenom
-     * @param competences
-     * @return 
+     * @param dateEntree date d'entrée
+     * @param nom nom
+     * @param prenom prenom
+     * @param competences liste de compétence
+     * @return type 
      */
     public TreeMap<Integer,Personnel> rechercherPersonnels(Date dateEntree, String nom, String prenom, ArrayList<String> competences){
         TreeMap<Integer,Personnel> tPers = new TreeMap<Integer,Personnel>();
@@ -460,10 +460,10 @@ public class Entreprise {
     
     /**
      * Ajouter une personne selon les variables rentrées en paramètre
-     * @param dateEntree
-     * @param nom
-     * @param prenom
-     * @param tabC 
+     * @param dateEntree date d'entrée
+     * @param nom nom
+     * @param prenom prenom
+     * @param tabC tableau de compétence
      */
     public void ajoutPersonnel(String dateEntree, String nom, String prenom, ArrayList<String> tabC){
         Personnel p = new Personnel(this.idPersonnel,dateEntree, nom, prenom);
@@ -476,11 +476,11 @@ public class Entreprise {
     
     /**
      * Modifier une personne selon les variables rentrées en paramètre
-     * @param dateEntree
-     * @param nom
-     * @param prenom
-     * @param tabC
-     * @return 
+     * @param dateEntree date d'entrée
+     * @param nom nom
+     * @param prenom prenom
+     * @param tabC tableau de compétence
+     * @return boolean
      */
     public boolean modifierPersonnel(String dateEntree, String nom, String prenom, ArrayList<String> tabC){
         if (dateEntree == null || dateEntree.equals("") || nom == null || nom.equals("") || prenom == null || prenom.equals("") ) {
@@ -502,10 +502,10 @@ public class Entreprise {
     
     /**
      * Ajouter une compétence
-     * @param id
-     * @param libelleEn
-     * @param libelleFr
-     * @return 
+     * @param id identifiant de la compétence
+     * @param libelleEn libelle anglais
+     * @param libelleFr libelle français
+     * @return boolean
      */
     public boolean ajoutCompétence(String id, String libelleEn, String libelleFr){
         if(id == null || id.equals("") || libelleEn.equals("") || libelleEn == null || libelleFr == null || libelleFr.equals("") ){
@@ -525,10 +525,10 @@ public class Entreprise {
     /**
      * Modifier une compétence
      * 
-     * @param id
-     * @param libelleEn
-     * @param libelleFr
-     * @return 
+     * @param id identifiant de la compétence
+     * @param libelleEn libelle anglais
+     * @param libelleFr libelle français
+     * @return boolean 
      */
     public boolean modifCompétence(String id, String libelleEn, String libelleFr){
         if(id == null || id.equals("") || libelleEn.equals("") || libelleEn == null || libelleFr == null || libelleFr.equals("") ){
@@ -547,8 +547,8 @@ public class Entreprise {
     /**
      * Supprimer une compétence
      * 
-     * @param id
-     * @return 
+     * @param id id de la compétence
+     * @return boolean
      */
     public boolean supCompétence(String id){
         if(id == null || id.equals("")){
@@ -568,11 +568,11 @@ public class Entreprise {
     /**
      * Ajouter une mission
      * 
-     * @param competNbPersonne
-     * @param totalPersonne
-     * @param dateDebut
-     * @param dateFin
-     * @return 
+     * @param competNbPersonne Tableau affectation
+     * @param totalPersonne .
+     * @param dateDebut .
+     * @param dateFin .
+     * @return type 
      */
     public boolean ajoutMissionPreparation(TreeMap<String, Integer> competNbPersonne,
                                            int totalPersonne,
@@ -590,8 +590,8 @@ public class Entreprise {
     /**
      * Prend en paramètre une date français de type String et retourne un type Date
      * 
-     * @param dateFr
-     * @return 
+     * @param dateFr .
+     * @return type 
      */
     public Date dateFr(String dateFr){
         int jour = Integer.parseInt(""+dateFr.charAt(0)+dateFr.charAt(1));
@@ -603,8 +603,8 @@ public class Entreprise {
     /**
      * Retourne un String sous le format jj/mm/aaaa
      * 
-     * @param date
-     * @return 
+     * @param date .
+     * @return type 
      */
     public String toStringDateFr(Date date){
         String jour;
@@ -626,7 +626,7 @@ public class Entreprise {
     
     /**
      * return tout le personnel
-     * @return 
+     * @return type 
      */
     public TreeMap<Integer,Personnel> getTPersonnels(){
         return this.tPersonnels;
@@ -635,7 +635,7 @@ public class Entreprise {
     /**
      * Retourne toutes les compétences
      * 
-     * @return 
+     * @return type 
      */
     public TreeMap<String,Competence> getTCompetences(){
         return this.tCompetences;
@@ -644,7 +644,7 @@ public class Entreprise {
     /**
      * retourne toute les missions planifiées
      * 
-     * @return 
+     * @return type 
      */
     public TreeMap<Integer,MissionPlanifiee> getTMissionsPlanifiee(){
         return this.tMissionsPlanifiee;
@@ -653,7 +653,7 @@ public class Entreprise {
     /**
      * retourne toutes les missions en préparation
      * 
-     * @return 
+     * @return type 
      */
     public TreeMap<Integer,MissionPreparation> getTMissionsPreparation(){
         return this.tMissionsPreparation;
@@ -666,7 +666,7 @@ public class Entreprise {
     /**
      * retourne toutes les missions terminées
      * 
-     * @return 
+     * @return type 
      */
     public TreeMap<Integer,MissionTerminee> getTMissionsTerminee(){
         return this.tMissionsTerminee;
@@ -675,7 +675,7 @@ public class Entreprise {
     /**
      * Retourne toutes les missions
      * 
-     * @return 
+     * @return type 
      */
     public TreeMap<Integer,Mission> getTMissions(){
         TreeMap<Integer,Mission> tabMission = new TreeMap<Integer,Mission>();
@@ -705,16 +705,12 @@ public class Entreprise {
     /**
      * retourne id de la personne a modifier
      * 
-     * @return 
+     * @return type 
      */
     public String getIdModifPerso(){
         return this.idModifPerso;
     }
     
-    /**
-     * modifie id de la personne a modifier
-     * @param idModifPerso 
-     */
     public void setIdModifPerso(String idModifPerso){
         this.idModifPerso = idModifPerso;
     }
@@ -734,7 +730,7 @@ public class Entreprise {
     /**
      * Retourne la mission a modifier
      * 
-     * @return 
+     * @return type 
      */
     public Mission getIdModifMission(){
         if (this.tMissionsPlanifiee.get(new Integer(this.idModifMission)) != null) {
@@ -749,9 +745,9 @@ public class Entreprise {
     /**
      * Retourne les personnes ayant la compétence passé en paramètre et étant libre durant la mission
      * 
-     * @param m
-     * @param c
-     * @return 
+     * @param m mission
+     * @param c compétence
+     * @return type
      */
     public TreeMap<Integer,Personnel> getTabPersoDispo(Mission m ,Competence c){
         TreeMap<Integer,Personnel> tabPerso = (TreeMap<Integer,Personnel>)this.getTPersonnels().clone();

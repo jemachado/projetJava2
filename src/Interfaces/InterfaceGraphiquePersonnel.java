@@ -26,10 +26,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InterfaceGraphiquePersonnel extends javax.swing.JFrame {
     JFrame Personnel = new JFrame("Personnel");
-    /**
-     * Creates new form InterfaceGraphiquePersonnel
-     * @throws java.io.IOException
-     */
+    
+    
     Entreprise entreprise;
     
     public InterfaceGraphiquePersonnel() throws IOException {

@@ -29,10 +29,7 @@ public class interfaceGraphiqueAjoutePerso extends javax.swing.JFrame {
     Entreprise entreprise;
     ArrayList<String> tabC;
     
-    /**
-     * Creates new form interfaceGraphiqueAjoutePerso
-     * @throws java.io.IOException
-     */
+    
     public interfaceGraphiqueAjoutePerso() throws IOException {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
