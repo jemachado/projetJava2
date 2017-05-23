@@ -18,7 +18,7 @@ public class MissionEnCours  extends MissionNonModifiable {
 		this.totalPersonne = totalPersonne;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.tabPerso = new ArrayList<String>();
+		this.tabPerso = new TreeMap<Integer, String>();
 	}
 	
 	public MissionEnCours(MissionPlanifiee mp){
@@ -27,7 +27,7 @@ public class MissionEnCours  extends MissionNonModifiable {
 		this.totalPersonne = mp.getTotalPersonne();
 		this.dateDebut = mp.getDateDebut();
 		this.dateFin = mp.getDateFin();
-		this.tabPerso = new ArrayList<String>();
+		this.tabPerso = new TreeMap<Integer, String>();
 	}
         
        public String getType(){

@@ -7,6 +7,7 @@ package Mission;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TreeMap;
 
 /**
  *
@@ -24,9 +25,5 @@ public abstract class MissionNonModifiable extends Mission {
 
     public void setDuree(Date dateFin) {
         this.dateFin = dateFin;
-    }
-
-    public ArrayList<String> getTabPerso() {
-        return tabPerso;
     }
 }

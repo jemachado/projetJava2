@@ -17,7 +17,7 @@ public class MissionPlanifiee extends MissionModifiable {
 		this.totalPersonne = totalPersonne;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.tabPerso = new ArrayList<String>();
+		this.tabPerso = new TreeMap<Integer, String>();
 	}
 	
 	public MissionPlanifiee(MissionPreparation mp){
@@ -26,11 +26,7 @@ public class MissionPlanifiee extends MissionModifiable {
 		this.totalPersonne = mp.getTotalPersonne();
 		this.dateDebut = mp.getDateDebut();
 		this.dateFin = mp.getDateFin();
-		this.tabPerso = new ArrayList<String>();
-	}
-	
-	public ArrayList<String> getTabPerso() {
-		return tabPerso;
+		this.tabPerso = new TreeMap<Integer, String>();
 	}
         
 	public void deletePerso(String p) {

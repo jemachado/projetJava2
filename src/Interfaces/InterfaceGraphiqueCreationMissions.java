@@ -405,10 +405,12 @@ public class InterfaceGraphiqueCreationMissions extends javax.swing.JFrame {
     private void buttonAjouterAjoutePers2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAjouterAjoutePers2MouseClicked
         if (this.verifier()) {
             this.entreprise.ajoutMissionPreparation(this.tabC, this.cptCompetence, this.textFieldDateDebut.getText(), this.textFieldDateFin.getText());
+            InterfaceGraphiqueMissions Missions = new InterfaceGraphiqueMissions();
+            this.dispose();
+            Missions.setVisible(true);
+        } else {
+            
         }
-        InterfaceGraphiqueMissions Missions = new InterfaceGraphiqueMissions();
-        this.dispose();
-        Missions.setVisible(true);
     }//GEN-LAST:event_buttonAjouterAjoutePers2MouseClicked
 
     private void ButtonAjouterPersoAjouterComp2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAjouterPersoAjouterComp2MouseClicked

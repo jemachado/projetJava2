@@ -8,6 +8,7 @@ package Interfaces;
 import Competence.Competence;
 import Entreprise.Entreprise;
 import Personnel.Personnel;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeMap;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
     Entreprise entreprise;
     TreeMap<String, Integer> tabC;
+    
     int cptCompetence;
     /**
      * Creates new form InterfaceGraphiqueModifierMissions
@@ -30,8 +32,9 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         this.cptCompetence = 0;
         this.initComboBoxPerso();
         this.initComboBoxCompetence();
-        this.comboBoxCompetence2.setEnabled(false);
+        this.comboBoxPersonnel.setEnabled(false);
         this.tabC = new TreeMap<String, Integer>();
+        this.initTableCompet();
     }
     
     private boolean verifier(){
@@ -163,6 +166,22 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         }
     }
     
+    private void initComboBoxCompetence2() {
+        ArrayList<String> tabCompetence = new ArrayList<String>();
+        
+    }
+    
+    private void initTableCompet(){
+        TreeMap<String, Integer> tabCompet = this.entreprise.getIdModifMission().getComptNbPersonne();
+        DefaultTableModel model = (DefaultTableModel) this.tableCompetence2.getModel();
+        Set<String> keys = tabCompet.keySet();
+        this.comboBoxPersonnel.addItem(" ");
+        for(String key: keys){
+            Competence c = this.entreprise.getTCompetences().get(key);
+            model.addRow(new Object[]{c.toString()+" --"+tabCompet.get(key)});
+        }
+    }
+    
     private void initComboBoxCompetence(){
         Set<String> keys = entreprise.getTCompetences().keySet();
         this.comboBoxCompetence.addItem("");
@@ -263,6 +282,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableCompetence2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ScrollpaneAjoutPers2.setViewportView(tableCompetence2);
 
         labelNomAjoutePers2.setText("Date de début :");
@@ -303,6 +323,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable1);
 
         labelCompAjoutePers3.setText("Personnel / Compétences :");
@@ -446,7 +467,7 @@ public class InterfaceGraphiqueModifierMissions extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelAjoutPers2, javax.swing.GroupLayout.PREFERRED_SIZE, 1453, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanelAjoutPers2, javax.swing.GroupLayout.PREFERRED_SIZE, 1241, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

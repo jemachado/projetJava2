@@ -262,14 +262,14 @@ public class Entreprise {
                             Integer id = new Integer(nextLine[0]);
                             Integer idPerso = new Integer(nextLine[j]);
                             if (this.tMissionsPreparation.get(id) != null) {
-                                this.tMissionsPreparation.get(id).addPerso(nextLine[j]);
+                                this.tMissionsPreparation.get(id).addPerso(idPerso,"e ");
                             } else if(this.tMissionsPlanifiee.get(id) != null) {
-                                this.tMissionsPlanifiee.get(id).addPerso(nextLine[j]);
+                                this.tMissionsPlanifiee.get(id).addPerso(idPerso,"");
                                 this.tPersonnels.get(idPerso).setDispo(false);
                             } else if(this.tMissionsEnCours.get(id) != null) {
-                                this.tMissionsEnCours.get(id).addPerso(nextLine[j]);
+                                this.tMissionsEnCours.get(id).addPerso(idPerso,"");
                             } else if(this.tMissionsTerminee.get(id) != null) {
-                                this.tMissionsTerminee.get(id).addPerso(nextLine[j]);
+                                this.tMissionsTerminee.get(id).addPerso(idPerso,"");
                                 
                             }
                         }

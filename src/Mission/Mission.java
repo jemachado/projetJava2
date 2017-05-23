@@ -19,7 +19,7 @@ public abstract class Mission {
     protected int totalPersonne;
     protected Date dateDebut;
     protected Date dateFin;
-    protected ArrayList<String> tabPerso;
+    protected TreeMap<Integer, String> tabPerso;
     
     public Integer getComptNbPersonne(String i) {
         return competNbPersonne.get(i);
@@ -45,9 +45,10 @@ public abstract class Mission {
         return this.id;
     }
     
-    public ArrayList<String> getTabPerso(){
+    public TreeMap<Integer, String> getTabPerso(){
         return this.tabPerso;
     }
+    
     
     public String getDateDebutFr(){
         String mois;
@@ -71,9 +72,9 @@ public abstract class Mission {
     
     public abstract String getType();
  
-    public void addPerso(String p) {
+    public void addPerso(Integer p, String compet) {
         if(tabPerso.size()<=this.totalPersonne){
-                tabPerso.add(p);
+                tabPerso.put(p,compet);
         }
     }
     
